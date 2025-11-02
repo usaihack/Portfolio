@@ -29,5 +29,5 @@ Curiosity drives me. Precision grounds me.
 
 ---
 
-> _“Security is not about breaking systems, it’s about understanding them.”_  
+> _“Security is not about breaking systems, it’s about understanding them.”  
 > — Usman Said
