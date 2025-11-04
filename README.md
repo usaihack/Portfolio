@@ -10,8 +10,7 @@ Curiosity drives me. Precision grounds me.
 
 ### 🧠 About Me
 - 🔐 Passionate about **ethical hacking**, **CTFs**, and **cyber defense**.  
-- 🧩 Learning **network security**, **scripting**, and **system internals**.  
-- ⚙️ Building tools that make security smarter, not harder.  
+- 🧩 Learning **network security**, **scripting**, and **system internals**.    
 - 🌱 Constantly experimenting and documenting the process.  
 
 ---
