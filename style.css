@@ -1,4 +1,4 @@
-/* ==================== ROOT VARIABLES ==================== */
+﻿/* ==================== ROOT VARIABLES ==================== */
 :root {
   --bg: #0a0e17;
   --text: #e0e0e0;
@@ -73,7 +73,7 @@ body {
 }
 
 .boot-content {
-  max-width: 600px;
+  max-width: 800px;
   width: 100%;
   text-align: center;
 }
@@ -134,7 +134,7 @@ body {
   border-radius: 8px;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  height: 150px;
+  height: 400px;
   overflow-y: auto;
   backdrop-filter: blur(10px);
 }
