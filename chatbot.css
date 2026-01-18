@@ -1,0 +1,235 @@
+﻿/* Open chat button on left bottom */
+#open-chat {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background: #00ffcc;
+  color: #000;
+  border: none;
+  padding: 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 0 10px rgba(0, 255, 204, 0.7);
+  transition: transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+}
+
+#open-chat img {
+  width: 32px;
+  height: 32px;
+  display: block;
+}
+
+#open-chat:hover {
+  transform: scale(1.1);
+}
+
+/* Chat container */
+#chatbot {
+  position: fixed;
+  bottom: 80px;
+  left: 20px;
+  width: 360px;
+  height: 480px;
+  display: none;
+  flex-direction: column;
+  background: rgba(10, 10, 10, 0.95);
+  border: 1px solid #00ffcc;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.5);
+  font-family: 'Courier New', monospace;
+  color: #00ffcc;
+  z-index: 1000;
+}
+
+/* Chat header */
+#chat-header {
+  padding: 12px;
+  border-bottom: 1px solid #00ffcc;
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  background: rgba(0,0,0,0.85);
+}
+
+#chat-header span {
+  color: #00ffcc;
+}
+
+#chat-header button {
+  background: none;
+  border: none;
+  color: #00ffcc;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Chat body */
+#chat-body {
+  flex: 1;
+  padding: 12px;
+  overflow-y: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* Messages */
+.message {
+  margin-bottom: 10px;
+  word-wrap: break-word;
+}
+
+.user {
+  color: #ffffff;
+  background: rgba(255,255,255,0.05);
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.bot {
+  color: #00ffcc;
+  background: rgba(0,255,204,0.05);
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+/* Section formatting inside bot messages */
+.bot .section-title {
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 4px;
+}
+
+.bot .list-item {
+  margin-left: 12px;
+  margin-bottom: 2px;
+}
+
+/* Chat input area */
+#chat-input-area {
+  border-top: 1px solid #00ffcc;
+}
+
+#chat-input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: #00ffcc;
+  outline: none;
+  font-family: 'Courier New', monospace;
+}
+
+
+#chat-hint {
+  position: fixed;
+  left: 20px;
+  bottom: 80px;
+  background: rgba(0, 0, 0, 0.9);
+  color: #00ffcc;
+  font-family: "Courier New", monospace;
+  font-size: 13px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #00ffcc;
+  box-shadow: 0 0 12px rgba(0, 255, 204, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+
+#chat-hint.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+
+#chat-hint {
+  position: fixed;
+  left: 20px;
+  bottom: 90px;
+  background: rgba(0,0,0,0.9);
+  color: #00ffcc;
+  font-family: monospace;
+  font-size: 13px;
+  padding: 8px 34px 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #00ffcc;
+  box-shadow: 0 0 12px rgba(0,255,204,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999;
+}
+
+#chat-hint.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+#chat-hint .hint-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+
+.chat-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.chat-btn {
+  background: rgba(0, 255, 204, 0.12);
+  color: #00ffcc;
+  border: 1px solid #00ffcc;
+  padding: 6px 12px;
+  font-family: monospace;
+  font-size: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.chat-btn:hover {
+  background: #00ffcc;
+  color: #000;
+  transform: translateY(-1px);
+}
+
+.chat-btn:active {
+  transform: scale(0.95);
+}
+
+
+#chatbot {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  display: flex; /* keep flex for layout */
+  pointer-events: none;
+}
+
+#chatbot.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* ==================== CHATBOT RESPONSIVE DESIGN ==================== */
