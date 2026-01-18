@@ -1,575 +1,323 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MUHAMMAD USMAN SAID - Cyber Security Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" href="./images/favicon.png" type="image/x-icon">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammad Usman Said | Interactive Cyber Portfolio</title>
+  <link rel="shortcut icon" href="/Images/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="chatbot.css">
 </head>
 <body>
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- NAVIGATION -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <nav>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#achievements">Achievements</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
+  <div id="scroll-progress"></div>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- HERO SECTION -->
-    <!-- EDIT: Personal Info - Update name and title here -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="home">
-        <div class="grid-bg"></div>
-        <div class="hero-content">
-            <h1 class="glitch">Muhammad Usman Said</h1>
-            <div class="typing-effect" id="typingText"></div>
-            <p class="hero-description">
-                Penetration tester | CTF enthusiast | Building a more secure digital world, one vulnerability at a time.
-            </p>
-            <a href="#contact" class="cta-button">Initialize Contact</a>
+  <!-- Beautiful Loading Screen -->
+  <div id="boot-screen" class="boot-screen-container">
+    <div class="boot-content">
+      <div class="boot-logo">
+        <svg viewBox="0 0 100 100" class="logo-svg">
+          <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="2"/>
+          <path d="M 30 50 Q 50 30 70 50 Q 50 70 30 50" fill="none" stroke="currentColor" stroke-width="2"/>
+          <circle cx="50" cy="50" r="8" fill="currentColor"/>
+        </svg>
+      </div>
+      
+      <h1 class="boot-title">SYSTEM INITIALIZING...</h1>
+      
+      <div class="boot-logs-container">
+        <div id="boot-logs" class="boot-logs"></div>
+      </div>
+      
+      <div class="boot-progress-bar">
+        <div class="boot-progress-fill" id="boot-progress-fill">
+          <div class="progress-shimmer"></div>
         </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- ABOUT SECTION -->
-    <!-- EDIT: Update bio and skills here -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="about">
-        <div class="container">
-            <h2 class="section-title reveal">About</h2>
-            <div class="about-content reveal">
-                <div class="about-text">
-                    <p>
-                        I'm a cybersecurity student and ethical hacker passionate about offensive security, 
-                        reverse engineering, and solving complex security challenges. With a focus on 
-                        continuous learning and hands-on experience, I participate in CTF competitions 
-                        and contribute to the security community.
-                    </p>
-                    <p>
-                        My journey started with curiosity about how systems work under the hood. Now, 
-                        I spend my time hunting for vulnerabilities, analyzing malware in isolated 
-                        environments, and developing tools to automate security testing.
-                    </p>
-                    <p>
-                        When I'm not breaking things (ethically), you'll find me sharing writeups, 
-                        mentoring aspiring hackers, and exploring the latest security research.
-                    </p>
-                </div>
-                <div class="skills-grid">
-                    <div class="skill-item" tabindex="0">// Python</div>
-                    <div class="skill-item" tabindex="0">// Bash</div>
-                    <div class="skill-item" tabindex="0">// JavaScript</div>
-                    <div class="skill-item" tabindex="0">// C/C++</div>
-                    <div class="skill-item" tabindex="0">// Web Exploitation</div>
-                    <div class="skill-item" tabindex="0">// Binary Analysis</div>
-                    <div class="skill-item" tabindex="0">// Network Security</div>
-                    <div class="skill-item" tabindex="0">// Forensics</div>
-                    <div class="skill-item" tabindex="0">// OSINT</div>
-                    <div class="skill-item" tabindex="0">// Reverse Engineering</div>
-                    <div class="skill-item" tabindex="0">// Linux</div>
-                    <div class="skill-item" tabindex="0">// Docker</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- DISCS -->
-     <!-- DISCS -->
-<section id="skills">
-    <div class="container">
-        <h2 class="section-title reveal">Skills</h2>
-        <div class="progress-section">
-            <div class="skills-discs-grid">
-                <!-- Disc 1: HTML/CSS -->
-                <div class="disc-item" data-percentage="100">
-                    <div class="disc-container">
-                        <!-- Hexagon frame -->
-                        <svg class="disc-hexagon" viewBox="0 0 200 200">
-                            <path class="hexagon-path" d="M100,10 L173,55 L173,145 L100,190 L27,145 L27,55 Z"/>
-                        </svg>
-                        
-                        <!-- Binary ring -->
-                        <div class="binary-ring">
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(0deg) translateY(-95px);">01</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(45deg) translateY(-95px);">10</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(90deg) translateY(-95px);">11</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(135deg) translateY(-95px);">00</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(180deg) translateY(-95px);">01</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(225deg) translateY(-95px);">10</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(270deg) translateY(-95px);">11</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(315deg) translateY(-95px);">00</span>
-                        </div>
-                        
-                        <!-- Corner brackets -->
-                        <svg class="disc-brackets" viewBox="0 0 200 200">
-                            <path class="bracket-corner" d="M20,20 L20,40 M20,20 L40,20"/>
-                            <path class="bracket-corner" d="M180,20 L180,40 M180,20 L160,20"/>
-                            <path class="bracket-corner" d="M20,180 L20,160 M20,180 L40,180"/>
-                            <path class="bracket-corner" d="M180,180 L180,160 M180,180 L160,180"/>
-                        </svg>
-                        
-                        <!-- Background disc -->
-                        <div class="disc-background"></div>
-                        
-                        <!-- Scanner effect -->
-                        <div class="disc-scanner">
-                            <div class="scanner-line"></div>
-                        </div>
-                        
-                        <!-- Progress circle -->
-                        <svg class="disc-svg" viewBox="0 0 170 170">
-                            <circle class="disc-circle-bg" cx="85" cy="85" r="80"/>
-                            <circle class="disc-circle-progress" cx="85" cy="85" r="80"/>
-                        </svg>
-                        
-                        <!-- Data segments -->
-                        <svg class="disc-segments" viewBox="0 0 140 140">
-                            <circle class="segment-line" cx="70" cy="70" r="65"/>
-                            <circle class="segment-line" cx="70" cy="70" r="50"/>
-                            <line class="segment-line" x1="70" y1="5" x2="70" y2="135"/>
-                            <line class="segment-line" x1="5" y1="70" x2="135" y2="70"/>
-                        </svg>
-                        
-                        <!-- Center percentage -->
-                        <div class="disc-center">
-                            <div class="disc-percentage">
-                                <span class="disc-percentage-value">0</span><span class="disc-percentage-symbol">%</span>
-                            </div>
-                            <div class="disc-status">MASTERED</div>
-                        </div>
-                    </div>
-                    <div class="disc-label">HTML/CSS</div>
-                    <div class="disc-sublabel">// FRONT-END CORE</div>
-                </div>
-
-                <!-- Disc 2: JavaScript -->
-                <div class="disc-item" data-percentage="80">
-                    <div class="disc-container">
-                        <svg class="disc-hexagon" viewBox="0 0 200 200">
-                            <path class="hexagon-path" d="M100,10 L173,55 L173,145 L100,190 L27,145 L27,55 Z"/>
-                        </svg>
-                        
-                        <div class="binary-ring">
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(0deg) translateY(-95px);">10</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(45deg) translateY(-95px);">01</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(90deg) translateY(-95px);">11</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(135deg) translateY(-95px);">00</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(180deg) translateY(-95px);">10</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(225deg) translateY(-95px);">01</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(270deg) translateY(-95px);">11</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(315deg) translateY(-95px);">00</span>
-                        </div>
-                        
-                        <svg class="disc-brackets" viewBox="0 0 200 200">
-                            <path class="bracket-corner" d="M20,20 L20,40 M20,20 L40,20"/>
-                            <path class="bracket-corner" d="M180,20 L180,40 M180,20 L160,20"/>
-                            <path class="bracket-corner" d="M20,180 L20,160 M20,180 L40,180"/>
-                            <path class="bracket-corner" d="M180,180 L180,160 M180,180 L160,180"/>
-                        </svg>
-                        
-                        <div class="disc-background"></div>
-                        <div class="disc-scanner">
-                            <div class="scanner-line"></div>
-                        </div>
-                        
-                        <svg class="disc-svg" viewBox="0 0 170 170">
-                            <circle class="disc-circle-bg" cx="85" cy="85" r="80"/>
-                            <circle class="disc-circle-progress" cx="85" cy="85" r="80"/>
-                        </svg>
-                        
-                        <svg class="disc-segments" viewBox="0 0 140 140">
-                            <circle class="segment-line" cx="70" cy="70" r="65"/>
-                            <circle class="segment-line" cx="70" cy="70" r="50"/>
-                            <line class="segment-line" x1="70" y1="5" x2="70" y2="135"/>
-                            <line class="segment-line" x1="5" y1="70" x2="135" y2="70"/>
-                        </svg>
-                        
-                        <div class="disc-center">
-                            <div class="disc-percentage">
-                                <span class="disc-percentage-value">0</span><span class="disc-percentage-symbol">%</span>
-                            </div>
-                            <div class="disc-status">ADVANCED</div>
-                        </div>
-                    </div>
-                    <div class="disc-label">JavaScript</div>
-                    <div class="disc-sublabel">// DYNAMIC WEB</div>
-                </div>
-
-                <!-- Disc 3: Python -->
-                <div class="disc-item" data-percentage="70">
-                    <div class="disc-container">
-                        <svg class="disc-hexagon" viewBox="0 0 200 200">
-                            <path class="hexagon-path" d="M100,10 L173,55 L173,145 L100,190 L27,145 L27,55 Z"/>
-                        </svg>
-                        
-                        <div class="binary-ring">
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(0deg) translateY(-95px);">11</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(45deg) translateY(-95px);">10</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(90deg) translateY(-95px);">01</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(135deg) translateY(-95px);">11</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(180deg) translateY(-95px);">00</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(225deg) translateY(-95px);">10</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(270deg) translateY(-95px);">01</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(315deg) translateY(-95px);">11</span>
-                        </div>
-                        
-                        <svg class="disc-brackets" viewBox="0 0 200 200">
-                            <path class="bracket-corner" d="M20,20 L20,40 M20,20 L40,20"/>
-                            <path class="bracket-corner" d="M180,20 L180,40 M180,20 L160,20"/>
-                            <path class="bracket-corner" d="M20,180 L20,160 M20,180 L40,180"/>
-                            <path class="bracket-corner" d="M180,180 L180,160 M180,180 L160,180"/>
-                        </svg>
-                        
-                        <div class="disc-background"></div>
-                        <div class="disc-scanner">
-                            <div class="scanner-line"></div>
-                        </div>
-                        
-                        <svg class="disc-svg" viewBox="0 0 170 170">
-                            <circle class="disc-circle-bg" cx="85" cy="85" r="80"/>
-                            <circle class="disc-circle-progress" cx="85" cy="85" r="80"/>
-                        </svg>
-                        
-                        <svg class="disc-segments" viewBox="0 0 140 140">
-                            <circle class="segment-line" cx="70" cy="70" r="65"/>
-                            <circle class="segment-line" cx="70" cy="70" r="50"/>
-                            <line class="segment-line" x1="70" y1="5" x2="70" y2="135"/>
-                            <line class="segment-line" x1="5" y1="70" x2="135" y2="70"/>
-                        </svg>
-                        
-                        <div class="disc-center">
-                            <div class="disc-percentage">
-                                <span class="disc-percentage-value">0</span><span class="disc-percentage-symbol">%</span>
-                            </div>
-                            <div class="disc-status">PROFICIENT</div>
-                        </div>
-                    </div>
-                    <div class="disc-label">Python</div>
-                    <div class="disc-sublabel">// AUTOMATION</div>
-                </div>
-
-                <!-- Disc 4: Java -->
-                <div class="disc-item" data-percentage="70">
-                    <div class="disc-container">
-                        <svg class="disc-hexagon" viewBox="0 0 200 200">
-                            <path class="hexagon-path" d="M100,10 L173,55 L173,145 L100,190 L27,145 L27,55 Z"/>
-                        </svg>
-                        
-                        <div class="binary-ring">
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(0deg) translateY(-95px);">00</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(45deg) translateY(-95px);">11</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(90deg) translateY(-95px);">10</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(135deg) translateY(-95px);">01</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(180deg) translateY(-95px);">11</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(225deg) translateY(-95px);">00</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(270deg) translateY(-95px);">10</span>
-                            <span class="binary-text" style="transform: translate(-50%, -50%) rotate(315deg) translateY(-95px);">01</span>
-                        </div>
-                        
-                        <svg class="disc-brackets" viewBox="0 0 200 200">
-                            <path class="bracket-corner" d="M20,20 L20,40 M20,20 L40,20"/>
-                            <path class="bracket-corner" d="M180,20 L180,40 M180,20 L160,20"/>
-                            <path class="bracket-corner" d="M20,180 L20,160 M20,180 L40,180"/>
-                            <path class="bracket-corner" d="M180,180 L180,160 M180,180 L160,180"/>
-                        </svg>
-                        
-                        <div class="disc-background"></div>
-                        <div class="disc-scanner">
-                            <div class="scanner-line"></div>
-                        </div>
-                        
-                        <svg class="disc-svg" viewBox="0 0 170 170">
-                            <circle class="disc-circle-bg" cx="85" cy="85" r="80"/>
-                            <circle class="disc-circle-progress" cx="85" cy="85" r="80"/>
-                        </svg>
-                        
-                        <svg class="disc-segments" viewBox="0 0 140 140">
-                            <circle class="segment-line" cx="70" cy="70" r="65"/>
-                            <circle class="segment-line" cx="70" cy="70" r="50"/>
-                            <line class="segment-line" x1="70" y1="5" x2="70" y2="135"/>
-                            <line class="segment-line" x1="5" y1="70" x2="135" y2="70"/>
-                        </svg>
-                        
-                        <div class="disc-center">
-                            <div class="disc-percentage">
-                                <span class="disc-percentage-value">0</span><span class="disc-percentage-symbol">%</span>
-                            </div>
-                            <div class="disc-status">PROFICIENT</div>
-                        </div>
-                    </div>
-                    <div class="disc-label">Java</div>
-                    <div class="disc-sublabel">// OOP DESIGN</div>
-                </div>
-           </div>
-        </div>
+      </div>
+      
+      <div class="boot-stats">
+        <span id="boot-percent">0%</span>
+        <span id="boot-status">Initializing modules...</span>
+      </div>
+      
+      <button class="boot-btn" id="boot-btn">ENTER SYSTEM</button>
     </div>
-</section>
+  </div>
 
+  <!-- Navigation Bar -->
+  <nav id="navbar" class="navbar">
+    <div class="nav-wrapper">
+      <!-- Logo -->
+      <a href="#hero" class="nav-logo">
+        <img src="/Images/logo.png" alt="Logo" class="logo-img">
+      </a>
+      
+      <!-- Navigation Items -->
+      <div class="nav-items">
+        <a href="#hero" class="nav-item" data-label="Home">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <span class="nav-text">Home</span>
+        </a>
+        <a href="#about" class="nav-item" data-label="About">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <span class="nav-text">About</span>
+        </a>
+        <a href="#skills" class="nav-item" data-label="Skills">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"></path>
+            </svg>
+          </div>
+          <span class="nav-text">Skills</span>
+        </a>
+        <a href="#roadmap" class="nav-item" data-label="Roadmap">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 11l3 3L22 4"></path>
+              <path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <span class="nav-text">Roadmap</span>
+        </a>
+        <a href="#terminal" class="nav-item" data-label="Terminal">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="4 17 10 11 4 5"></polyline>
+              <line x1="12" y1="19" x2="20" y2="19"></line>
+            </svg>
+          </div>
+          <span class="nav-text">Terminal</span>
+        </a>
+        <a href="#projects" class="nav-item" data-label="Projects">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </div>
+          <span class="nav-text">Projects</span>
+        </a>
+        <a href="#contact" class="nav-item" data-label="Contact">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="8.5" cy="7" r="4"></circle>
+              <path d="M20 8v6"></path>
+              <path d="M23 11h-6"></path>
+            </svg>
+          </div>
+          <span class="nav-text">Contact</span>
+        </a>
+      </div>
+      
+      <!-- Theme Toggle Button -->
+      <button id="theme-toggle" class="theme-toggle">
+        <svg class="theme-icon sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg class="theme-icon moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </nav>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- PROJECTS SECTION -->
-    <!-- EDIT: Add/remove projects by copying the project-card structure -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="projects">
-        <div class="container">
-            <h2 class="section-title reveal">Projects</h2>
-            <div class="projects-grid">
-                <!-- Project 1 -->
-                <div class="project-card reveal">
-                    <h3 class="project-title">Java Practice Projects</h3>
-                    <p class="project-description">
-                        Implemented coursework and mini projects in Java to solidify core concepts: OOP design, file I/O, and multithreading basics. Completed a small CLI tool and practiced parsing and data handling for security tooling experiments.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Java</span>
-                        <span class="tag">OOP</span>
-                        <span class="tag">Multithreading</span>
-                        <span class="tag">CLI Tools</span>
-                    </div>
-                    <a href="#" class="project-link" aria-label="View ShadowRecon project">View on GitHub →</a>
-                </div>
+  <!-- 3D Canvas Background -->
+  <canvas id="three-canvas"></canvas>
 
-                <!-- Project 2 -->
-                <div class="project-card reveal">
-                    <h3 class="project-title">Web Fundamentals (JavaScript)</h3>
-                    <p class="project-description">
-                       Built simple JS projects to understand DOM interaction.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Web Testing</span>
-                        <span class="tag">XSS</span>
-                        <span class="tag">DOM</span>
-                    </div>
-                    <a href="https://usaihack.github.io/Clock/" class="project-link" aria-label="View HTB writeups">Access Site →</a>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card reveal">
-                    <h3 class="project-title">Python Tools & Automation</h3>
-                    <p class="project-description">
-                        Small Python utilities for automation: input parsers, result aggregators, and a pwntools script template used in exploit development practice. Emphasis on readable code, rapid iteration, and sharing as learning artifacts.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">pwntools</span>
-                        <span class="tag">Automation</span>
-                        <span class="tag">Scripts</span>
-                    </div>
-                    <a href="#" class="project-link" aria-label="View MalwareLab project">View Project →</a>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card reveal">
-                    <h3 class="project-title">Reverse Engineering & Analysis Intro</h3>
-                    <p class="project-description">
-                        Introductory reverse-engineering work: followed guided labs using Ghidra and basic GDB sessions on sample binaries. Wrote step-by-step notes and a simple memory-inspection helper script to aid investigations.
-                    </p>
-                    
-                    <div class="project-tags">
-                        <span class="tag">Ghidra</span>
-                        <span class="tag">GDB Learning</span>
-                        <span class="tag">Reverse Engineering</span>
-                    </div>
-                    <a href="#" class="project-link" aria-label="View PhishGuard project">View Extension →</a>
-                </div>
-
-                <!-- Project 5 -->
-                <div class="project-card reveal">
-                    <h3 class="project-title">CTF Writeups & Exercises</h3>
-                    <p class="project-description">
-                        Concise writeups of solved CTF problems (pwn, web, crypto) documenting methodology and lessons learned. Focus on clear steps, minimal exploit code snippets, and remediation notes for study and sharing with teammates.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Writeups</span>
-                        <span class="tag">pwn</span>
-                        <span class="tag">web</span>
-                        <span class="tag">Crypto</span>
-                    </div>
-                    <a href="#" class="project-link" aria-label="View CTF Creator project">View Platform →</a>
-                </div>
-
-                <!-- Project 6 -->
-                <div class="project-card reveal">
-                    <h3 class="project-title">Kali Toolkit Practice</h3>
-                    <p class="project-description">
-                        Automated small recon and enumeration tasks while learning Kali. Frequent hands-on use of Nmap, Netcat, Wireshark, and basic Burp workflows to map targets and collect data for CTF practice. Built short scripts to speed repetitive scans.
-                    </p>
-                    <div class="project-tags">
-                        <span class="tag">Nmap</span>
-                        <span class="tag">Burp</span>
-                        <span class="tag">Wireshark</span>
-                        <span class="tag">Scripting</span>
-                    </div>
-                    <a href="#" class="project-link" aria-label="View BinaryNinja project">View Tools →</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- ACHIEVEMENTS SECTION -->
-    <!-- EDIT: Add/remove achievements by copying achievement-item structure -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="achievements">
-        <div class="container">
-            <h2 class="section-title reveal">Achievements</h2>
-            <div class="achievements-list">
-                <div class="achievement-item reveal" tabindex="0">
-                    <h3 class="achievement-title">TryHackMe Progress — Learning Path Completed</h3>
-                    <p class="achievement-description">
-                        Completed multiple TryHackMe rooms covering Linux basics, web fundamentals, and introductory web exploitation. Gained hands-on practice with Kali tools and basic recon workflows.
-                        2025
-                    </p>
-                    <p class="achievement-date">2025</p>
-                </div>
-
-                <div class="achievement-item reveal" tabindex="0">
-                    <h3 class="achievement-title">CTF Practice — University & Online Challenges</h3>
-                    <p class="achievement-description">
-                    Solved beginner-level CTF problems (web, crypto, forensics) during practice sessions and study groups to build problem-solving skills and teamwork.
-                    2025 - Present
-                    </p>
-                    <p class="achievement-date">November 2025</p>
-                </div>
-
-                <div class="achievement-item reveal" tabindex="0">
-                    <h3 class="achievement-title">Course Project — Java CLI Tool</h3>
-                    <p class="achievement-description">
-                    Built a small Java command-line Tic-Tac-Toe game with simple AI functionality, file I/O, and Exception Handling.
-                    2025
-                    </p> 
-                    <p class="achievement-date">June 2025</p>
-                </div>
-
-                <div class="achievement-item reveal" tabindex="0">
-                    <h3 class="achievement-title">Python Automation Scripts</h3>
-                    <p class="achievement-description">
-                    Created short Python scripts to automate repetitive tasks: scan result parsers, simple report generators, and helper scripts used during labs.
-                    2025 - Present
-                    </p>
-                    <p class="achievement-date">June 2025</p>
-                </div>
-
-                <div class="achievement-item reveal" tabindex="0">
-                    <h3 class="achievement-title">Intro to Reverse Engineering</h3>
-                    <p class="achievement-description">
-                    Completed guided binary analysis labs using Ghidra and GDB; documented steps and created notes to reinforce learning.
-                    2025 - Present
-                    </p>
-                    <p class="achievement-date">2025</p>
-                </div>
-
-                <div class="achievement-item reveal" tabindex="0">
-                    <h3 class="achievement-title">Campus Tech Helper & Workshops</h3>
-                    <p class="achievement-description">
-                        
-                    Helped classmates set up Linux environments and gave short tutorials on basic Kali usage, safe lab practices, and debugging common issues.
-                    2025 - Present
-                    </p>
-                    <p class="achievement-date">March 2025</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- CONTACT SECTION -->
-    <!-- EDIT: Social Links - Update your contact information here -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <section id="contact">
-        <div class="container">
-            <h2 class="section-title reveal">Contact</h2>
-            <div class="contact-grid reveal">
-                <div class="contact-info">
-                    <h3>Let's Connect</h3>
-                    <div class="contact-item">
-                        <span>📧</span>
-                        <a href="mailto:70-1-4-4-10-70@proton.me">70-1-4-4-10-70@proton.me</a>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <span>💼</span>
-                        <a href="https://www.linkedin.com/in/usman-said-959321397/" target="_blank" rel="noopener noreferrer">linkedin.com/in/usmansaid</a>
-                    </div>
-                    <div class="contact-item">
-                        <span>🔗</span>
-                        <a href="https://github.com/usaihack" target="_blank" rel="noopener noreferrer">github.com/usaihack</a>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="https://github.com/usaihack" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
-                        <a href="https://www.linkedin.com/in/usman-said-959321397/" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LI</a>
-                        <a href="https://account.hackthebox.com/usmansaid" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="HackTheBox">HTB</a>
-                        <a href="https://discord.com/channels/1434067494959710340/1434067495588986934" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="Discord">DC</a>
-                    </div>
-                </div>
-
-                <div class="terminal">
-                    <div class="terminal-header">
-                        <div class="terminal-dots">
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                            <span class="dot"></span>
-                        </div>
-                        <span style="margin-left: 10px;">contact@n3onghost:~$</span>
-                    </div>
-                    <div class="terminal-content">
-                        <div class="terminal-line">
-                            <span class="prompt">$</span> cat status.txt
-                        </div>
-                        <div class="terminal-line">
-                            >> Open to collaboration
-                        </div>
-                        <div class="terminal-line">
-                            >> Available for security research
-                        </div>
-                        <div class="terminal-line">
-                            >> CTF team recruitment
-                        </div>
-                        <div class="terminal-line">
-                            >> Mentoring opportunities
-                        </div>
-                        <div class="terminal-line" style="margin-top: 1rem;">
-                            <span class="prompt">$</span> echo "Let's build something secure"
-                        </div>
-                        <div class="terminal-line">
-                            >> Let's build something secure
-                        </div>
-                        <div class="terminal-line">
-                            <span class="prompt">$</span> <span class="typing-cursor">_</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- FOOTER -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <footer>
-        <p>&copy; 2025 Muh4mm4d_U$man_5a1d | Hack Responsibly | Stay Curious</p>
-        <p style="margin-top: 0.5rem; font-size: 0.8rem;">
-            "In a world of locked doors, the curious will always find a key."
+  <!-- Hero Section -->
+  <section id="hero" class="section">
+    <div class="content-panel">
+      <div style="text-align: center;">
+        <h1 class="glitch" data-text="">MUHAMMAD USMAN SAID</h1>
+        <p class="subtitle">Aspiring Cybersecurity Professional</p>
+        <p class="description">
+          Welcome to my interactive portfolio. This is a living interface where every element responds to your input.
+          Explore, interact, and discover my journey into cybersecurity and somehow development 😉.
         </p>
-    </footer>
+        <div class="cta-buttons">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!-- ═══════════════════════════════════════════════════════════════ -->
-    <!-- JAVASCRIPT -->
-    <!-- ═══════════════════════════════════════════════════════════════ -->
+  <!-- About Section -->
+  <section id="about" class="section">
+    <div class="content-panel">
+      <h2>ABOUT ME</h2>
+      <div class="about-grid">
+        <div class="about-content">
+          <p>
+            I'm an aspiring cybersecurity professional and developer exploring the intersection of code, security, and innovation.
+            Currently building foundational skills across programming, networking, and systems administration while preparing for 
+            a career in ethical hacking and penetration testing.
+          </p>
+          <p>
+            My journey combines hands-on technical learning with a deep curiosity about how systems work and how they can be secured.
+            I believe that understanding vulnerabilities is the first step to protecting against them.
+          </p>
+          <div class="highlight-box">
+            <strong>Current Focus:</strong>
+            <ul>
+              <li>Building secure web applications</li>
+              <li>Penetration testing & vulnerability assessment</li>
+              <li>Cloud security & infrastructure</li>
+              <li>Ethical hacking methodologies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-    <!-- Scroll Progress Indicator -->
-<div id="scroll-progress"></div>
+  <!-- Skills Section -->
+  <section id="skills" class="section">
+    <div class="content-panel">
+      <h2>SKILLS MATRIX</h2>
+      <div class="skills-grid" id="skills-grid"></div>
+    </div>
+  </section>
+
+  <!-- Roadmap Section -->
+  <section id="roadmap" class="section">
+    <div class="content-panel">
+      <h2>LEARNING ROADMAP</h2>
+      <p class="section-subtitle">My path to mastery</p>
+      <div class="timeline" id="timeline"></div>
+    </div>
+  </section>
+
+  <!-- Interactive Terminal -->
+  <section id="terminal" class="section">
+    <div class="content-panel">
+      <h2>COMMAND TERMINAL</h2>
+      <div class="terminal">
+        <div class="terminal-header">
+          <span>SYSTEM TERMINAL v3.0</span>
+          <span class="terminal-hint">Type 'help' for commands</span>
+        </div>
+        <div class="terminal-output" id="terminal-output">
+          <div class="terminal-line">
+            <span class="terminal-prompt">system@portfolio:~$</span> Welcome to the interactive terminal
+          </div>
+          <div class="terminal-line terminal-info">
+            Type 'help' to see available commands
+          </div>
+        </div>
+        <div class="terminal-input-line">
+          <span class="terminal-prompt">system@portfolio:~$</span>
+          <input type="text" class="terminal-input" id="terminal-input" autocomplete="off" spellcheck="false" placeholder="Enter command...">
+          <span class="cursor"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="content-panel">
+      <h2>PROJECTS</h2>
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="content-panel">
+      <h2>GET IN TOUCH</h2>
+      <div class="contact-container">
+        <div class="contact-info">
+          <p>Interested in collaborating or learning more about my work?</p>
+          <div class="contact-links">
+            <a href="mailto:70-1-4-4-10-70@proton.me" class="contact-link email-link">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+              </svg> Email
+            </a>
+            <a href="https://github.com/usaihack" target="_blank" class="contact-link github-link">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v 3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/usman-said-959321397/" target="_blank" class="contact-link linkedin-link">
+              <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
+              </svg> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <section id="final" class="section">
+    <div class="content-panel" style="text-align: center;">
+      <h1 style="font-size: 3rem; margin-bottom: 1.5rem;">"Curiosity is the exploit."</h1>
+      <p style="font-size: 1.2rem; opacity: 0.8; line-height: 1.8;">
+        Thank you for exploring my interactive portfolio system.
+      </p>
+      <p style="margin-top: 1rem; color: var(--accent);">
+        System Progress: <span id="final-progress">0</span>%
+      </p>
+    </div>
+  </section>
+
+
+
+  <!-- CHATBOT -->
+   <div id="chatbot">
+  <div id="chat-header">
+    <span>Sentinel</span> 
+    <button id="chat-toggle">×</button>
+  </div>
+
+  <div id="chat-body"></div>
+
+  <div id="chat-input-area">
+    <input
+      type="text"
+      id="chat-input"
+      placeholder="Ask me about Usman..."
+      autocomplete="off"
+    />
+  </div>
+</div>
+
+<button id="open-chat">
+  <img src="https://img.icons8.com/3d-fluency/48/chatbot.png" alt="chatbot" />
+</button>
+<div id="chat-hint">
+  <img src="https://img.icons8.com/3d-fluency/32/chatbot.png" alt="chatbot" style="width: 20px; height: 20px; display: inline-block; margin-right: 6px; vertical-align: middle;" />
+  Sentinel is online. Click to chat.
+  <span class="hint-close">✕</span>
+</div>
+
+
+ <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="script.js"></script>
+  <script src="chatbot.js"></script>
 </body>
-
 </html>
-
