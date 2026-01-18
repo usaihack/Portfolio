@@ -1,4 +1,3 @@
-// Boot sequence - Start immediately when script loads
 console.log('[BOOT] Script loaded');
 
 const BOOT_MESSAGES = [
@@ -13,9 +12,7 @@ const BOOT_MESSAGES = [
   'System check complete.'
 ];
 
-// Start boot sequence immediately
 function startBoot() {
-  // Check if boot has already been shown in this session
   if (sessionStorage.getItem('bootCompleted')) {
     console.log('[BOOT] Boot already completed, skipping animation');
     const bootScreen = document.getElementById('boot-screen');
@@ -25,7 +22,6 @@ function startBoot() {
     window.scrollTo(0, 0);
     initializeApp();
     
-    // Initialize chat hint even when boot is skipped
     if (typeof window.initChatHint === 'function') {
       window.initChatHint();
     }
@@ -56,15 +52,12 @@ function startBoot() {
       logDiv.textContent = '>> ' + BOOT_MESSAGES[index];
       bootLogs.appendChild(logDiv);
       
-      // Auto-scroll
       const container = bootLogs.parentElement;
       if (container) container.scrollTop = container.scrollHeight;
       
-      // Calculate target progress
       const targetProgress = ((index + 1) / BOOT_MESSAGES.length) * 100;
       bootStatus.textContent = BOOT_MESSAGES[index];
       
-      // Smooth animate from current to target
       animateProgress(currentProgress, targetProgress, progressFill, bootPercent, 350);
       currentProgress = targetProgress;
       
@@ -72,7 +65,6 @@ function startBoot() {
       index++;
     } else {
       clearInterval(interval);
-      // Ensure it reaches 100%
       animateProgress(currentProgress, 100, progressFill, bootPercent, 200);
       setTimeout(() => {
         console.log('[BOOT] Complete! Showing button...');
@@ -107,10 +99,8 @@ function enterSystem() {
   const bootScreen = document.getElementById('boot-screen');
   bootScreen.classList.add('hidden');
   
-  // Mark boot as completed for this session
   sessionStorage.setItem('bootCompleted', 'true');
   
-  // Instantly scroll to top
   window.scrollTo(0, 0);
   
   setTimeout(() => {
@@ -119,7 +109,6 @@ function enterSystem() {
     if (navbar) navbar.classList.add('visible');
     initializeApp();
     
-    // Initialize chat hint after boot screen is dismissed (2 seconds after this point)
     if (typeof window.initChatHint === 'function') {
       window.initChatHint();
     }
@@ -287,35 +276,29 @@ function setupNav() {
   let isScrolling = false; // Flag to prevent updates during programmatic scroll
   let scrollTimeout;
   
-  // Click handler for smooth scrolling
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
       e.preventDefault();
       
-      // Immediately set active class on clicked item
       navItems.forEach(navItem => navItem.classList.remove('active'));
       item.classList.add('active');
       
-      // Set flag to prevent scroll handler from interfering
       isScrolling = true;
       
       const target = document.querySelector(item.getAttribute('href'));
       if (target) {
         target.scrollIntoView({ behavior: 'smooth' });
         
-        // Reset flag after scroll completes (smooth scroll takes ~1 second)
         clearTimeout(scrollTimeout);
         scrollTimeout = setTimeout(() => {
           isScrolling = false;
-          updateActiveNav(); // Update based on actual position
+          updateActiveNav(); 
         }, 1000);
       }
     });
   });
   
-  // Scroll handler to update active nav item based on current section
   function updateActiveNav() {
-    // Don't update if user just clicked a nav item
     if (isScrolling) return;
     
     let current = '';
@@ -324,13 +307,11 @@ function setupNav() {
       const sectionTop = section.offsetTop;
       const sectionHeight = section.clientHeight;
       
-      // Check if section is in viewport (with offset for navbar)
       if (window.scrollY >= sectionTop - 200) {
         current = section.getAttribute('id');
       }
     });
     
-    // Update active class
     navItems.forEach(item => {
       item.classList.remove('active');
       const href = item.getAttribute('href');
@@ -340,10 +321,8 @@ function setupNav() {
     });
   }
   
-  // Run on scroll
   window.addEventListener('scroll', updateActiveNav);
   
-  // Run once on load
   updateActiveNav();
 }
 
@@ -375,7 +354,6 @@ function populateSkills() {
     skillsGrid.appendChild(card);
   });
 
-  // Animate bars when scrolling to skills section
   const skillsSection = document.getElementById('skills');
   if (skillsSection) {
     const observer = new IntersectionObserver((entries) => {
@@ -384,7 +362,6 @@ function populateSkills() {
           const fills = document.querySelectorAll('.skill-level-fill');
           
           fills.forEach((fill, idx) => {
-            // Reset animation first
             fill.style.transition = 'none';
             fill.style.width = '0%';
             const valueSpan = fill.parentElement.nextElementSibling.querySelector('.skill-value');
@@ -393,14 +370,11 @@ function populateSkills() {
             setTimeout(() => {
               const targetLevel = parseInt(fill.getAttribute('data-level'));
               
-              // Force reflow to ensure transition works
               fill.offsetHeight;
               
-              // Apply transition
               fill.style.transition = 'width 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
               fill.style.width = targetLevel + '%';
               
-              // Animate the percentage number
               let current = 0;
               const step = Math.max(1, Math.ceil(targetLevel / 30));
               const interval = setInterval(() => {
@@ -414,7 +388,6 @@ function populateSkills() {
             }, idx * 120);
           });
           
-          // Animation can now replay on every intersection
         }
       });
     }, { threshold: 0.2 });
@@ -446,7 +419,6 @@ function populateTimeline() {
     `;
     timeline.appendChild(timelineItem);
     
-    // Add hover animations
     timelineItem.addEventListener('mouseenter', function() {
       this.classList.add('hovered');
     });
@@ -455,23 +427,18 @@ function populateTimeline() {
       this.classList.remove('hovered');
     });
 
-    // Individual card animation when it scrolls into view
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Reset animation first
           entry.target.classList.remove('visible');
           
-          // Force reflow
           void entry.target.offsetHeight;
           
           setTimeout(() => {
             entry.target.classList.add('visible');
           }, 0);
           
-          // Animation can now replay on every intersection
         } else {
-          // Remove visible class when scrolled out of view to allow re-animation
           entry.target.classList.remove('visible');
         }
       });

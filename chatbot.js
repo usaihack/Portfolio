@@ -5,15 +5,8 @@ const chatBody = document.getElementById("chat-body");
 const chatInput = document.getElementById("chat-input");
 const chatHint = document.getElementById("chat-hint");
 
-/* ======================
-   STATE
-====================== */
 
-// State variables are now in the CHAT HINT section
 
-/* ======================
-   DATA
-====================== */
 
 const responses = {
   about: [
@@ -87,9 +80,7 @@ let quotes = [
   " 'Starting is the real battle.'",
 ];
 
-/* ======================
-   HELPERS
-====================== */
+
 
 function formatText(lines) {
   return lines.join("\n");
@@ -103,9 +94,6 @@ function addMessage(text, type) {
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-/* ======================
-   BUTTONS
-====================== */
 
 function clearOldButtons() {
   const old = chatBody.querySelector(".chat-buttons");
@@ -139,9 +127,6 @@ function addButtons(
   chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-/* ======================
-   THINKING + TYPING
-====================== */
 
 function botReply(text) {
   const thinking = document.createElement("div");
@@ -166,7 +151,6 @@ function typeText(text) {
   const div = document.createElement("div");
   div.className = "message bot";
 
-  // Respect line breaks
   div.style.whiteSpace = "pre-line";
 
   chatBody.appendChild(div);
@@ -184,9 +168,7 @@ function typeText(text) {
   }, 25);
 }
 
-/* ======================
-   INPUT HANDLER
-====================== */
+
 
 function handleUserInput(input) {
   addMessage(input, "user");
@@ -210,63 +192,47 @@ function handleUserInput(input) {
   botReply(formatText(reply));
 }
 
-/* ======================
-   CHAT HINT
-====================== */
 
-let chatInteracted = false; // Track if user has ever clicked the chatbot icon
-let hintInterval; // Store the interval ID
+let chatInteracted = false; 
+let hintInterval; 
 
 function scheduleChatHint() {
-  if (chatInteracted) return; // Only stop if user clicked chatbot icon
+  if (chatInteracted) return; 
   
-  // Show hint every 12 seconds repeatedly
   hintInterval = setInterval(() => {
-    // Only show hint if chat is currently hidden and user hasn't clicked chatbot
     if (!chatBot.classList.contains("show") && !chatInteracted) {
       chatHint.classList.add("show");
     }
-  }, 12000); // Repeat every 12 seconds
+  }, 12000); 
 }
 
-// Initialize hint - this will be called from script.js after boot screen
 function initChatHint() {
   scheduleChatHint();
 }
 
-// Make it accessible globally
 window.initChatHint = initChatHint;
 
 if (chatHint) {
-  // Close button only hides temporarily - hint will show again after 2s
   const closeBtn = chatHint.querySelector(".hint-close");
   closeBtn.onclick = (e) => {
     e.stopPropagation();
     chatHint.classList.remove("show");
-    // Don't set any permanent flags - hint will appear again
   };
 
-  // Clicking the hint opens chat (which will permanently stop hints)
   chatHint.onclick = () => {
-    openChat.click(); // This will permanently stop the hints
+    openChat.click(); 
   };
 }
 
-/* ======================
-   EVENTS
-====================== */
 
 openChat.onclick = () => {
-  // Mark that user has clicked chatbot icon - hint will NEVER show again until refresh
   chatInteracted = true;
   
-  // Stop the repeating hint interval permanently
   if (hintInterval) {
     clearInterval(hintInterval);
     hintInterval = null;
   }
   
-  // Clear old chat for fresh start
   chatBody.innerHTML = "";
   chatInput.value = "";
 
@@ -279,7 +245,6 @@ openChat.onclick = () => {
 
 closeChat.onclick = () => {
   chatBot.classList.remove("show");
-  // delay showing open button to match animation
   setTimeout(() => {
     openChat.style.display = "block";
   }, 400);
@@ -291,10 +256,3 @@ chatInput.addEventListener("keydown", (e) => {
     chatInput.value = "";
   }
 });
-
-/* ======================
-   INIT
-====================== */
-
-// Chat hint will be initialized from script.js after boot screen is dismissed
-// Don't auto-start anymore: scheduleChatHint();
