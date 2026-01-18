@@ -25,7 +25,6 @@ Curiosity drives me. Precision grounds me.
 ### 🌐 Connect with Me
 [💼 LinkedIn](https://linkedin.com/in/yourusername)  
 [🐙 GitHub](https://github.com/usaihack)  
-[🎯 TryHackMe](https://tryhackme.com/p/yourusername)  
 [💬 Discord](https://discord.com/users/usaihack)  
 
 ---
