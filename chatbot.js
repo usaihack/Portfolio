@@ -10,10 +10,10 @@ const chatHint = document.getElementById("chat-hint");
 
 const responses = {
   about: [
-    "👋 ABOUT ME",
+    "👋 ABOUT USMAN",
     "",
-    "I’m an aspiring cybersecurity professional and developer.",
-    "I explore systems, code, and security together.",
+    "He is an aspiring cybersecurity professional and developer.",
+    "He explores systems, code, and security together.",
     "",
     "🔐 Understanding weaknesses is how defense is built.",
   ],
@@ -50,10 +50,10 @@ const responses = {
   contact: [
     "📬 CONTACT",
     "",
-    "✉️ Email: abc@proton.me",
-    "🐙 GitHub: github.com/usman",
-    "💼 LinkedIn: linkedin.com/in/usman",
-    "📱 WhatsApp: 12345678901",
+    "✉️ Email: 70-1-4-4-10-70@proton.me",
+    "🐙 GitHub: https://www.github.com/usaihack",
+    "💼 LinkedIn: https://www.linkedin.com/in/usman-said-959321397/",
+    "📱 WhatsApp: +92 329 8508747",
   ],
 
   default: [

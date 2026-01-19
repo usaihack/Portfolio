@@ -130,6 +130,33 @@ function initializeApp() {
   setupTerminal();
   setupScroll();
   setupCursor();
+  setupSecurity();
+}
+
+function setupSecurity() {
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+  
+  document.addEventListener('keydown', (e) => {
+    // F12
+    if (e.key === 'F12') {
+      e.preventDefault();
+    }
+    
+    // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
+    if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
+      e.preventDefault();
+    }
+    
+    // Ctrl+U
+    if (e.ctrlKey && e.key.toUpperCase() === 'U') {
+      e.preventDefault();
+    }
+
+    // Ctrl+S
+    if (e.ctrlKey && e.key.toUpperCase() === 'S') {
+      e.preventDefault();
+    }
+  });
 }
 
 function setupCursor() {
