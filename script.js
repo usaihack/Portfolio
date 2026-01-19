@@ -1,5 +1,7 @@
 console.log('[BOOT] Script loaded');
 
+
+
 const BOOT_MESSAGES = [
   'Initializing kernel modules...',
   'Loading system drivers...',
@@ -14,12 +16,21 @@ const BOOT_MESSAGES = [
 
 function startBoot() {
   if (sessionStorage.getItem('bootCompleted')) {
-    console.log('[BOOT] Boot already completed, skipping animation');
     const bootScreen = document.getElementById('boot-screen');
     bootScreen.style.display = 'none';
     const navbar = document.getElementById('navbar');
     if (navbar) navbar.classList.add('visible');
-    window.scrollTo(0, 0);
+    
+    // Smooth scroll to top on refresh
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
+
+    // Remove preload class to enable transitions
+    setTimeout(() => {
+      document.body.classList.remove('preload');
+    }, 200);
+    
     initializeApp();
     
     if (typeof window.initChatHint === 'function') {
@@ -28,7 +39,6 @@ function startBoot() {
     return;
   }
   
-  console.log('[BOOT] Starting boot sequence');
   const bootLogs = document.getElementById('boot-logs');
   const progressFill = document.getElementById('boot-progress-fill');
   const bootPercent = document.getElementById('boot-percent');
@@ -36,12 +46,10 @@ function startBoot() {
   const bootBtn = document.getElementById('boot-btn');
 
   if (!bootLogs || !bootBtn) {
-    console.error('[BOOT] Elements not found. Retrying...');
     setTimeout(startBoot, 100);
     return;
   }
 
-  console.log('[BOOT] Elements found, starting animation');
   let index = 0;
   let currentProgress = 0;
 
@@ -61,13 +69,11 @@ function startBoot() {
       animateProgress(currentProgress, targetProgress, progressFill, bootPercent, 350);
       currentProgress = targetProgress;
       
-      console.log('[BOOT]', index + 1, '/', BOOT_MESSAGES.length);
       index++;
     } else {
       clearInterval(interval);
       animateProgress(currentProgress, 100, progressFill, bootPercent, 200);
       setTimeout(() => {
-        console.log('[BOOT] Complete! Showing button...');
         bootBtn.classList.add('visible');
         bootBtn.addEventListener('click', enterSystem);
       }, 200);
@@ -95,7 +101,6 @@ function animateProgress(start, end, progressFill, bootPercent, duration) {
 }
 
 function enterSystem() {
-  console.log('[BOOT] Entering system...');
   const bootScreen = document.getElementById('boot-screen');
   bootScreen.classList.add('hidden');
   
@@ -107,6 +112,7 @@ function enterSystem() {
     bootScreen.style.display = 'none';
     const navbar = document.getElementById('navbar');
     if (navbar) navbar.classList.add('visible');
+    document.body.classList.remove('preload');
     initializeApp();
     
     if (typeof window.initChatHint === 'function') {
@@ -116,7 +122,6 @@ function enterSystem() {
 }
 
 function initializeApp() {
-  console.log('[APP] Initializing application');
   init3D();
   setupNav();
   populateSkills();
@@ -124,9 +129,29 @@ function initializeApp() {
   populateProjects();
   setupTerminal();
   setupScroll();
+  setupCursor();
 }
 
-// ==================== 3D BACKGROUND ====================
+function setupCursor() {
+  const glow = document.getElementById('cursor-glow');
+  
+  document.addEventListener('mousemove', (e) => {
+    // Global mouse state for 3D
+    mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+    
+    // Direct 2D update (Robust & Compatible with CSS Animation)
+    if (glow) {
+      glow.style.left = e.clientX + 'px';
+      glow.style.top = e.clientY + 'px';
+      if (glow.style.opacity === '0' || glow.style.opacity === '') {
+        glow.style.opacity = '0.8';
+      }
+    }
+  });
+}
+
+// Clean globals
 let scene, camera, renderer;
 let cube, torus, sphere, particles;
 let mouseX = 0, mouseY = 0;
@@ -145,7 +170,13 @@ function init3D() {
     camera.position.z = 8;
     camera.position.y = 2;
 
-    // Cube
+    const cursorLight = new THREE.PointLight(0x00ff9f, 2, 12);
+    cursorLight.position.set(0, 0, 5);
+    scene.add(cursorLight);
+    
+    // Assign to a global-ish variable accessible in animate3D
+    window.cursorLight = cursorLight;
+
     const cubeGeo = new THREE.BoxGeometry(2, 2, 2);
     const cubeMat = new THREE.MeshStandardMaterial({
       color: 0x00ff9f,
@@ -157,7 +188,6 @@ function init3D() {
     cube.position.set(-3, 1, 0);
     scene.add(cube);
 
-    // Torus
     const torusGeo = new THREE.TorusGeometry(1.5, 0.5, 16, 100);
     const torusMat = new THREE.MeshStandardMaterial({
       color: 0x0080ff,
@@ -169,7 +199,6 @@ function init3D() {
     torus.position.set(3, 1, -2);
     scene.add(torus);
 
-    // Sphere
     const sphereGeo = new THREE.SphereGeometry(1.2, 32, 32);
     const sphereMat = new THREE.MeshStandardMaterial({
       color: 0xff0080,
@@ -181,7 +210,6 @@ function init3D() {
     sphere.position.set(0, -2, -3);
     scene.add(sphere);
 
-    // Particles
     const particlesGeo = new THREE.BufferGeometry();
     const particleCount = 2000;
     const positions = new Float32Array(particleCount * 3);
@@ -198,12 +226,10 @@ function init3D() {
     particles = new THREE.Points(particlesGeo, particlesMat);
     scene.add(particles);
 
-    // Grid
     const grid = new THREE.GridHelper(20, 20, 0x00ff9f, 0x004433);
     grid.position.y = -3;
     scene.add(grid);
 
-    // Lights
     scene.add(new THREE.AmbientLight(0xffffff, 0.4));
     const light1 = new THREE.PointLight(0x00ff9f, 1.5, 100);
     light1.position.set(5, 5, 5);
@@ -212,10 +238,7 @@ function init3D() {
     light2.position.set(-5, -5, 5);
     scene.add(light2);
 
-    document.addEventListener('mousemove', (e) => {
-      mouseX = (e.clientX / window.innerWidth) * 2 - 1;
-      mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
-    });
+
 
     window.addEventListener('resize', () => {
       camera.aspect = window.innerWidth / window.innerHeight;
@@ -235,6 +258,13 @@ function animate3D() {
 
   const targetX = mouseX * 0.002;
   const targetY = mouseY * 0.002;
+
+  if (window.cursorLight) {
+    window.cursorLight.position.x = mouseX * 8;
+    window.cursorLight.position.y = mouseY * 5;
+  }
+  
+
 
   if (cube) {
     cube.rotation.x += 0.008 + targetY;
@@ -269,11 +299,10 @@ function animate3D() {
   renderer.render(scene, camera);
 }
 
-// ==================== NAVIGATION ====================
 function setupNav() {
   const navItems = document.querySelectorAll('.nav-item');
   const sections = document.querySelectorAll('.section');
-  let isScrolling = false; // Flag to prevent updates during programmatic scroll
+  let isScrolling = false;
   let scrollTimeout;
   
   navItems.forEach(item => {
@@ -282,6 +311,10 @@ function setupNav() {
       
       navItems.forEach(navItem => navItem.classList.remove('active'));
       item.classList.add('active');
+      
+      if (typeof item.blur === 'function') {
+        item.blur();
+      }
       
       isScrolling = true;
       
@@ -305,7 +338,6 @@ function setupNav() {
     
     sections.forEach(section => {
       const sectionTop = section.offsetTop;
-      const sectionHeight = section.clientHeight;
       
       if (window.scrollY >= sectionTop - 200) {
         current = section.getAttribute('id');
@@ -321,12 +353,20 @@ function setupNav() {
     });
   }
   
-  window.addEventListener('scroll', updateActiveNav);
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateActiveNav();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
   
   updateActiveNav();
 }
 
-// ==================== SKILLS ====================
 function populateSkills() {
   const skillsGrid = document.getElementById('skills-grid');
   if (!skillsGrid) return;
@@ -395,7 +435,6 @@ function populateSkills() {
   }
 }
 
-// ==================== TIMELINE ====================
 function populateTimeline() {
   const timeline = document.getElementById('timeline');
   if (!timeline) return;
@@ -448,13 +487,11 @@ function populateTimeline() {
   });
 }
 
-// ==================== PROJECTS ====================
 function populateProjects() {
   const projectsGrid = document.getElementById('projects-grid');
   if (!projectsGrid) return;
 
   const projects = [
-
     { name: 'Caesar Cipher', desc: 'Classic encryption/decryption tool implemented in Python. Demonstrates fundamental cryptography concepts including key rotation, frequency analysis, and cipher breaking techniques.', tech: ['Python', 'Cryptography'] },
     { name: 'Java Tic Tac Toe', desc: 'Secure tic tac toe implementation with tight encapsulation and access control', tech: ['Java', 'Security'] },
     { name: 'JavaScript Form Validator', desc: 'Frontend form validation with security best practices and input sanitization', tech: ['JavaScript', 'Web Security'] },
@@ -477,7 +514,6 @@ function populateProjects() {
   });
 }
 
-// ==================== TERMINAL ====================
 function setupTerminal() {
   const input = document.getElementById('terminal-input');
   const output = document.getElementById('terminal-output');
@@ -532,7 +568,6 @@ function setupTerminal() {
   });
 }
 
-// ==================== SCROLL PROGRESS ====================
 function setupScroll() {
   const scrollProgress = document.getElementById('scroll-progress');
   const finalProgress = document.getElementById('final-progress');
@@ -545,20 +580,17 @@ function setupScroll() {
   });
 }
 
-// ==================== THEME TOGGLE ====================
 const themeToggle = document.getElementById('theme-toggle');
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     document.body.classList.toggle('light-theme');
-    // Icon switching is handled by CSS
   });
 }
 
-// ==================== MOVE TO TOP BUTTON ====================
 const moveToTopBtn = document.createElement('button');
 moveToTopBtn.id = 'move-to-top';
 moveToTopBtn.className = 'move-to-top';
-moveToTopBtn.innerHTML = '↑ TOP';
+moveToTopBtn.innerHTML = '<span class="top-icon">▲</span><span class="top-text"> TOP</span>';
 moveToTopBtn.setAttribute('title', 'Move to top');
 document.body.appendChild(moveToTopBtn);
 
@@ -574,7 +606,6 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// ==================== START HERE ====================
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', startBoot);
 } else {

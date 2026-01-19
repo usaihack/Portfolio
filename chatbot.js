@@ -176,12 +176,12 @@ function handleUserInput(input) {
   const msg = input.toLowerCase().trim();
   let reply;
 
-  if (msg === "about") reply = responses.about;
+  if (msg === "about" || msg === "bio") reply = responses.about;
   else if (msg === "skills") reply = responses.skills;
   else if (msg === "projects") reply = responses.projects;
   else if (msg.includes("learning")) reply = responses.learning;
   else if (msg === "contact") reply = responses.contact;
-  else if (msg === "quote") {
+  else if (msg.includes("quote")) {
     if (quotes.length === 0) reply = ["⚠️ No more quotes until refresh."];
     else {
       const i = Math.floor(Math.random() * quotes.length);
