@@ -14,19 +14,22 @@ const BOOT_MESSAGES = [
   'System check complete.'
 ];
 
+let isWindowLoaded = false;
+window.addEventListener('load', () => {
+  isWindowLoaded = true;
+});
+
 function startBoot() {
   if (sessionStorage.getItem('bootCompleted')) {
     const bootScreen = document.getElementById('boot-screen');
-    bootScreen.style.display = 'none';
+    if (bootScreen) bootScreen.style.display = 'none';
     const navbar = document.getElementById('navbar');
     if (navbar) navbar.classList.add('visible');
     
-    // Smooth scroll to top on refresh
     setTimeout(() => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 100);
 
-    // Remove preload class to enable transitions
     setTimeout(() => {
       document.body.classList.remove('preload');
     }, 200);
@@ -52,52 +55,60 @@ function startBoot() {
 
   let index = 0;
   let currentProgress = 0;
+  let targetProgress = 0;
 
-  const interval = setInterval(() => {
-    if (index < BOOT_MESSAGES.length) {
-      const logDiv = document.createElement('div');
-      logDiv.className = 'boot-log';
-      logDiv.textContent = '>> ' + BOOT_MESSAGES[index];
-      bootLogs.appendChild(logDiv);
-      
-      const container = bootLogs.parentElement;
-      if (container) container.scrollTop = container.scrollHeight;
-      
-      const targetProgress = ((index + 1) / BOOT_MESSAGES.length) * 100;
-      bootStatus.textContent = BOOT_MESSAGES[index];
-      
-      animateProgress(currentProgress, targetProgress, progressFill, bootPercent, 350);
-      currentProgress = targetProgress;
-      
-      index++;
-    } else {
-      clearInterval(interval);
-      animateProgress(currentProgress, 100, progressFill, bootPercent, 200);
-      setTimeout(() => {
+  // Function to update progress smoothly
+  function updateProgress() {
+    if (currentProgress < targetProgress) {
+      currentProgress += 1;
+      if (progressFill) progressFill.style.width = currentProgress + '%';
+      if (bootPercent) bootPercent.textContent = Math.round(currentProgress) + '%';
+    }
+    
+    if (currentProgress >= 100 && isWindowLoaded) {
+      if (bootBtn) {
         bootBtn.classList.add('visible');
         bootBtn.addEventListener('click', enterSystem);
-      }, 200);
+      }
+      if (bootStatus) bootStatus.textContent = "System Ready.";
+      return; // Stop updating
     }
-  }, 400);
-}
-
-function animateProgress(start, end, progressFill, bootPercent, duration) {
-  const startTime = Date.now();
-  
-  function update() {
-    const elapsed = Date.now() - startTime;
-    const progress = Math.min(elapsed / duration, 1);
-    const current = start + (end - start) * progress;
     
-    progressFill.style.width = current + '%';
-    bootPercent.textContent = Math.round(current) + '%';
-    
-    if (progress < 1) {
-      requestAnimationFrame(update);
-    }
+    requestAnimationFrame(updateProgress);
   }
   
-  update();
+  updateProgress();
+
+  const interval = setInterval(() => {
+    // If messages are done but window isn't loaded, stick at 90%
+    if (index >= BOOT_MESSAGES.length) {
+      if (isWindowLoaded) {
+        targetProgress = 100;
+        clearInterval(interval);
+      } else {
+        targetProgress = 90; // Wait for load
+      }
+      return;
+    }
+
+    // Add log message
+    const logDiv = document.createElement('div');
+    logDiv.className = 'boot-log';
+    logDiv.textContent = '>> ' + BOOT_MESSAGES[index];
+    bootLogs.appendChild(logDiv);
+    
+    const container = bootLogs.parentElement;
+    if (container) container.scrollTop = container.scrollHeight;
+    
+    // Calculate progress based on message index
+    // We reserve the last 10% for the actual window load event
+    const messageProgress = ((index + 1) / BOOT_MESSAGES.length) * 90;
+    targetProgress = Math.max(targetProgress, messageProgress);
+    
+    if (bootStatus) bootStatus.textContent = BOOT_MESSAGES[index];
+    
+    index++;
+  }, 300); // Slightly faster message updates
 }
 
 function enterSystem() {
@@ -122,14 +133,21 @@ function enterSystem() {
 }
 
 function initializeApp() {
-  init3D();
+  const isMobile = window.innerWidth < 768;
+  
+  if (!isMobile) {
+    init3D();
+    setupCursor();
+  }
+  
   setupNav();
   populateSkills();
   populateTimeline();
   populateProjects();
   setupTerminal();
   setupScroll();
-  setupCursor();
+  setupScrollReveal();
+  setupProjectSlideIn();
   setupSecurity();
 }
 
@@ -137,10 +155,6 @@ function setupSecurity() {
   document.addEventListener('contextmenu', (e) => e.preventDefault());
   
   document.addEventListener('keydown', (e) => {
-    // F12
-    if (e.key === 'F12') {
-      e.preventDefault();
-    }
     
     // Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+Shift+C
     if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key.toUpperCase())) {
@@ -334,6 +348,11 @@ function setupNav() {
   
   navItems.forEach(item => {
     item.addEventListener('click', (e) => {
+      const href = item.getAttribute('href');
+      
+      // Allow external/non-anchor links to navigate normally
+      if (!href || !href.startsWith('#')) return;
+      
       e.preventDefault();
       
       navItems.forEach(navItem => navItem.classList.remove('active'));
@@ -519,10 +538,39 @@ function populateProjects() {
   if (!projectsGrid) return;
 
   const projects = [
-    { name: 'Caesar Cipher', desc: 'Classic encryption/decryption tool implemented in Python. Demonstrates fundamental cryptography concepts including key rotation, frequency analysis, and cipher breaking techniques.', tech: ['Python', 'Cryptography'] },
-    { name: 'Java Tic Tac Toe', desc: 'Secure tic tac toe implementation with tight encapsulation and access control', tech: ['Java', 'Security'] },
-    { name: 'JavaScript Form Validator', desc: 'Frontend form validation with security best practices and input sanitization', tech: ['JavaScript', 'Web Security'] },
-    { name: 'Network Scanner', desc: 'Python-based network reconnaissance tool for port scanning and service enumeration', tech: ['Python', 'Networking'] }
+    {
+      name: 'Caesar Cipher',
+      desc: 'Classic encryption/decryption tool implemented in Python. Demonstrates fundamental cryptography concepts including key rotation, frequency analysis, and cipher breaking techniques.',
+      tech: ['Python', 'Cryptography'],
+      buttons: [
+        { label: 'View CLI Version', url: 'https://github.com/usaihack/Caesar-CLI' },
+        { label: 'View GUI Version', url: 'https://usaihack.github.io/Caesar-GUI/' }
+      ]
+    },
+    {
+      name: 'Java Tic Tac Toe',
+      desc: 'Secure tic tac toe implementation with tight encapsulation and access control. Features human vs human and human vs AI gameplay modes.',
+      tech: ['Java', 'Security'],
+      buttons: [
+        { label: 'View Project', url: 'https://github.com/usaihack/TicTacToe' }
+      ]
+    },
+    {
+      name: 'JavaScript Form Validator',
+      desc: 'Frontend form validation with security best practices and input sanitization. Real-time error feedback and clean UI.',
+      tech: ['JavaScript', 'Web Security'],
+      buttons: [
+        { label: 'View Project', url: 'https://usaihack.github.io/Form-Validator/' }
+      ]
+    },
+    {
+      name: 'Learning Path',
+      desc: 'A structured 18-month cybersecurity learning journey documented lesson by lesson — from Kali Linux fundamentals to networking protocols and beyond.',
+      tech: ['Cybersecurity', 'Networking'],
+      buttons: [
+        { label: 'View Project', url: 'https://github.com/usaihack/My-Notes' }
+      ]
+    }
   ];
 
   projectsGrid.innerHTML = '';
@@ -530,12 +578,16 @@ function populateProjects() {
     const card = document.createElement('div');
     card.className = 'project-card';
     const techTags = project.tech.map(t => `<span class="tech-tag">${t}</span>`).join('');
+    const btnHtml = project.buttons.map(b =>
+      `<a href="${b.url}" target="_blank" rel="noopener" class="project-btn">${b.label}</a>`
+    ).join('');
     card.innerHTML = `
       <div class="project-card-content">
         <h3>${project.name}</h3>
         <p>${project.desc}</p>
         <div class="project-tech">${techTags}</div>
       </div>
+      <div class="project-actions">${btnHtml}</div>
     `;
     projectsGrid.appendChild(card);
   });
@@ -547,12 +599,11 @@ function setupTerminal() {
   if (!input || !output) return;
 
   const commands = {
-    'help': 'Commands: about | skills | projects | goto [section] | theme | clear | time | focus',
+    'help': 'Commands: about | skills | projects | goto [section] | clear | time | focus',
     'about': 'Cybersecurity enthusiast specializing in hacking, malware analysis, and security research.',
     'skills': 'Python for Hacking, Networking, Web Security, Java, Malware Analysis, Low Level Languages',
     'projects': 'Visit the PROJECTS section to see my work',
     'focus': 'Focus areas: Networking, Python for Hacking, Malware Analysis & Creation, Low Level Languages',
-    'theme': 'Theme toggled!',
     'time': new Date().toLocaleTimeString(),
     'clear': ''
   };
@@ -580,8 +631,6 @@ function setupTerminal() {
       } else {
         result = `Not found: ${section}`;
       }
-    } else if (cmd === 'theme') {
-      document.body.classList.toggle('light-theme');
     } else if (!result) {
       result = 'Unknown command';
     }
@@ -607,12 +656,7 @@ function setupScroll() {
   });
 }
 
-const themeToggle = document.getElementById('theme-toggle');
-if (themeToggle) {
-  themeToggle.addEventListener('click', () => {
-    document.body.classList.toggle('light-theme');
-  });
-}
+
 
 const moveToTopBtn = document.createElement('button');
 moveToTopBtn.id = 'move-to-top';
@@ -637,4 +681,60 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', startBoot);
 } else {
   startBoot();
+}
+
+// ============================================
+// SCROLL REVEAL — content panels fade + slide up
+// ============================================
+function setupScrollReveal() {
+  const panels = document.querySelectorAll('.content-panel');
+  if (!panels.length) return;
+
+  panels.forEach(panel => panel.classList.add('scroll-reveal'));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        // Clean up will-change after animation
+        setTimeout(() => {
+          entry.target.style.willChange = 'auto';
+        }, 700);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  panels.forEach(panel => observer.observe(panel));
+}
+
+// ============================================
+// PROJECT CARDS — sliding card motion
+// ============================================
+function setupProjectSlideIn() {
+  const cards = document.querySelectorAll('.project-card');
+  if (!cards.length) return;
+
+  cards.forEach((card, idx) => {
+    card.classList.add('slide-card');
+    card.classList.add(idx % 2 === 0 ? 'slide-left' : 'slide-right');
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Stagger the reveal
+        const card = entry.target;
+        const idx = Array.from(cards).indexOf(card);
+        setTimeout(() => {
+          card.classList.add('revealed');
+          // Clean up will-change after animation
+          setTimeout(() => {
+            card.style.willChange = 'auto';
+          }, 700);
+        }, idx * 150);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  cards.forEach(card => observer.observe(card));
 }

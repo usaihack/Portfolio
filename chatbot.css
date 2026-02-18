@@ -1,4 +1,8 @@
-﻿#open-chat {
+﻿.mobile-chatbar {
+  display: none;
+}
+
+#open-chat {
   position: fixed;
   bottom: 35px;
   left: 20px;
@@ -226,70 +230,27 @@
   pointer-events: auto;
 }
 
-body.light-theme #chatbot {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: #00b377;
-  box-shadow: 0 0 20px rgba(0, 179, 119, 0.3);
-  color: #00b377;
-}
-
-body.light-theme #chat-header {
-  background: rgba(240, 244, 248, 0.9);
-  border-bottom-color: #00b377;
-}
-
-body.light-theme #chat-header span,
-body.light-theme #chat-header button {
-  color: #00b377;
-}
-
-body.light-theme #chat-input-area {
-  border-top-color: #00b377;
-}
-
-body.light-theme #chat-input {
-  color: #1a1a1a;
-}
-
-body.light-theme .bot {
-  background: rgba(0, 179, 119, 0.1);
-  color: #00b377;
-}
-
-body.light-theme .user {
-  background: rgba(0, 0, 0, 0.05);
-  color: #1a1a1a;
-}
-
-body.light-theme #chat-hint {
-  background: rgba(255, 255, 255, 0.95);
-  color: #00b377;
-  border-color: #00b377;
-  box-shadow: 0 0 15px rgba(0, 179, 119, 0.25);
-}
-
-body.light-theme #open-chat {
-  background: #00b377;
-  color: #ffffff;
-  box-shadow: 0 0 15px rgba(0, 179, 119, 0.4);
-}
-
-body.light-theme .chat-btn {
-  background: rgba(0, 179, 119, 0.1);
-  color: #00b377;
-  border-color: #00b377;
-}
-
-body.light-theme .chat-btn:hover {
-  background: #00b377;
-  color: #ffffff;
-}
-
 @media (max-width: 750px) {
+  .mobile-chatbar {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: rgba(10, 14, 23, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(0, 255, 204, 0.15);
+    z-index: 999;
+    align-items: center;
+    padding: 0 16px;
+  }
+
   #open-chat {
     position: fixed;
-    top: 11px;
-    left: 20px;
+    top: 6px;
+    left: 12px;
     bottom: auto;
     right: auto;
     width: 48px;

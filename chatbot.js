@@ -203,7 +203,7 @@ function scheduleChatHint() {
     if (!chatBot.classList.contains("show") && !chatInteracted) {
       chatHint.classList.add("show");
     }
-  }, 12000); 
+  }, 20000); 
 }
 
 function initChatHint() {

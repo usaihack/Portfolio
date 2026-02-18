@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/svg+xml" href="../images/M2D1.svg">
+  <title>Day-01, All about IP Addresses | Learning</title>
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap');
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+  :root{--bg:#0a0e17;--bg2:#0f1923;--text:#d4e0ed;--accent:#00ff9f;--secondary:#0080ff;--panel:rgba(15,25,35,0.95);--border:rgba(0,255,159,0.15);--code-bg:#141e2b}
+  html{scroll-behavior:smooth;background:var(--bg)}
+  body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.8;padding:0;margin:0}
+
+  .topbar{position:sticky;top:0;z-index:100;background:var(--panel);border-bottom:1px solid var(--border);padding:0.8rem 1.5rem;display:flex;align-items:center;gap:0.8rem;backdrop-filter:blur(12px)}
+  .topbar a{color:var(--accent);text-decoration:none;font-weight:600;font-size:0.9rem;display:flex;align-items:center;gap:0.4rem;transition:opacity 0.2s}
+  .topbar a:hover{opacity:0.8}
+  .topbar .sep{color:rgba(255,255,255,0.2)}
+  .topbar .current{color:var(--text);font-weight:500;font-size:0.85rem}
+
+  .container{max-width:860px;margin:0 auto;padding:2rem 1.5rem 2rem}
+
+  h1{font-size:2rem;color:var(--accent);margin-bottom:1.2rem;border-bottom:2px solid var(--border);padding-bottom:0.8rem}
+  h2{font-size:1.5rem;color:var(--accent);margin:2rem 0 0.8rem}
+  h3{font-size:1.2rem;color:var(--secondary);margin:1.5rem 0 0.6rem}
+  p{margin-bottom:1rem}
+  a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.2s}
+  a:hover{border-bottom-color:var(--accent)}
+  img{max-width:100%;height:auto;border-radius:6px}
+  p>img{display:inline-block;vertical-align:middle}
+
+  blockquote{border-left:3px solid var(--accent);background:rgba(0,255,159,0.05);padding:1rem 1.2rem;margin:1rem 0;border-radius:0 8px 8px 0;font-style:italic;color:rgba(212,224,237,0.85)}
+  blockquote p{margin-bottom:0.4rem}
+  blockquote p:last-child{margin-bottom:0}
+
+  code{font-family:'Fira Code',monospace;font-size:0.88em;background:var(--code-bg);padding:0.15em 0.45em;border-radius:4px;color:var(--accent)}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:1.2rem;margin:1rem 0;overflow-x:auto}
+  pre code{background:none;padding:0;color:var(--text);font-size:0.9rem}
+
+  table{width:100%;border-collapse:collapse;margin:1rem 0;background:rgba(15,25,35,0.6);border-radius:8px;overflow:hidden}
+  th{background:rgba(0,255,159,0.1);color:var(--accent);font-weight:600;text-align:left;padding:0.8rem 1rem;border-bottom:2px solid var(--border)}
+  td{padding:0.7rem 1rem;border-bottom:1px solid var(--border)}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(0,255,159,0.03)}
+
+  ul,ol{padding-left:1.5rem;margin-bottom:1rem}
+  li{margin-bottom:0.4rem}
+  hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+  .mermaid{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin:1rem 0;text-align:center}
+  strong{color:#fff;font-weight:600}
+  em{color:rgba(212,224,237,0.9)}
+
+  /* Navigation between pages */
+  .page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);gap:1rem}
+  .page-nav a{display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;border-radius:8px;border:1px solid var(--accent);color:var(--accent);font-weight:600;font-size:0.9rem;transition:all 0.3s;text-decoration:none;white-space:nowrap}
+  .page-nav a:hover{background:var(--accent);color:var(--bg);border-bottom-color:transparent}
+  .page-nav .spacer{flex:1}
+
+  /* Footer */
+  .page-footer{margin-top:2rem;padding:1.5rem;border-top:1px solid var(--border);text-align:center}
+  .footer-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem}
+  .social-link{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text);font-size:0.85rem;text-decoration:none;padding:0.4rem 0.8rem;border-radius:6px;border:1px solid var(--border);transition:all 0.3s}
+  .social-link:hover{border-color:var(--accent);color:var(--accent);border-bottom-color:var(--accent)}
+  .social-link svg{width:16px;height:16px;flex-shrink:0}
+  .footer-copy{color:rgba(212,224,237,0.4);font-size:0.8rem;margin-top:0.5rem}
+
+  @media(max-width:600px){
+    .container{padding:1rem 0.8rem 2rem}
+    h1{font-size:1.5rem}
+    h2{font-size:1.25rem}
+    table{font-size:0.85rem}
+    th,td{padding:0.5rem 0.6rem}
+    .page-nav{flex-direction:column;gap:0.6rem}
+    .page-nav a{width:100%;justify-content:center}
+    .page-nav .spacer{display:none}
+    .footer-links{gap:0.8rem}
+    .topbar{padding:0.6rem 0.8rem;gap:0.5rem;font-size:0.85rem}
+  }
+</style>
+  
+</head>
+<body>
+  <div class="topbar">
+    <a href="../../index.html">Portfolio</a>
+    <span class="sep">&rsaquo;</span>
+    <a href="../networking.html">Learn</a>
+    <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
+  </div>
+  <div class="container">
+    <h1>🌐 Day 1: All About IP Addresses</h1>
+<p><img alt="Networking" src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" /><br />
+<img alt="IP" src="https://img.shields.io/badge/IP-Address-success?style=for-the-badge" /></p>
+<blockquote>
+<p><em>Imagine a courier is delivering you a parcel. He may ask for your street no and house number. To ensure the order reaches exactly at your doorstep, you must give your street and house number.</em> 📦</p>
+</blockquote>
+<hr />
+<h2>🏠 What is an IP Address?</h2>
+<p>In terms of networking, this street or house number is called the <strong>Internet Protocol (IP)</strong>.<br />
+By this, the courier identifies you to deliver your parcel. Similarly, the server will find your device by its IP address to find you on the internet.</p>
+<blockquote>
+<p><em>But wait, I sugar-coated it. It is not as simple as that!</em> 😁😁</p>
+</blockquote>
+<hr />
+<h2>🔢 IPv4 Structure</h2>
+<p>An IP has two types, <strong>IPv4</strong> and <strong>IPv6</strong>. Here, we will talk about <strong>IPv4</strong> for now.</p>
+<p>An IPv4 address looks like this:</p>
+<pre><code>192.16.10.9
+</code></pre>
+<ol>
+<li>Every decimal part is an <strong>Octet</strong>.</li>
+<li>Every decimal is exactly of <strong>one byte</strong> (8 bits).</li>
+<li>IPv4 has a total of <strong>32 bits</strong>.</li>
+<li>Every decimal ranges from <strong>0-255</strong>.</li>
+</ol>
+<hr />
+<h2>📊 IP Classes</h2>
+<p>IPv4 has three general classes for common usage. Their ranges are given below:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Class</th>
+<th style="text-align: left;">Range</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>A</strong></td>
+<td style="text-align: left;"><code>0.0.0.0</code> to <code>127.255.255.255</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>B</strong></td>
+<td style="text-align: left;"><code>128.0.0.0</code> to <code>191.255.255.255</code></td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C</strong></td>
+<td style="text-align: left;"><code>192.0.0.0</code> to <code>223.255.255.255</code></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Note:</strong> Class D and Class E exist, but they are not exposed to the internet. They are for special use cases.</p>
+</blockquote>
+<hr />
+<h2>🌍 Public vs Private IPs</h2>
+<p>There exist a total of roughly <strong>4.3 billion</strong> IPv4 addresses, but the humans on Earth are about <strong>8 billion</strong>, and every human has more than one device.<br />
+To assign every device a unique IP, we face a huge shortage. To avoid this, engineers made two types for IP assigning: <strong>Private</strong> and <strong>Public</strong> IPs.</p>
+<h3>🔒 Private IP</h3>
+<p>The IP assigned to a device <strong>within the LAN</strong> is a Private IP.</p>
+<ul>
+<li><strong>Example:</strong> Devices connected to your home Wi-Fi router will have a Private IP which only the router knows.</li>
+</ul>
+<p>Private IP is always changing for your device.</p>
+<ul>
+<li>If you connect now, your Private IP might be <code>192.168.125.1</code>.</li>
+<li>When you disconnect and connect again, it might be <code>192.178.12.12</code>.</li>
+</ul>
+<p><strong>Classes of Private IPs:</strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">Class</th>
+<th style="text-align: left;">Range</th>
+<th style="text-align: left;">Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;"><strong>A</strong></td>
+<td style="text-align: left;"><code>10.0.0.0</code> to <code>10.255.255.255</code></td>
+<td style="text-align: left;">Used by large million-dollar companies.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>B</strong></td>
+<td style="text-align: left;"><code>172.16.0.0</code> to <code>172.31.255.255</code></td>
+<td style="text-align: left;">Used by medium-sized organizations.</td>
+</tr>
+<tr>
+<td style="text-align: center;"><strong>C</strong></td>
+<td style="text-align: left;"><code>192.168.0.0</code> to <code>192.168.255.255</code></td>
+<td style="text-align: left;">Used in homes.</td>
+</tr>
+</tbody>
+</table>
+<h3>🌐 Public IP</h3>
+<p>The IP assigned to the router <strong>over the internet</strong> is a Public IP.</p>
+<ul>
+<li><strong>Example:</strong> Your ISP will assign an IP to your router on lease to communicate over the internet. This leased IP is Public IP.</li>
+</ul>
+<p>So, if your private IP matches another over the internet (which is possible), it doesn't affect your connection because your Public IP is different.</p>
+<blockquote>
+<p><strong>Is Public IP permanent for a router over the internet?</strong></p>
+<p><strong>No</strong>, it changes but very slowly, or it depends on the ISP. For example, if you buy a monthly package, your router's IP might be the same for the whole month, or it may change when you restart the router or after the ISP's maintenance work.<br />
+Some public IPs may be permanent but for an extra cost (Static IP).</p>
+</blockquote>
+<hr />
+<h2>🔄 DHCP &amp; NAT</h2>
+<p>Now, you might also be thinking, how do our devices get a Private IP? The answer is <strong>DHCP</strong>.</p>
+<h3>🤖 DHCP (Dynamic Host Configuration Protocol)</h3>
+<p>DHCP is a service that gives a device a <strong>Private IP</strong>.</p>
+<ol>
+<li>When you connect to a network, your device sends a <strong>DHCP Discovery</strong> message for available IPs.</li>
+<li>The DHCP server replies with an <strong>offer</strong> of an available IP.</li>
+<li>The device then sends a <strong>DHCP Request</strong>.</li>
+<li>The DHCP server <strong>assigns</strong> that IP to the device.</li>
+</ol>
+<blockquote>
+<p><strong>Remember:</strong> In LANs, the router acts as a DHCP server, while in WANs, there is a dedicated DHCP server.</p>
+</blockquote>
+<h3>🎭 NAT (Network Address Translation)</h3>
+<p>NAT is a method for transforming <strong>Private IPs</strong> to <strong>Public ones</strong>.</p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Router Public IP: <code>23.45.33.1</code></li>
+<li>Phone Private IP: <code>192.168.4.4</code></li>
+<li>Laptop Private IP: <code>192.168.3.1</code></li>
+</ul>
+<p>Now, the router's NAT service translates these Private IP addresses to <code>23.45.33.1</code> when you make a request on the internet.</p>
+<hr />
+<h2>📍 PAT (Port Address Translation)</h2>
+<p>You might ask: <em>If every private IP address is translated to the same public IP in the same LAN through NAT, then how does the incoming data know which device made the request?</em></p>
+<p><strong>Answer:</strong><br />
+When you make a search, the router doesn't simply do NAT (translate Private IP to Public). Instead, it creates a table using <strong>PAT</strong>.<br />
+This table contains the Private IP along with the port, and the translated IP and port.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Device</th>
+<th style="text-align: left;">Private IP &amp; Port</th>
+<th style="text-align: left;">Translated IP &amp; Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong>Device 1</strong></td>
+<td style="text-align: left;"><code>192.168.123.1:5000</code></td>
+<td style="text-align: left;"><code>32.192.3.1:3000</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Device 2</strong></td>
+<td style="text-align: left;"><code>192.168.34.3:5500</code></td>
+<td style="text-align: left;"><code>32.192.3.1:3001</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>Device 3</strong></td>
+<td style="text-align: left;"><code>192.168.3.1:5000</code></td>
+<td style="text-align: left;"><code>32.192.3.1:3002</code></td>
+</tr>
+</tbody>
+</table>
+<p>So, in this way, ports are also translated, and the data goes to the exact location.</p>
+<blockquote>
+<p><strong>Difference between NAT and PAT:</strong><br />
+NAT is an <strong>IP translator</strong>. PAT is an <strong>IP + Port translator</strong>.<br />
+<em>In most LANs, what we call NAT is actually PAT.</em></p>
+</blockquote>
+<hr />
+    <div class="page-nav">
+  <span class="spacer"></span>
+  <a href="Day-02, Ports, IP, TCP, UDP.html">Day-02, Ports, IP, TCP, UDP &#8594;</a>
+</div>
+    
+<footer class="page-footer">
+  <div class="footer-links">
+    <a href="https://github.com/usaihack" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="https://www.linkedin.com/in/usman701441070" target="_blank" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="mailto:70-1-4-4-10-70@proton.me" target="_blank" rel="noopener" class="social-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      Email
+    </a>
+  </div>
+  <p class="footer-copy">&copy; 2026 Muhammad Usman Said</p>
+</footer>
+
+  </div>
+</body>
+</html>
