@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="./../Images/M2D3.svg">
-  <title>Day-03, OSI Model | Learning</title>
+  <link rel="icon" type="image/svg+xml" href="./../Images/M2D4.svg">
+  <title>Day-04, Subnetting and CIDR | Learning</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap');
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -86,149 +86,118 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <h1>🌐 Day 3: OSI Model</h1>
+    <h1>🕸️ Day 4: Subnetting and CIDR Notation</h1>
     <p>
       <img src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" alt="Networking">
-      <img src="https://img.shields.io/badge/OSI-Model-success?style=for-the-badge" alt="OSI">
+      <img src="https://img.shields.io/badge/Subnetting-CIDR-success?style=for-the-badge" alt="Subnetting">
     </p>
 
     <blockquote>
-      <p><em>The OSI Model is the blueprint of the internet. It breaks down the complex process of communication into 7 digestible layers.</em> 🗺️</p>
+      <p><em>Subnetting is like dividing a large pizza into slices so everyone gets their share without fighting. It's the art of efficient network management.</em> 🍕</p>
     </blockquote>
 
     <hr>
+    
+    <h2>🛣️ Network vs Router</h2>
+    <p>Prior to moving towards <strong>subnetting</strong> and <strong>CIDR notation</strong>, here are some terms you must know.</p>
+    <p>A <strong>network</strong> is allocated to you by your ISP (think of it like a street). The <strong>router</strong> is just the gatekeeper of this street.</p>
+    <ul>
+        <li>Your ISP assigns you a <strong>public IP</strong> with a <strong>prefix</strong> that defines the range of that network.
+            <ul>
+                <li><strong>Example:</strong> <code>192.168.10.0/24</code></li>
+                <li><code>/24</code> tells how many devices can exist in that network.</li>
+                <li>In this case, <code>/24</code> means <strong>256</strong> addresses, <strong>254</strong> usable for devices.</li>
+            </ul>
+        </li>
+        <li>The router is the <strong>gateway</strong>, directing traffic between your devices and the outside world.</li>
+    </ul>
 
-    <h2>🏛️ What is the OSI Model?</h2>
-    <p>The <strong>Open Systems Interconnection (OSI)</strong> model is a conceptual framework used to understand network interactions. It explains how data moves between two devices.</p>
+    <hr>
+
+    <h2>🏠 Network Address</h2>
+    <p>Every network has a <strong>network address</strong>, like the <strong>name of the street</strong>.</p>
+    <ul>
+        <li>Your ISP’s public IP belongs to a network.</li>
+        <li><strong>Example:</strong> <code>192.168.10.0/24</code> -> <code>.0</code> is the <strong>Network Address</strong>.</li>
+        <li>This is <strong>not assigned to a device</strong>, it simply identifies the network.</li>
+    </ul>
+
+    <hr>
+
+    <h2>📢 Broadcast Address</h2>
+    <p>Imagine you want to send a wedding invitation to all houses on your street.</p>
+    <ul>
+        <li>Instead of knocking on every door, you take a <strong>megaphone</strong> and announce it to everyone at once.</li>
+        <li>In networking, this megaphone is called the <strong>Broadcast Address</strong>.</li>
+        <li>Broadcast is the <strong>last address</strong> in the network range and is used to send a message to all devices in that subnet.</li>
+    </ul>
+
+    <hr>
+
+    <h2>🔪 Subnetting</h2>
+    <p>Subnetting is like dividing your network into smaller, private blocks.</p>
+    <ul>
+        <li><strong>Analogy:</strong> You have 2 cars (seats for 4 each). Your neighbours want to join, but you don’t want everyone crammed into your car.</li>
+        <li>You give them their own car. Both cars reach the same destination, but traffic is separated.</li>
+        <li>Similarly, subnetting splits a network so devices are grouped separately, traffic is isolated, and management becomes easier.</li>
+    </ul>
     <blockquote>
-      <p><strong>Note:</strong> It is a theoretical model which physically does not exist as a single entity. The real-world implementation is the <strong>TCP/IP Model</strong>.</p>
+        <p><strong>Remember:</strong> Every subnet has its own <strong>Broadcast Address</strong> and <strong>Network Address</strong>.</p>
     </blockquote>
-    <p>It has <strong>seven layers</strong>, traditionally counted from <strong>Bottom (Physical)</strong> to <strong>Top (Application)</strong>.</p>
-
+    
     <hr>
 
-    <h2>🔽 The 7 Layers (Top to Bottom)</h2>
-    <p>In reality, data flow starts from the Application layer (Layer 7) when you send data, and goes down to the Physical layer (Layer 1).</p>
-
-    <h3>7️⃣ Application Layer</h3>
-    <p><strong>"The Interface"</strong></p>
-    <p>When you open a browser (Chrome) or use an app (WhatsApp), you are interacting with this layer. It ensures the application knows how to communicate with the network. This is where the human is talking to the networks through an application interface.</p>
-    <ul>
-      <li><strong>Protocols:</strong> HTTP, HTTPS, FTP, DNS, SMTP.</li>
-    </ul>
-
-    <h3>6️⃣ Presentation Layer</h3>
-    <p><strong>"The Translator"</strong></p>
-    <p>This layer ensures that data is in a usable format. It handles encryption, compression, and translation. Think of it as the designer and stylist of the data.</p>
-    <ul>
-      <li><strong>Functions:</strong>
-        <ul>
-          <li><strong>Encryption/Decryption:</strong> SSL/TLS.</li>
-          <li><strong>Compression:</strong> Reducing data size.</li>
-          <li><strong>Formatting:</strong> Converting data formats (e.g., ASCII, JPEG).</li>
-        </ul>
-      </li>
-    </ul>
-
-    <h3>5️⃣ Session Layer</h3>
-    <p><strong>"The Manager"</strong></p>
-    <p>This layer establishes, maintains, and terminates connections (sessions).</p>
-    <ul>
-      <li><strong>Example:</strong> When you call a person, the call is first established, maintained while you talk, and closed when you hang up. Similarly, when you log in to a web page, a session is established to keep you logged in. It keeps your connection alive until you kill it.</li>
-    </ul>
-
-    <h3>4️⃣ Transport Layer</h3>
-    <p><strong>"The Courier"</strong></p>
-    <p>The most critical layer for delivery. It decides <em>how</em> much data to send and ensures it arrives. Here, either TCP or UDP header (depending on your connection) is added to the data segments.</p>
-    <ul>
-      <li><strong>Protocols:</strong> TCP, UDP.</li>
-      <li><strong>Function:</strong> End-to-end communication, segmentation, flow control.</li>
-    </ul>
-
-    <h3>3️⃣ Network Layer</h3>
-    <p><strong>"The Navigator"</strong></p>
-    <p>The segments are given <strong>IP Headers</strong> to make <strong>Packets</strong>. This layer handles <strong>Routing</strong> and finds the best path for data to reach its destination across different networks.</p>
-    <ul>
-      <li><strong>Function:</strong> Logical addressing (IP Headers) and path determination.</li>
-    </ul>
-
-    <h3>2️⃣ Data Link Layer</h3>
-    <p><strong>"The Local Delivery"</strong></p>
-    <p>This is where the packets search for the destination IP's <strong>MAC Address</strong> within the destination LAN to deliver the data packets. Each hop (like your router -> ISP -> server) gets a new MAC header for the next segment.</p>
-    <ul>
-      <li><strong>Function:</strong> Physical addressing, error detection.</li>
-    </ul>
-
-    <h3>1️⃣ Physical Layer</h3>
-    <p><strong>"The Hardware"</strong></p>
-    <p>These are the real data pulses, regardless of the IP, TCP, or UDP headers. It involves the physical electric pulses of the data moving through cables or air.</p>
-    <ul>
-      <li><strong>Key Idea:</strong>
-        <ul>
-          <li><strong>MAC Address</strong> changes at each hop.</li>
-          <li><strong>IP Address</strong> stays the same end-to-end.</li>
-          <li><strong>Physical Layer</strong> is like the road the data travels on.</li>
-        </ul>
-      </li>
-    </ul>
-
+    <h2>📏 CIDR Notation</h2>
+    <p><strong>Classless Inter-Domain Routing (CIDR)</strong> is a system where we use <strong>IP + Suffix</strong> to describe the size of a network.</p>
+    <p>For example, your ISP may assign you a Public IP + suffix combination, like <code>192.168.10.0/24</code> (<code>/24</code> is common in home networks). By this <code>/24</code>, we can readily find the <strong>network size</strong>, the <strong>Network Address</strong>, and <strong>Broadcast Address</strong>.</p>
+    
+    <h3>🧮 How to Calculate?</h3>
+    <p><strong>Example 1:</strong> <code>192.168.10.0/24</code></p>
+    <ol>
+        <li><strong>Calculate Host Bits:</strong> Total bits in an IP = 32. Subtract the CIDR: <code>32 - 24 = 8</code>.</li>
+        <li><strong>Calculate Total IPs:</strong> <code>2^8 = 256</code>. Range is <code>0-255</code>.</li>
+        <li><strong>Block Size:</strong> 256.</li>
+        <li><strong>Network Address:</strong> The first IP -> <code>192.168.10.0</code>.</li>
+        <li><strong>Broadcast Address:</strong> The last IP -> <code>192.168.10.255</code>.</li>
+        <li><strong>Usable Hosts:</strong> <code>256 - 2 = 254</code> devices.</li>
+    </ol>
+     <blockquote>
+        <p><strong>Note:</strong> The first 24 bits are for <strong>Network Identification</strong> and the remaining 8 bits are for <strong>Size</strong>.</p>
+    </blockquote>
+    
     <hr>
 
-    <h2>⚔️ Attacks per Layer</h2>
-    <p>To understand security, you must know what hits where.</p>
-
-    <table>
-      <thead>
-        <tr>
-          <th style="text-align: center">Layer</th>
-          <th style="text-align: left">Name</th>
-          <th style="text-align: left">Common Attacks</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="text-align: center"><strong>7</strong></td>
-          <td style="text-align: left"><strong>Application</strong></td>
-          <td style="text-align: left">Phishing, HTTP Floods, SQL Injection, XSS, DNS Poisoning</td>
-        </tr>
-        <tr>
-          <td style="text-align: center"><strong>6</strong></td>
-          <td style="text-align: left"><strong>Presentation</strong></td>
-          <td style="text-align: left">SSL Stripping, Malformed Encoding</td>
-        </tr>
-        <tr>
-          <td style="text-align: center"><strong>5</strong></td>
-          <td style="text-align: left"><strong>Session</strong></td>
-          <td style="text-align: left">Session Hijacking, Man-in-the-Middle (MITM)</td>
-        </tr>
-        <tr>
-          <td style="text-align: center"><strong>4</strong></td>
-          <td style="text-align: left"><strong>Transport</strong></td>
-          <td style="text-align: left">TCP SYN Flood, UDP Flood, Port Scanning</td>
-        </tr>
-        <tr>
-          <td style="text-align: center"><strong>3</strong></td>
-          <td style="text-align: left"><strong>Network</strong></td>
-          <td style="text-align: left">IP Spoofing, Ping of Death, ICMP Flood, Route Injection</td>
-        </tr>
-        <tr>
-          <td style="text-align: center"><strong>2</strong></td>
-          <td style="text-align: left"><strong>Data Link</strong></td>
-          <td style="text-align: left">ARP Spoofing, MAC Flooding, VLAN Hopping</td>
-        </tr>
-        <tr>
-          <td style="text-align: center"><strong>1</strong></td>
-          <td style="text-align: left"><strong>Physical</strong></td>
-          <td style="text-align: left">Wiretapping, Jamming, Physical Tampering</td>
-        </tr>
-      </tbody>
-    </table>
+    <h3>🧠 Tricky Example</h3>
+    <p><strong>Example 2:</strong> <code>192.168.50.70/26</code></p>
+    <ol>
+        <li><strong>Calculate Host Bits:</strong> <code>32 - 26 = 6</code>.</li>
+        <li><strong>Calculate Total IPs:</strong> <code>2^6 = 64</code>.</li>
+        <li><strong>Block Ranges:</strong>
+            <ul>
+                <li><code>0 - 63</code></li>
+                <li><code>64 - 127</code></li>
+                <li><code>128 - 191</code></li>
+                <li><code>192 - 255</code></li>
+            </ul>
+        </li>
+        <li><strong>Find the Range:</strong> Where does <code>70</code> fall? In the <strong>second range</strong> (<code>64 - 127</code>).</li>
+        <li><strong>Results:</strong>
+            <ul>
+                <li><strong>Network Address:</strong> <code>192.168.50.64</code></li>
+                <li><strong>Broadcast Address:</strong> <code>192.168.50.127</code></li>
+                <li><strong>Usable Hosts:</strong> <code>64 - 2 = 62</code></li>
+            </ul>
+        </li>
+    </ol>
+     <blockquote>
+        <p><em>The step of finding the correct block is crucial!</em> ⚠️</p>
+    </blockquote>
 
     <hr>
 
     <div class="page-nav">
-      <a href="Day-02, Ports, IP, TCP, UDP.html">&#8592; Day-02, Ports, IP, TCP, UDP</a>
-      <a href="Day-04, Subnetting and CIDR.html">Day-04, Subnetting and CIDR &#8594;</a>
+      <a href="Day-03, OSI Model.html">&#8592; Day-03, OSI Model</a>
+      <a href="QUOTES for Month-02.html">QUOTES for Month-02 &#8594;</a>
     </div>
 
     <footer class="page-footer">
