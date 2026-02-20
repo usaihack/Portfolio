@@ -368,8 +368,8 @@
     // Disable F12 and other developer tools shortcuts
     document.addEventListener('keydown', function(e) {
       if (
-        // e.key === 'F12' ||
-        // (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+        e.key === 'F12' ||
+        (e.ctrlKey && e.shiftKey && e.key === 'I') ||
         (e.ctrlKey && e.shiftKey && e.key === 'J') ||
         (e.ctrlKey && e.shiftKey && e.key === 'C') ||
         (e.ctrlKey && e.key === 'U')
