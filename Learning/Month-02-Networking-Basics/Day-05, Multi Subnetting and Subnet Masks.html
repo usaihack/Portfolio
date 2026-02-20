@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="./../Images/M2D3.svg">
-  <title>Day-03, OSI Model | Learning</title>
+  <link rel="icon" type="image/svg+xml" href="./../Images/M2D5.svg">
+  <title>Day-05, Multi Subnetting and Subnet Masks | Learning</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap');
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -86,149 +86,263 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <h1>🌐 Day 3: OSI Model</h1>
+    <h1>🔢 Day 5: Multi-Subnetting and Subnet Masks</h1>
     <p>
       <img src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" alt="Networking">
-      <img src="https://img.shields.io/badge/OSI-Model-success?style=for-the-badge" alt="OSI">
+      <img src="https://img.shields.io/badge/Subnetting-Masks-success?style=for-the-badge" alt="Subnetting">
     </p>
 
     <blockquote>
-      <p><em>The OSI Model is the blueprint of the internet. It breaks down the complex process of communication into 7 digestible layers.</em> 🗺️</p>
+      <p><em>Think of a Large Company with different departments: HR, Sales, and IT. Subnetting is how we give each department its own secure floor while keeping everyone in the same building.</em> 🏢</p>
     </blockquote>
 
     <hr>
 
-    <h2>🏛️ What is the OSI Model?</h2>
-    <p>The <strong>Open Systems Interconnection (OSI)</strong> model is a conceptual framework used to understand network interactions. It explains how data moves between two devices.</p>
-    <blockquote>
-      <p><strong>Note:</strong> It is a theoretical model which physically does not exist as a single entity. The real-world implementation is the <strong>TCP/IP Model</strong>.</p>
-    </blockquote>
-    <p>It has <strong>seven layers</strong>, traditionally counted from <strong>Bottom (Physical)</strong> to <strong>Top (Application)</strong>.</p>
+    <h2>🏗️ Multi-Subnetting</h2>
+    <p>In <strong>Day 4</strong>, we learned how to find the <em>usable host range</em>, <em>network address</em>, and <em>broadcast address</em> for a single network. Today, we will scale up and find these values for <strong>multiple subnets</strong> within a larger network.</p>
 
-    <hr>
-
-    <h2>🔽 The 7 Layers (Top to Bottom)</h2>
-    <p>In reality, data flow starts from the Application layer (Layer 7) when you send data, and goes down to the Physical layer (Layer 1).</p>
-
-    <h3>7️⃣ Application Layer</h3>
-    <p><strong>"The Interface"</strong></p>
-    <p>When you open a browser (Chrome) or use an app (WhatsApp), you are interacting with this layer. It ensures the application knows how to communicate with the network. This is where the human is talking to the networks through an application interface.</p>
-    <ul>
-      <li><strong>Protocols:</strong> HTTP, HTTPS, FTP, DNS, SMTP.</li>
-    </ul>
-
-    <h3>6️⃣ Presentation Layer</h3>
-    <p><strong>"The Translator"</strong></p>
-    <p>This layer ensures that data is in a usable format. It handles encryption, compression, and translation. Think of it as the designer and stylist of the data.</p>
-    <ul>
-      <li><strong>Functions:</strong>
-        <ul>
-          <li><strong>Encryption/Decryption:</strong> SSL/TLS.</li>
-          <li><strong>Compression:</strong> Reducing data size.</li>
-          <li><strong>Formatting:</strong> Converting data formats (e.g., ASCII, JPEG).</li>
-        </ul>
-      </li>
-    </ul>
-
-    <h3>5️⃣ Session Layer</h3>
-    <p><strong>"The Manager"</strong></p>
-    <p>This layer establishes, maintains, and terminates connections (sessions).</p>
-    <ul>
-      <li><strong>Example:</strong> When you call a person, the call is first established, maintained while you talk, and closed when you hang up. Similarly, when you log in to a web page, a session is established to keep you logged in. It keeps your connection alive until you kill it.</li>
-    </ul>
-
-    <h3>4️⃣ Transport Layer</h3>
-    <p><strong>"The Courier"</strong></p>
-    <p>The most critical layer for delivery. It decides <em>how</em> much data to send and ensures it arrives. Here, either TCP or UDP header (depending on your connection) is added to the data segments.</p>
-    <ul>
-      <li><strong>Protocols:</strong> TCP, UDP.</li>
-      <li><strong>Function:</strong> End-to-end communication, segmentation, flow control.</li>
-    </ul>
-
-    <h3>3️⃣ Network Layer</h3>
-    <p><strong>"The Navigator"</strong></p>
-    <p>The segments are given <strong>IP Headers</strong> to make <strong>Packets</strong>. This layer handles <strong>Routing</strong> and finds the best path for data to reach its destination across different networks.</p>
-    <ul>
-      <li><strong>Function:</strong> Logical addressing (IP Headers) and path determination.</li>
-    </ul>
-
-    <h3>2️⃣ Data Link Layer</h3>
-    <p><strong>"The Local Delivery"</strong></p>
-    <p>This is where the packets search for the destination IP's <strong>MAC Address</strong> within the destination LAN to deliver the data packets. Each hop (like your router -> ISP -> server) gets a new MAC header for the next segment.</p>
-    <ul>
-      <li><strong>Function:</strong> Physical addressing, error detection.</li>
-    </ul>
-
-    <h3>1️⃣ Physical Layer</h3>
-    <p><strong>"The Hardware"</strong></p>
-    <p>These are the real data pulses, regardless of the IP, TCP, or UDP headers. It involves the physical electric pulses of the data moving through cables or air.</p>
-    <ul>
-      <li><strong>Key Idea:</strong>
-        <ul>
-          <li><strong>MAC Address</strong> changes at each hop.</li>
-          <li><strong>IP Address</strong> stays the same end-to-end.</li>
-          <li><strong>Physical Layer</strong> is like the road the data travels on.</li>
-        </ul>
-      </li>
-    </ul>
-
-    <hr>
-
-    <h2>⚔️ Attacks per Layer</h2>
-    <p>To understand security, you must know what hits where.</p>
+    <h3>📜 The Golden Table</h3>
+    <p>Before we dive in, you must memorize (or bookmark) this relationship between CIDR, hosts, and subnets:</p>
 
     <table>
       <thead>
         <tr>
-          <th style="text-align: center">Layer</th>
-          <th style="text-align: left">Name</th>
-          <th style="text-align: left">Common Attacks</th>
+          <th>CIDR</th>
+          <th>Total IP Addresses</th>
+          <th>Number of subnets</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <td style="text-align: center"><strong>7</strong></td>
-          <td style="text-align: left"><strong>Application</strong></td>
-          <td style="text-align: left">Phishing, HTTP Floods, SQL Injection, XSS, DNS Poisoning</td>
+          <td><strong>/24</strong></td>
+          <td>256</td>
+          <td>1</td>
         </tr>
         <tr>
-          <td style="text-align: center"><strong>6</strong></td>
-          <td style="text-align: left"><strong>Presentation</strong></td>
-          <td style="text-align: left">SSL Stripping, Malformed Encoding</td>
+          <td><strong>/25</strong></td>
+          <td>128</td>
+          <td>2</td>
         </tr>
         <tr>
-          <td style="text-align: center"><strong>5</strong></td>
-          <td style="text-align: left"><strong>Session</strong></td>
-          <td style="text-align: left">Session Hijacking, Man-in-the-Middle (MITM)</td>
+          <td><strong>/26</strong></td>
+          <td>64</td>
+          <td>4</td>
         </tr>
         <tr>
-          <td style="text-align: center"><strong>4</strong></td>
-          <td style="text-align: left"><strong>Transport</strong></td>
-          <td style="text-align: left">TCP SYN Flood, UDP Flood, Port Scanning</td>
+          <td><strong>/27</strong></td>
+          <td>32</td>
+          <td>8</td>
         </tr>
         <tr>
-          <td style="text-align: center"><strong>3</strong></td>
-          <td style="text-align: left"><strong>Network</strong></td>
-          <td style="text-align: left">IP Spoofing, Ping of Death, ICMP Flood, Route Injection</td>
+          <td><strong>/28</strong></td>
+          <td>16</td>
+          <td>16</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <blockquote>
+      <p><strong>Rule of Thumb:</strong> As you move down, the total number of IPs is halved, while the number of subnets doubles (1 → 2 → 4 → 8 → 16).</p>
+    </blockquote>
+
+    <hr>
+
+    <h2>🧮 Example 1: Dividing into 4 Subnets</h2>
+    <p><strong>Goal:</strong> Divide <code>192.168.10.0/24</code> into <strong>4 subnets</strong>.</p>
+
+    <h3>🛠️ Solution:</h3>
+    <ol>
+      <li><strong>Identify New CIDR:</strong> Look at the table. To get <strong>4 subnets</strong>, we need a <strong>/26</strong> CIDR.</li>
+      <li><strong>Determine Host Size:</strong> A <strong>/26</strong> network has <strong>64 total hosts</strong>.
+        <ul>
+          <li><strong>Total IPs:</strong> 64</li>
+          <li><strong>Usable Hosts:</strong> <code>64 - 2 = 62</code> (excluding Network and Broadcast addresses).</li>
+        </ul>
+      </li>
+      <li><strong>Create the Blocks:</strong> Start from zero and add blocks of 64:
+        <ul>
+          <li><code>0, 64, 128, 192</code> (Next would be 256, which is out of range).</li>
+        </ul>
+      </li>
+      <li><strong>The Subnet Table:</strong></li>
+    </ol>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Range</th>
+          <th>Network Address</th>
+          <th>Broadcast Address</th>
+          <th>Usable Range</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>0 - 63</strong></td>
+          <td><code>192.168.10.0</code></td>
+          <td><code>192.168.10.63</code></td>
+          <td><code>192.168.10.1</code> to <code>192.168.10.62</code></td>
         </tr>
         <tr>
-          <td style="text-align: center"><strong>2</strong></td>
-          <td style="text-align: left"><strong>Data Link</strong></td>
-          <td style="text-align: left">ARP Spoofing, MAC Flooding, VLAN Hopping</td>
+          <td><strong>64 - 127</strong></td>
+          <td><code>192.168.10.64</code></td>
+          <td><code>192.168.10.127</code></td>
+          <td><code>192.168.10.65</code> to <code>192.168.10.126</code></td>
         </tr>
         <tr>
-          <td style="text-align: center"><strong>1</strong></td>
-          <td style="text-align: left"><strong>Physical</strong></td>
-          <td style="text-align: left">Wiretapping, Jamming, Physical Tampering</td>
+          <td><strong>128 - 191</strong></td>
+          <td><code>192.168.10.128</code></td>
+          <td><code>192.168.10.191</code></td>
+          <td><code>192.168.10.129</code> to <code>192.168.10.190</code></td>
+        </tr>
+        <tr>
+          <td><strong>192 - 255</strong></td>
+          <td><code>192.168.10.192</code></td>
+          <td><code>192.168.10.255</code></td>
+          <td><code>192.168.10.193</code> to <code>192.168.10.254</code></td>
         </tr>
       </tbody>
     </table>
 
     <hr>
 
+    <h2>🧮 Example 2: Dividing into 8 Subnets</h2>
+    <p><strong>Goal:</strong> Divide the same network into <strong>8 subnets</strong>.</p>
+
+    <h3>🛠️ Solution:</h3>
+    <ol>
+      <li><strong>Identify New CIDR:</strong> For 8 subnets, the table points to <strong>/27</strong>.</li>
+      <li><strong>Determine Host Size:</strong> A <strong>/27</strong> CIDR provides <strong>32 hosts</strong> per subnet.</li>
+      <li><strong>The Subnet Table:</strong></li>
+    </ol>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Hosts Range</th>
+          <th>Network Address</th>
+          <th>Broadcast Address</th>
+          <th>Usable Hosts</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>0 - 31</strong></td>
+          <td><code>192.168.10.0</code></td>
+          <td><code>192.168.10.31</code></td>
+          <td><code>.1</code> to <code>.30</code></td>
+        </tr>
+        <tr>
+          <td><strong>32 - 63</strong></td>
+          <td><code>192.168.10.32</code></td>
+          <td><code>192.168.10.63</code></td>
+          <td><code>.33</code> to <code>.62</code></td>
+        </tr>
+        <tr>
+          <td><strong>64 - 95</strong></td>
+          <td><code>192.168.10.64</code></td>
+          <td><code>192.168.10.95</code></td>
+          <td><code>.65</code> to <code>.94</code></td>
+        </tr>
+        <tr>
+          <td><strong>96 - 127</strong></td>
+          <td><code>192.168.10.96</code></td>
+          <td><code>192.168.10.127</code></td>
+          <td><code>.97</code> to <code>.126</code></td>
+        </tr>
+        <tr>
+          <td><strong>128 - 159</strong></td>
+          <td><code>192.168.10.128</code></td>
+          <td><code>192.168.10.159</code></td>
+          <td><code>.129</code> to <code>.158</code></td>
+        </tr>
+        <tr>
+          <td><strong>160 - 191</strong></td>
+          <td><code>192.168.10.160</code></td>
+          <td><code>192.168.10.191</code></td>
+          <td><code>.161</code> to <code>.190</code></td>
+        </tr>
+        <tr>
+          <td><strong>192 - 223</strong></td>
+          <td><code>192.168.10.192</code></td>
+          <td><code>192.168.10.223</code></td>
+          <td><code>.193</code> to <code>.222</code></td>
+        </tr>
+        <tr>
+          <td><strong>224 - 255</strong></td>
+          <td><code>192.168.10.224</code></td>
+          <td><code>192.168.10.255</code></td>
+          <td><code>.225</code> to <code>.254</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <blockquote>
+      <p><strong>💡 Pro Tip:</strong> If a message is destined for a device in the same subnet, the sender "shouts" (broadcasts) it. If it’s for another subnet, it sends it to the <strong>Router</strong> for delivery.</p>
+    </blockquote>
+
+    <hr>
+
+    <h2>🎭 Subnet Mask</h2>
+    <p>A <strong>Subnet Mask</strong> is a 32-bit number used to distinguish the <strong>Network</strong> part from the <strong>Host</strong> part of an IP address.</p>
+    <p>Computers don't "see" IPs the way we do; they only understand binary. To make it human-friendly, engineers created Subnet Masks as an intermediary—think of it as a high-level language for networking.</p>
+
+    <h3>🧮 Finding a Subnet Mask</h3>
+    <p>To find a subnet mask, we count bits from <strong>left to right in descending order</strong> (starting with all <code>1s</code>).</p>
+
+    <h4><strong>Example 1: Basic Mask</strong></h4>
+    <p>Find the Subnet Mask for <code>192.168.10.0/24</code>.</p>
+    <ol>
+      <li>Think of the IP as a house with <strong>4 rooms</strong> (octets). Each room has <strong>8 switches</strong> (bits).</li>
+      <li>Distribute the CIDR <code>/24</code> into the rooms.
+        <ul>
+          <li>Room 1: 8 switches (All ON)</li>
+          <li>Room 2: 8 switches (All ON)</li>
+          <li>Room 3: 8 switches (All ON) -> Total 24.</li>
+          <li>Room 4: 8 switches (All OFF).</li>
+        </ul>
+      </li>
+      <li><strong>Binary Form:</strong> <code>11111111.11111111.11111111.00000000</code></li>
+      <li><strong>Conversion:</strong> A room with all <code>1s</code> equals <strong>255</strong>. All <code>0s</code> equals <strong>0</strong>.
+        <ul>
+          <li><strong>Result:</strong> <code>255.255.255.0</code></li>
+        </ul>
+      </li>
+    </ol>
+
+    <hr>
+
+    <h4><strong>Example 2: Intermediate Mask</strong></h4>
+    <p>Find the Subnet Mask for <code>10.1.1.50/29</code>.</p>
+    <ol>
+      <li>First 3 octets get 8 bits each (24 bits total, all <code>1s</code>).</li>
+      <li>The remaining 5 bits (29 - 24 = 5) go into the 4th octet.</li>
+      <li><strong>Switch Values:</strong> <code>128, 64, 32, 16, 8, 4, 2, 1</code>.</li>
+      <li>Turn ON the first 5 switches: <code>128 + 64 + 32 + 16 + 8 = 248</code>.</li>
+      <li><strong>Result:</strong> <code>255.255.255.248</code></li>
+    </ol>
+
+    <hr>
+
+    <h4><strong>Example 3: Tricky Mask</strong></h4>
+    <p>Find the Subnet Mask for <code>172.16.0.0/20</code>.</p>
+    <ol>
+      <li>First 2 octets are full (16 bits total).</li>
+      <li>The remaining 4 bits (20 - 16 = 4) go into the <strong>3rd octet</strong>.</li>
+      <li>The <strong>4th octet</strong> remains empty (<code>0</code>).</li>
+      <li>Turn ON the first 4 switches in the 3rd octet: <code>128 + 64 + 32 + 16 = 240</code>.</li>
+      <li><strong>Result:</strong> <code>255.255.240.0</code></li>
+    </ol>
+
+    <hr>
+
+    <p><em><strong>The boring and confusing stuff finally ended!</strong></em> 😁🤣</p>
+
+    <hr>
+
     <div class="page-nav">
-      <a href="Day-02, Ports, IP, TCP, UDP.html">&#8592; Day-02, Ports, IP, TCP, UDP</a>
-      <a href="Day-04, Subnetting and CIDR.html">Day-04, Subnetting and CIDR &#8594;</a>
+      <a href="Day-04, Subnetting and CIDR.html">&#8592; Day-04, Subnetting and CIDR</a>
+      <a href="QUOTES for Month-02.html">QUOTES for Month-02 &#8594;</a>
     </div>
 
     <footer class="page-footer">
@@ -259,4 +373,3 @@
   </div>
 </body>
 </html>
-

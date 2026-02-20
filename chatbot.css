@@ -231,95 +231,76 @@
 }
 
 @media (max-width: 750px) {
+  /* Hide the mobile top chatbar overlay */
   .mobile-chatbar {
-    display: flex;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 60px;
-    background: rgba(10, 14, 23, 0.95);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 255, 204, 0.15);
-    z-index: 999;
-    align-items: center;
-    padding: 0 16px;
+    display: none;
   }
 
+  /* Move chat button to bottom-left, above the bottom navbar */
   #open-chat {
     position: fixed;
-    top: 6px;
-    left: 12px;
-    bottom: auto;
+    bottom: 84px;
+    left: 10px;
+    top: auto;
     right: auto;
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     z-index: 1001;
   }
 
   #open-chat img {
-    width: 28px;
-    height: 28px;
-    padding: 0px;
+    width: 26px;
+    height: 26px;
   }
 
+  /* Red notification dot on the chat button (instead of hint) */
+  #open-chat::after {
+    content: '';
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 7px;
+    height: 7px;
+    background: #ff3333;
+    border-radius: 50%;
+    border: 1.5px solid #0a0e17;
+    box-shadow: 0 0 5px rgba(255, 51, 51, 0.7);
+    animation: redDotPulse 2s ease-in-out infinite;
+    pointer-events: none;
+    z-index: 1002;
+  }
+
+  /* Hide the dot once the user has interacted */
+  #open-chat.chatted::after {
+    display: none;
+  }
+
+  @keyframes redDotPulse {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.35); opacity: 0.7; }
+  }
+
+  /* Chatbot panel opens upward, above the bottom navbar */
   #chatbot {
-    bottom: auto;
-    top: 70px;
-    left: 20px;
-    width: 360px;
-    height: 480px;
+    bottom: 138px;
+    top: auto;
+    left: 10px;
+    width: 320px;
+    height: 420px;
     z-index: 1000;
   }
 
-  @media (max-width: 400px) {
-    #chatbot {
-      width: 90%;
-      left: 5%;
-      height: 70vh;
-      top: 70px;
-    }
-  }
-
+  /* Completely hide the hint on mobile */
   #chat-hint {
-    position: fixed;
-    left: 78px;
-    right: auto;
-    bottom: auto;
-    top: 20px;
-    z-index: 999;
-    transform: translateX(-10px);
-    max-width: calc(100vw - 98px);
-    white-space: nowrap;
-    overflow: visible;
-    text-overflow: ellipsis;
+    display: none !important;
   }
+}
 
-  #chat-hint.show {
-    transform: translateX(0);
-  }
-
-  #chat-hint::before {
-    left: -8px;
-    bottom: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    border-left: 0;
-    border-right: 8px solid #00ffcc;
-    border-top: 8px solid transparent;
-    border-bottom: 8px solid transparent;
-  }
-
-  #chat-hint::after {
-    left: -6px;
-    bottom: auto;
-    top: 50%;
-    transform: translateY(-50%);
-    border-left: 0;
-    border-right: 7px solid rgba(0,0,0,0.9);
-    border-top: 7px solid transparent;
-    border-bottom: 7px solid transparent;
+@media (max-width: 400px) {
+  #chatbot {
+    width: calc(100vw - 20px);
+    left: 10px;
+    height: 65vh;
   }
 }
 

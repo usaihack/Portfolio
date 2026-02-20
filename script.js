@@ -1,4 +1,4 @@
-console.log('[BOOT] Script loaded');
+
 
 
 
@@ -568,7 +568,7 @@ function populateProjects() {
       desc: 'A structured 18-month cybersecurity learning journey documented lesson by lesson — from Kali Linux fundamentals to networking protocols and beyond.',
       tech: ['Cybersecurity', 'Networking'],
       buttons: [
-        { label: 'View Project', url: 'https://github.com/usaihack/My-Notes' }
+        { label: 'View Project', url: 'https://usaihack.github.io/Portfolio/Learning/intro.html' }
       ]
     }
   ];
@@ -594,55 +594,211 @@ function populateProjects() {
 }
 
 function setupTerminal() {
-  const input = document.getElementById('terminal-input');
+  const input  = document.getElementById('terminal-input');
   const output = document.getElementById('terminal-output');
   if (!input || !output) return;
 
+  // ── Welcome HTML — used by 'clear' to restore the header lines ────────────
+  const WELCOME_HTML =
+    `<div class="terminal-line">` +
+      `<span class="terminal-prompt">system@portfolio:~$</span> Welcome to the interactive terminal` +
+    `</div>` +
+    `<div class="terminal-line terminal-info">Type 'help' to see available commands</div>`;
+  // ─────────────────────────────────────────────────────────────────────────
+
+  // ── Terminal contact flow state ──────────────────────────
+  const tFlow = { active: false, step: null, name: '', email: '', message: '' };
+  function tReset() { tFlow.active = false; tFlow.step = null; tFlow.name = ''; tFlow.email = ''; tFlow.message = ''; }
+
+  function abortFlow() {
+    tReset();
+    printLine('^C', 'Session aborted.', '#ffa500');
+  }
+  // ─────────────────────────────────────────────────────────
+
+  function printLine(cmd, msg, color) {
+    const line = document.createElement('div');
+    line.className = 'terminal-line';
+    
+    // Add prompt/command safely
+    if (cmd !== null) {
+      const promptSpan = document.createElement('span');
+      promptSpan.className = 'terminal-prompt';
+      promptSpan.textContent = '$';
+      line.appendChild(promptSpan);
+      
+      const cmdText = document.createTextNode(` ${cmd}`);
+      line.appendChild(cmdText);
+      line.appendChild(document.createElement('br'));
+    }
+
+    // Add message safely (prevents XSS)
+    const msgSpan = document.createElement('span');
+    msgSpan.style.color = color || 'var(--secondary)';
+    msgSpan.style.whiteSpace = 'pre-wrap';
+    msgSpan.textContent = msg;
+    line.appendChild(msgSpan);
+
+    output.appendChild(line);
+    output.scrollTop = output.scrollHeight;
+  }
+
+  function printPrompt(msg) {
+    const line = document.createElement('div');
+    line.className = 'terminal-line terminal-info';
+    line.style.color = '#00ff9f';
+    line.textContent = msg;
+    output.appendChild(line);
+    output.scrollTop = output.scrollHeight;
+  }
+
   const commands = {
-    'help': 'Commands: about | skills | projects | goto [section] | clear | time | focus',
-    'about': 'Cybersecurity enthusiast specializing in hacking, malware analysis, and security research.',
-    'skills': 'Python for Hacking, Networking, Web Security, Java, Malware Analysis, Low Level Languages',
-    'projects': 'Visit the PROJECTS section to see my work',
-    'focus': 'Focus areas: Networking, Python for Hacking, Malware Analysis & Creation, Low Level Languages',
-    'time': new Date().toLocaleTimeString(),
-    'clear': ''
+    'help':     'Commands: about | skills | projects | focus | goto [section] | time | contact | clear | q',
+    'about':    'Cybersecurity enthusiast specializing in hacking, malware analysis, and security research.',
+    'skills':   'Python for Hacking, Networking, Web Security, Java, Malware Analysis, Low Level Languages',
+    'projects': 'Visit the PROJECTS section to see my work.',
+    'focus':    'Focus areas: Networking, Python for Hacking, Malware Analysis & Creation, Low Level Languages',
+    'clear':    '',
+    'q':        ''
   };
+  // ─────────────────────────────────────────────────────────
+
+  // ── Contact flow ─────────────────────────────────────────
+  function startContactFlow() {
+    tReset();
+    tFlow.active = true;
+    tFlow.step   = 'name';
+    printPrompt('📝 Starting contact flow... (type q or Ctrl+C to abort)');
+    printPrompt('  Your name:');
+  }
+
+  function handleContactStep(raw) {
+    const val = raw.trim();
+
+    if (tFlow.step === 'name') {
+      printLine(val, '', null);
+      if (val.length < 2) { printPrompt('  ⚠️  Name too short. Your name:'); return; }
+      tFlow.name = val;
+      tFlow.step = 'email';
+      printPrompt(`  Nice to meet you, ${val}!`);
+      printPrompt('  Your email:');
+
+    } else if (tFlow.step === 'email') {
+      printLine(val, '', null);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { printPrompt('  ⚠️  Invalid email. Try again:'); return; }
+      tFlow.email = val;
+      tFlow.step  = 'message';
+      printPrompt('  Your message:');
+
+    } else if (tFlow.step === 'message') {
+      printLine(val, '', null);
+      if (val.length < 5) { printPrompt('  ⚠️  Message too short. Your message:'); return; }
+      tFlow.message = val;
+      tFlow.step    = 'sending';
+      sendTerminalContact();
+    }
+  }
+
+  function sendTerminalContact() {
+    printPrompt('  📡 Sending...');
+    const { name, email, message } = tFlow;
+    const time = new Date().toLocaleString('en-US', {
+      weekday:'short', year:'numeric', month:'short',
+      day:'numeric', hour:'2-digit', minute:'2-digit'
+    });
+
+    function done(ok) {
+      tReset();
+      if (ok) {
+        printLine(null,
+          `✅ Message sent!\n` +
+          `Usman received your message, ${name}.\n` +
+          `Expect a reply within 24–48 hours. 🚀`,
+          '#00ff9f'
+        );
+      } else {
+        printLine(null,
+          `❌ Failed to send. Reach Usman directly:\n` +
+          `✉️  70-1-4-4-10-70@proton.me\n` +
+          `📱  WhatsApp: +92 336 1004639`,
+          '#ff4455'
+        );
+      }
+    }
+
+    function trySend() {
+      if (typeof emailjs === 'undefined') { setTimeout(trySend, 200); return; }
+      Promise.all([
+        emailjs.send('service_ou9wrhm', 'template_klpi1oq', { from_name: name, from_email: email, message, time }),
+        emailjs.send('service_ou9wrhm', 'template_926gfza', { to_name: name, name, from_email: email, to_email: email, email, message, time })
+      ])
+      .then(() => done(true))
+      .catch(() => done(false));
+    }
+    trySend();
+  }
+  // ─────────────────────────────────────────────────────────
+
+  // ── Ctrl+C — abort anywhere ───────────────────────────────
+  input.addEventListener('keydown', (e) => {
+    if (e.ctrlKey && e.key === 'c') {
+      if (tFlow.active) {
+        e.preventDefault();
+        abortFlow();
+        input.value = '';
+      }
+    }
+  });
+  // ─────────────────────────────────────────────────────────
 
   input.addEventListener('keypress', (e) => {
     if (e.key !== 'Enter') return;
+    const raw = input.value;
+    const cmd = raw.trim().toLowerCase();
+    input.value = '';
+    if (!raw.trim()) return;
 
-    const cmd = input.value.trim().toLowerCase();
-    if (!cmd) return;
-
-    let result = commands[cmd];
-
-    if (cmd === 'clear') {
-      output.innerHTML = '';
-      input.value = '';
+    // ── q = abort (in flow or out) ──
+    if (cmd === 'q') {
+      if (tFlow.active) { abortFlow(); } else { printLine('q', 'No active session to abort.', '#ffa500'); }
       return;
     }
 
-    if (cmd.startsWith('goto ')) {
-      const section = cmd.substring(5);
-      const target = document.querySelector('#' + section);
-      if (target) {
-        target.scrollIntoView({ behavior: 'smooth' });
-        result = `Going to ${section}...`;
-      } else {
-        result = `Not found: ${section}`;
-      }
-    } else if (!result) {
-      result = 'Unknown command';
+    // ── Route to contact flow if active ──
+    if (tFlow.active && tFlow.step !== 'sending') {
+      handleContactStep(raw);
+      return;
     }
 
-    const line = document.createElement('div');
-    line.className = 'terminal-line';
-    line.innerHTML = `<span class="terminal-prompt">$</span> ${cmd}<br><span style="color: var(--secondary);">${result || ''}</span>`;
-    output.appendChild(line);
-    output.scrollTop = output.scrollHeight;
-    input.value = '';
+    // ── clear — restore welcome header only ──
+    if (cmd === 'clear') {
+      output.innerHTML = WELCOME_HTML;
+      return;
+    }
+
+    // ── contact flow ──
+    if (cmd === 'contact') { printLine('contact', '', null); startContactFlow(); return; }
+
+    // ── time ──
+    if (cmd === 'time') { printLine('time', new Date().toLocaleTimeString(), null); return; }
+
+    // ── goto [section] ──
+    if (cmd.startsWith('goto ')) {
+      const section = cmd.substring(5).trim();
+      const target  = document.querySelector('#' + section);
+      printLine(cmd, target ? `Going to ${section}...` : `Not found: ${section}`, null);
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+
+    // ── Named commands ──
+    const result = commands[cmd];
+    printLine(cmd, result !== undefined ? result : 'Unknown command. Type "help".', null);
   });
 }
+
+
+
 
 function setupScroll() {
   const scrollProgress = document.getElementById('scroll-progress');
@@ -738,3 +894,99 @@ function setupProjectSlideIn() {
 
   cards.forEach(card => observer.observe(card));
 }
+
+// ============================================
+// EMAILJS — Contact Form
+// ============================================
+(function initContactForm() {
+  // Wait for EmailJS SDK to be ready
+  function tryInit() {
+    if (typeof emailjs === 'undefined') {
+      setTimeout(tryInit, 100);
+      return;
+    }
+
+    emailjs.init('eYTYdK22qR7zc17Py');
+
+    const form       = document.getElementById('contact-form');
+    const submitBtn  = document.getElementById('form-submit-btn');
+    const btnText    = submitBtn?.querySelector('.btn-text');
+    const btnLoading = submitBtn?.querySelector('.btn-loading');
+    const status     = document.getElementById('form-status');
+    const timeField  = document.getElementById('form-time');
+
+    if (!form) return;
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      // Populate hidden time field
+      if (timeField) {
+        timeField.value = new Date().toLocaleString('en-US', {
+          weekday: 'short', year: 'numeric', month: 'short',
+          day: 'numeric', hour: '2-digit', minute: '2-digit'
+        });
+      }
+
+      // Validate
+      const name    = form.from_name.value.trim();
+      const email   = form.from_email.value.trim();
+      const message = form.message.value.trim();
+
+      if (!name || !email || !message) {
+        showStatus('⚠️ Please fill in all fields.', 'warn');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus('⚠️ Please enter a valid email address.', 'warn');
+        return;
+      }
+
+      // Loading state
+      setLoading(true);
+      showStatus('', '');
+
+      // 1. Send notification to Usman
+      emailjs.sendForm('service_ou9wrhm', 'template_klpi1oq', form)
+        .then(() => {
+          // 2. Send acknowledgment to visitor
+          // Pass all possible variable names to cover default EmailJS template vars
+          return emailjs.send('service_ou9wrhm', 'template_926gfza', {
+            to_name:    name,
+            name:       name,       // EmailJS default
+            from_name:  name,
+            to_email:   email,
+            from_email: email,
+            email:      email,      // EmailJS default
+            message:    message,
+            time:       timeField?.value || ''
+          });
+        })
+        .then(() => {
+          showStatus('✅ Message sent! Check your inbox — I\'ll reply personally soon. 🚀', 'success');
+          form.reset();
+        })
+        .catch(err => {
+          showStatus('❌ Failed to send. Please try again or email me directly.', 'error');
+        })
+        .finally(() => {
+          setLoading(false);
+        });
+    });
+
+    function setLoading(on) {
+      if (!submitBtn) return;
+      submitBtn.disabled = on;
+      if (btnText)    btnText.style.display    = on ? 'none'   : 'inline';
+      if (btnLoading) btnLoading.style.display = on ? 'inline' : 'none';
+    }
+
+    function showStatus(msg, type) {
+      if (!status) return;
+      status.textContent = msg;
+      status.className = 'form-status-msg' + (type ? ' form-status-' + type : '');
+    }
+  }
+
+  tryInit();
+})();
