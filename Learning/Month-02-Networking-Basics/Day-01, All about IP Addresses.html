@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -87,21 +87,21 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <h1>🌐 Day 1: All About IP Addresses</h1>
+    <h1>ðŸŒ Day 1: All About IP Addresses</h1>
 <p><img alt="Networking" src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" /><br />
 <img alt="IP" src="https://img.shields.io/badge/IP-Address-success?style=for-the-badge" /></p>
 <blockquote>
-<p><em>Imagine a courier is delivering you a parcel. He may ask for your street no and house number. To ensure the order reaches exactly at your doorstep, you must give your street and house number.</em> 📦</p>
+<p><em>Imagine a courier is delivering you a parcel. He may ask for your street no and house number. To ensure the order reaches exactly at your doorstep, you must give your street and house number.</em> ðŸ“¦</p>
 </blockquote>
 <hr />
-<h2>🏠 What is an IP Address?</h2>
+<h2>ðŸ  What is an IP Address?</h2>
 <p>In terms of networking, this street or house number is called the <strong>Internet Protocol (IP)</strong>.<br />
 By this, the courier identifies you to deliver your parcel. Similarly, the server will find your device by its IP address to find you on the internet.</p>
 <blockquote>
-<p><em>But wait, I sugar-coated it. It is not as simple as that!</em> 😁😁</p>
+<p><em>But wait, I sugar-coated it. It is not as simple as that!</em> ðŸ˜ðŸ˜</p>
 </blockquote>
 <hr />
-<h2>🔢 IPv4 Structure</h2>
+<h2>ðŸ”¢ IPv4 Structure</h2>
 <p>An IP has two types, <strong>IPv4</strong> and <strong>IPv6</strong>. Here, we will talk about <strong>IPv4</strong> for now.</p>
 <p>An IPv4 address looks like this:</p>
 <pre><code>192.16.10.9
@@ -113,7 +113,7 @@ By this, the courier identifies you to deliver your parcel. Similarly, the serve
 <li>Every decimal ranges from <strong>0-255</strong>.</li>
 </ol>
 <hr />
-<h2>📊 IP Classes</h2>
+<h2>ðŸ“Š IP Classes</h2>
 <p>IPv4 has three general classes for common usage. Their ranges are given below:</p>
 <table>
 <thead>
@@ -141,10 +141,10 @@ By this, the courier identifies you to deliver your parcel. Similarly, the serve
 <p><strong>Note:</strong> Class D and Class E exist, but they are not exposed to the internet. They are for special use cases.</p>
 </blockquote>
 <hr />
-<h2>🌍 Public vs Private IPs</h2>
+<h2>ðŸŒ Public vs Private IPs</h2>
 <p>There exist a total of roughly <strong>4.3 billion</strong> IPv4 addresses, but the humans on Earth are about <strong>8 billion</strong>, and every human has more than one device.<br />
 To assign every device a unique IP, we face a huge shortage. To avoid this, engineers made two types for IP assigning: <strong>Private</strong> and <strong>Public</strong> IPs.</p>
-<h3>🔒 Private IP</h3>
+<h3>ðŸ”’ Private IP</h3>
 <p>The IP assigned to a device <strong>within the LAN</strong> is a Private IP.</p>
 <ul>
 <li><strong>Example:</strong> Devices connected to your home Wi-Fi router will have a Private IP which only the router knows.</li>
@@ -181,7 +181,7 @@ To assign every device a unique IP, we face a huge shortage. To avoid this, engi
 </tr>
 </tbody>
 </table>
-<h3>🌐 Public IP</h3>
+<h3>ðŸŒ Public IP</h3>
 <p>The IP assigned to the router <strong>over the internet</strong> is a Public IP.</p>
 <ul>
 <li><strong>Example:</strong> Your ISP will assign an IP to your router on lease to communicate over the internet. This leased IP is Public IP.</li>
@@ -193,9 +193,9 @@ To assign every device a unique IP, we face a huge shortage. To avoid this, engi
 Some public IPs may be permanent but for an extra cost (Static IP).</p>
 </blockquote>
 <hr />
-<h2>🔄 DHCP &amp; NAT</h2>
+<h2>ðŸ”„ DHCP &amp; NAT</h2>
 <p>Now, you might also be thinking, how do our devices get a Private IP? The answer is <strong>DHCP</strong>.</p>
-<h3>🤖 DHCP (Dynamic Host Configuration Protocol)</h3>
+<h3>ðŸ¤– DHCP (Dynamic Host Configuration Protocol)</h3>
 <p>DHCP is a service that gives a device a <strong>Private IP</strong>.</p>
 <ol>
 <li>When you connect to a network, your device sends a <strong>DHCP Discovery</strong> message for available IPs.</li>
@@ -206,7 +206,7 @@ Some public IPs may be permanent but for an extra cost (Static IP).</p>
 <blockquote>
 <p><strong>Remember:</strong> In LANs, the router acts as a DHCP server, while in WANs, there is a dedicated DHCP server.</p>
 </blockquote>
-<h3>🎭 NAT (Network Address Translation)</h3>
+<h3>ðŸŽ­ NAT (Network Address Translation)</h3>
 <p>NAT is a method for transforming <strong>Private IPs</strong> to <strong>Public ones</strong>.</p>
 <p><strong>Example:</strong></p>
 <ul>
@@ -216,7 +216,7 @@ Some public IPs may be permanent but for an extra cost (Static IP).</p>
 </ul>
 <p>Now, the router's NAT service translates these Private IP addresses to <code>23.45.33.1</code> when you make a request on the internet.</p>
 <hr />
-<h2>📍 PAT (Port Address Translation)</h2>
+<h2>ðŸ“ PAT (Port Address Translation)</h2>
 <p>You might ask: <em>If every private IP address is translated to the same public IP in the same LAN through NAT, then how does the incoming data know which device made the request?</em></p>
 <p><strong>Answer:</strong><br />
 When you make a search, the router doesn't simply do NAT (translate Private IP to Public). Instead, it creates a table using <strong>PAT</strong>.<br />
@@ -273,7 +273,7 @@ NAT is an <strong>IP translator</strong>. PAT is an <strong>IP + Port translator
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       Email
     </a>
-    <a href="https://www.reddit.com/user/usmansaid/" target="_blank" class="social-link">
+    <a href="https://www.reddit.com/user/usmansaid54/" target="_blank" class="social-link">
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
       Reddit
     </a>

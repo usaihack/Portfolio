@@ -1,4 +1,4 @@
-
+﻿
 
 
 
@@ -565,7 +565,7 @@ function populateProjects() {
     },
     {
       name: 'Learning Path',
-      desc: 'A structured 18-month cybersecurity learning journey documented lesson by lesson — from Kali Linux fundamentals to networking protocols and beyond.',
+      desc: 'A structured 18-month cybersecurity learning journey documented lesson by lesson â€” from Kali Linux fundamentals to networking protocols and beyond.',
       tech: ['Cybersecurity', 'Networking'],
       buttons: [
         { label: 'View Project', url: 'https://usaihack.github.io/Portfolio/Learning/intro.html' }
@@ -598,15 +598,15 @@ function setupTerminal() {
   const output = document.getElementById('terminal-output');
   if (!input || !output) return;
 
-  // ── Welcome HTML — used by 'clear' to restore the header lines ────────────
+  // â”€â”€ Welcome HTML â€” used by 'clear' to restore the header lines â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const WELCOME_HTML =
     `<div class="terminal-line">` +
       `<span class="terminal-prompt">system@portfolio:~$</span> Welcome to the interactive terminal` +
     `</div>` +
     `<div class="terminal-line terminal-info">Type 'help' to see available commands</div>`;
-  // ─────────────────────────────────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-  // ── Terminal contact flow state ──────────────────────────
+  // â”€â”€ Terminal contact flow state â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   const tFlow = { active: false, step: null, name: '', email: '', message: '' };
   function tReset() { tFlow.active = false; tFlow.step = null; tFlow.name = ''; tFlow.email = ''; tFlow.message = ''; }
 
@@ -614,7 +614,7 @@ function setupTerminal() {
     tReset();
     printLine('^C', 'Session aborted.', '#ffa500');
   }
-  // ─────────────────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   function printLine(cmd, msg, color) {
     const line = document.createElement('div');
@@ -661,14 +661,14 @@ function setupTerminal() {
     'clear':    '',
     'q':        ''
   };
-  // ─────────────────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-  // ── Contact flow ─────────────────────────────────────────
+  // â”€â”€ Contact flow â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   function startContactFlow() {
     tReset();
     tFlow.active = true;
     tFlow.step   = 'name';
-    printPrompt('📝 Starting contact flow... (type q or Ctrl+C to abort)');
+    printPrompt('ðŸ“ Starting contact flow... (type q or Ctrl+C to abort)');
     printPrompt('  Your name:');
   }
 
@@ -677,7 +677,7 @@ function setupTerminal() {
 
     if (tFlow.step === 'name') {
       printLine(val, '', null);
-      if (val.length < 2) { printPrompt('  ⚠️  Name too short. Your name:'); return; }
+      if (val.length < 2) { printPrompt('  âš ï¸  Name too short. Your name:'); return; }
       tFlow.name = val;
       tFlow.step = 'email';
       printPrompt(`  Nice to meet you, ${val}!`);
@@ -685,14 +685,14 @@ function setupTerminal() {
 
     } else if (tFlow.step === 'email') {
       printLine(val, '', null);
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { printPrompt('  ⚠️  Invalid email. Try again:'); return; }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) { printPrompt('  âš ï¸  Invalid email. Try again:'); return; }
       tFlow.email = val;
       tFlow.step  = 'message';
       printPrompt('  Your message:');
 
     } else if (tFlow.step === 'message') {
       printLine(val, '', null);
-      if (val.length < 5) { printPrompt('  ⚠️  Message too short. Your message:'); return; }
+      if (val.length < 5) { printPrompt('  âš ï¸  Message too short. Your message:'); return; }
       tFlow.message = val;
       tFlow.step    = 'sending';
       sendTerminalContact();
@@ -700,7 +700,7 @@ function setupTerminal() {
   }
 
   function sendTerminalContact() {
-    printPrompt('  📡 Sending...');
+    printPrompt('  ðŸ“¡ Sending...');
     const { name, email, message } = tFlow;
     const time = new Date().toLocaleString('en-US', {
       weekday:'short', year:'numeric', month:'short',
@@ -711,16 +711,16 @@ function setupTerminal() {
       tReset();
       if (ok) {
         printLine(null,
-          `✅ Message sent!\n` +
+          `âœ… Message sent!\n` +
           `Usman received your message, ${name}.\n` +
-          `Expect a reply within 24–48 hours. 🚀`,
+          `Expect a reply within 24â€“48 hours. ðŸš€`,
           '#00ff9f'
         );
       } else {
         printLine(null,
-          `❌ Failed to send. Reach Usman directly:\n` +
-          `✉️  70-1-4-4-10-70@proton.me\n` +
-          `📱  WhatsApp: +92 336 1004639`,
+          `âŒ Failed to send. Reach Usman directly:\n` +
+          `âœ‰ï¸  70-1-4-4-10-70@proton.me\n` +
+          `ðŸ“±  WhatsApp: +92 336 1004639`,
           '#ff4455'
         );
       }
@@ -737,9 +737,9 @@ function setupTerminal() {
     }
     trySend();
   }
-  // ─────────────────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-  // ── Ctrl+C — abort anywhere ───────────────────────────────
+  // â”€â”€ Ctrl+C â€” abort anywhere â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   input.addEventListener('keydown', (e) => {
     if (e.ctrlKey && e.key === 'c') {
       if (tFlow.active) {
@@ -749,7 +749,7 @@ function setupTerminal() {
       }
     }
   });
-  // ─────────────────────────────────────────────────────────
+  // â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
   input.addEventListener('keypress', (e) => {
     if (e.key !== 'Enter') return;
@@ -758,31 +758,31 @@ function setupTerminal() {
     input.value = '';
     if (!raw.trim()) return;
 
-    // ── q = abort (in flow or out) ──
+    // â”€â”€ q = abort (in flow or out) â”€â”€
     if (cmd === 'q') {
       if (tFlow.active) { abortFlow(); } else { printLine('q', 'No active session to abort.', '#ffa500'); }
       return;
     }
 
-    // ── Route to contact flow if active ──
+    // â”€â”€ Route to contact flow if active â”€â”€
     if (tFlow.active && tFlow.step !== 'sending') {
       handleContactStep(raw);
       return;
     }
 
-    // ── clear — restore welcome header only ──
+    // â”€â”€ clear â€” restore welcome header only â”€â”€
     if (cmd === 'clear') {
       output.innerHTML = WELCOME_HTML;
       return;
     }
 
-    // ── contact flow ──
+    // â”€â”€ contact flow â”€â”€
     if (cmd === 'contact') { printLine('contact', '', null); startContactFlow(); return; }
 
-    // ── time ──
+    // â”€â”€ time â”€â”€
     if (cmd === 'time') { printLine('time', new Date().toLocaleTimeString(), null); return; }
 
-    // ── goto [section] ──
+    // â”€â”€ goto [section] â”€â”€
     if (cmd.startsWith('goto ')) {
       const section = cmd.substring(5).trim();
       const target  = document.querySelector('#' + section);
@@ -791,7 +791,7 @@ function setupTerminal() {
       return;
     }
 
-    // ── Named commands ──
+    // â”€â”€ Named commands â”€â”€
     const result = commands[cmd];
     printLine(cmd, result !== undefined ? result : 'Unknown command. Type "help".', null);
   });
@@ -817,7 +817,7 @@ function setupScroll() {
 const moveToTopBtn = document.createElement('button');
 moveToTopBtn.id = 'move-to-top';
 moveToTopBtn.className = 'move-to-top';
-moveToTopBtn.innerHTML = '<span class="top-icon">▲</span><span class="top-text"> TOP</span>';
+moveToTopBtn.innerHTML = '<span class="top-icon">â–²</span><span class="top-text"> TOP</span>';
 moveToTopBtn.setAttribute('title', 'Move to top');
 document.body.appendChild(moveToTopBtn);
 
@@ -840,7 +840,7 @@ if (document.readyState === 'loading') {
 }
 
 // ============================================
-// SCROLL REVEAL — content panels fade + slide up
+// SCROLL REVEAL â€” content panels fade + slide up
 // ============================================
 function setupScrollReveal() {
   const panels = document.querySelectorAll('.content-panel');
@@ -864,7 +864,7 @@ function setupScrollReveal() {
 }
 
 // ============================================
-// PROJECT CARDS — sliding card motion
+// PROJECT CARDS â€” sliding card motion
 // ============================================
 function setupProjectSlideIn() {
   const cards = document.querySelectorAll('.project-card');
@@ -896,7 +896,7 @@ function setupProjectSlideIn() {
 }
 
 // ============================================
-// EMAILJS — Contact Form
+// EMAILJS â€” Contact Form
 // ============================================
 (function initContactForm() {
   // Wait for EmailJS SDK to be ready
@@ -934,11 +934,11 @@ function setupProjectSlideIn() {
       const message = form.message.value.trim();
 
       if (!name || !email || !message) {
-        showStatus('⚠️ Please fill in all fields.', 'warn');
+        showStatus('âš ï¸ Please fill in all fields.', 'warn');
         return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-        showStatus('⚠️ Please enter a valid email address.', 'warn');
+        showStatus('âš ï¸ Please enter a valid email address.', 'warn');
         return;
       }
 
@@ -963,11 +963,11 @@ function setupProjectSlideIn() {
           });
         })
         .then(() => {
-          showStatus('✅ Message sent! Check your inbox — I\'ll reply personally soon. 🚀', 'success');
+          showStatus('âœ… Message sent! Check your inbox â€” I\'ll reply personally soon. ðŸš€', 'success');
           form.reset();
         })
         .catch(err => {
-          showStatus('❌ Failed to send. Please try again or email me directly.', 'error');
+          showStatus('âŒ Failed to send. Please try again or email me directly.', 'error');
         })
         .finally(() => {
           setLoading(false);

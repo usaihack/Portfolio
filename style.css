@@ -1811,7 +1811,6 @@ h2 {
   }
 
   .contact-link {
-    flex: 1;
     min-width: 140px;
     padding: 0.8rem 1rem;
     font-size: 0.85rem;

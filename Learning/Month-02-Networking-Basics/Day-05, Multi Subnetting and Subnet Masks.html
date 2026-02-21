@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -86,22 +86,22 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <h1>🔢 Day 5: Multi-Subnetting and Subnet Masks</h1>
+    <h1>ðŸ”¢ Day 5: Multi-Subnetting and Subnet Masks</h1>
     <p>
       <img src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" alt="Networking">
       <img src="https://img.shields.io/badge/Subnetting-Masks-success?style=for-the-badge" alt="Subnetting">
     </p>
 
     <blockquote>
-      <p><em>Think of a Large Company with different departments: HR, Sales, and IT. Subnetting is how we give each department its own secure floor while keeping everyone in the same building.</em> 🏢</p>
+      <p><em>Think of a Large Company with different departments: HR, Sales, and IT. Subnetting is how we give each department its own secure floor while keeping everyone in the same building.</em> ðŸ¢</p>
     </blockquote>
 
     <hr>
 
-    <h2>🏗️ Multi-Subnetting</h2>
+    <h2>ðŸ—ï¸ Multi-Subnetting</h2>
     <p>In <strong>Day 4</strong>, we learned how to find the <em>usable host range</em>, <em>network address</em>, and <em>broadcast address</em> for a single network. Today, we will scale up and find these values for <strong>multiple subnets</strong> within a larger network.</p>
 
-    <h3>📜 The Golden Table</h3>
+    <h3>ðŸ“œ The Golden Table</h3>
     <p>Before we dive in, you must memorize (or bookmark) this relationship between CIDR, hosts, and subnets:</p>
 
     <table>
@@ -142,15 +142,15 @@
     </table>
 
     <blockquote>
-      <p><strong>Rule of Thumb:</strong> As you move down, the total number of IPs is halved, while the number of subnets doubles (1 → 2 → 4 → 8 → 16).</p>
+      <p><strong>Rule of Thumb:</strong> As you move down, the total number of IPs is halved, while the number of subnets doubles (1 â†’ 2 â†’ 4 â†’ 8 â†’ 16).</p>
     </blockquote>
 
     <hr>
 
-    <h2>🧮 Example 1: Dividing into 4 Subnets</h2>
+    <h2>ðŸ§® Example 1: Dividing into 4 Subnets</h2>
     <p><strong>Goal:</strong> Divide <code>192.168.10.0/24</code> into <strong>4 subnets</strong>.</p>
 
-    <h3>🛠️ Solution:</h3>
+    <h3>ðŸ› ï¸ Solution:</h3>
     <ol>
       <li><strong>Identify New CIDR:</strong> Look at the table. To get <strong>4 subnets</strong>, we need a <strong>/26</strong> CIDR.</li>
       <li><strong>Determine Host Size:</strong> A <strong>/26</strong> network has <strong>64 total hosts</strong>.
@@ -206,10 +206,10 @@
 
     <hr>
 
-    <h2>🧮 Example 2: Dividing into 8 Subnets</h2>
+    <h2>ðŸ§® Example 2: Dividing into 8 Subnets</h2>
     <p><strong>Goal:</strong> Divide the same network into <strong>8 subnets</strong>.</p>
 
-    <h3>🛠️ Solution:</h3>
+    <h3>ðŸ› ï¸ Solution:</h3>
     <ol>
       <li><strong>Identify New CIDR:</strong> For 8 subnets, the table points to <strong>/27</strong>.</li>
       <li><strong>Determine Host Size:</strong> A <strong>/27</strong> CIDR provides <strong>32 hosts</strong> per subnet.</li>
@@ -278,16 +278,16 @@
     </table>
 
     <blockquote>
-      <p><strong>💡 Pro Tip:</strong> If a message is destined for a device in the same subnet, the sender "shouts" (broadcasts) it. If it’s for another subnet, it sends it to the <strong>Router</strong> for delivery.</p>
+      <p><strong>ðŸ’¡ Pro Tip:</strong> If a message is destined for a device in the same subnet, the sender "shouts" (broadcasts) it. If itâ€™s for another subnet, it sends it to the <strong>Router</strong> for delivery.</p>
     </blockquote>
 
     <hr>
 
-    <h2>🎭 Subnet Mask</h2>
+    <h2>ðŸŽ­ Subnet Mask</h2>
     <p>A <strong>Subnet Mask</strong> is a 32-bit number used to distinguish the <strong>Network</strong> part from the <strong>Host</strong> part of an IP address.</p>
-    <p>Computers don't "see" IPs the way we do; they only understand binary. To make it human-friendly, engineers created Subnet Masks as an intermediary—think of it as a high-level language for networking.</p>
+    <p>Computers don't "see" IPs the way we do; they only understand binary. To make it human-friendly, engineers created Subnet Masks as an intermediaryâ€”think of it as a high-level language for networking.</p>
 
-    <h3>🧮 Finding a Subnet Mask</h3>
+    <h3>ðŸ§® Finding a Subnet Mask</h3>
     <p>To find a subnet mask, we count bits from <strong>left to right in descending order</strong> (starting with all <code>1s</code>).</p>
 
     <h4><strong>Example 1: Basic Mask</strong></h4>
@@ -336,7 +336,7 @@
 
     <hr>
 
-    <p><em><strong>The boring and confusing stuff finally ended!</strong></em> 😁🤣</p>
+    <p><em><strong>The boring and confusing stuff finally ended!</strong></em> ðŸ˜ðŸ¤£</p>
 
     <hr>
 
@@ -359,7 +359,7 @@
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           Email
         </a>
-        <a href="https://www.reddit.com/user/usmansaid/" target="_blank" class="social-link">
+        <a href="https://www.reddit.com/user/usmansaid54/" target="_blank" class="social-link">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
           Reddit
         </a>

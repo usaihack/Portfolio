@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -87,14 +87,14 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 01 Kali Basics</span>
   </div>
   <div class="container">
-    <h1>🔐 Day 3: File Permissions &amp; Security</h1>
+    <h1>ðŸ” Day 3: File Permissions &amp; Security</h1>
 <p><img alt="Security" src="https://img.shields.io/badge/Security-Critical-red?style=for-the-badge&amp;logo=lock" /><br />
 <img alt="Linux" src="https://img.shields.io/badge/Linux-Admin-success?style=for-the-badge" /></p>
 <blockquote>
 <p><em>In Linux, every file is owned by someone. Understanding who can touch your files is the first line of defense.</em></p>
 </blockquote>
 <hr />
-<h2>👥 The Three Identities</h2>
+<h2>ðŸ‘¥ The Three Identities</h2>
 <p>Who are we talking about when we say "Permissions"?</p>
 <table>
 <thead>
@@ -123,7 +123,7 @@
 </tbody>
 </table>
 <hr />
-<h2>🚦 The Three Permissions</h2>
+<h2>ðŸš¦ The Three Permissions</h2>
 <p>What can they do?</p>
 <table>
 <thead>
@@ -156,7 +156,7 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>💡 Quick Math:</strong></p>
+<p><strong>ðŸ’¡ Quick Math:</strong></p>
 <ul>
 <li><code>rwx</code> = 4 + 2 + 1 = <strong>7</strong> (Full Permissions)</li>
 <li><code>rw-</code> = 4 + 2 = <strong>6</strong> (Read &amp; Write)</li>
@@ -164,9 +164,9 @@
 </ul>
 </blockquote>
 <hr />
-<h2>🛠️ Changing Permissions: <code>chmod</code></h2>
+<h2>ðŸ› ï¸ Changing Permissions: <code>chmod</code></h2>
 <p>The command <code>chmod</code> (Change Mode) is used to set these rules.</p>
-<h3>📝 Method 1: Symbolic Mode</h3>
+<h3>ðŸ“ Method 1: Symbolic Mode</h3>
 <p>Use <code>+</code> to add, <code>-</code> to remove.</p>
 <pre><code>chmod u+rwx filename
 # Gives User (u) Read, Write, and Execute permissions.
@@ -174,7 +174,7 @@
 chmod g-wx filename
 # Removes Write and Execute permissions from Group (g).
 </code></pre>
-<h3>🔢 Method 2: Numeric Mode (The Pro Way)</h3>
+<h3>ðŸ”¢ Method 2: Numeric Mode (The Pro Way)</h3>
 <p>Set all permissions at once using the sum of values for User, Group, and Others.</p>
 <pre><code>chmod 755 filename
 # User (7) = r+w+x (4+2+1)
@@ -182,14 +182,14 @@ chmod g-wx filename
 # Others (5)= r+x   (4+1)
 </code></pre>
 <hr />
-<h2>📂 Directories vs. Files</h2>
+<h2>ðŸ“‚ Directories vs. Files</h2>
 <p>Permissions behave slightly differently for folders.</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Permission</th>
-<th style="text-align: left;">For a File 📄</th>
-<th style="text-align: left;">For a Directory 📁</th>
+<th style="text-align: left;">For a File ðŸ“„</th>
+<th style="text-align: left;">For a Directory ðŸ“</th>
 </tr>
 </thead>
 <tbody>
@@ -210,7 +210,7 @@ chmod g-wx filename
 </tr>
 </tbody>
 </table>
-<h3>⚠️ The "Bucket" Analogy</h3>
+<h3>âš ï¸ The "Bucket" Analogy</h3>
 <blockquote>
 <p><strong>Why do I need <code>x</code> to list files?</strong></p>
 <p>Think of a directory as a <strong>Bucket</strong>.</p>
@@ -241,7 +241,7 @@ chmod g-wx filename
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       Email
     </a>
-    <a href="https://www.reddit.com/user/usmansaid/" target="_blank" class="social-link">
+    <a href="https://www.reddit.com/user/usmansaid54/" target="_blank" class="social-link">
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
       Reddit
     </a>

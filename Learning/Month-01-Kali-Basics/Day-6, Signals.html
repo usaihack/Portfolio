@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -87,16 +87,16 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 01 Kali Basics</span>
   </div>
   <div class="container">
-    <h1>🚦 Day 6: Processes &amp; Signals</h1>
+    <h1>ðŸš¦ Day 6: Processes &amp; Signals</h1>
 <p><img alt="Linux" src="https://img.shields.io/badge/Linux-Signals-success?style=for-the-badge" /><br />
 <img alt="Kali" src="https://img.shields.io/badge/Kali-Processes-critical?style=for-the-badge" /></p>
 <blockquote>
-<p><em>Signals are just signals, not rocket science!</em> 📡</p>
+<p><em>Signals are just signals, not rocket science!</em> ðŸ“¡</p>
 </blockquote>
 <hr />
-<h2>🎯 Today's Practice Task</h2>
+<h2>ðŸŽ¯ Today's Practice Task</h2>
 <p>Here you will learn killing a process, sending it to the background, and bringing it back to the foreground.</p>
-<h3>1️⃣ Creating a Dummy Process</h3>
+<h3>1ï¸âƒ£ Creating a Dummy Process</h3>
 <ol>
 <li>
 <p>Create a task using <code>sleep</code>:</p>
@@ -108,7 +108,7 @@
 </li>
 </ol>
 <hr />
-<h2>💀 Killing the Process</h2>
+<h2>ðŸ’€ Killing the Process</h2>
 <ol>
 <li><strong>Pause the Process:</strong> Press <code>Ctrl + Z</code> or open a split terminal/new tab.</li>
 <li><strong>Find the PID:</strong><br />
@@ -125,7 +125,7 @@
     The <code>-9</code> flag sends a <strong>force kill</strong> signal.</li>
 </ol>
 <hr />
-<h2>🔙 Background &amp; Foreground</h2>
+<h2>ðŸ”™ Background &amp; Foreground</h2>
 <h3>Sending to Background</h3>
 <ol>
 <li><strong>Pause the process</strong> (as discussed above).</li>
@@ -149,12 +149,12 @@
 </ul>
 </blockquote>
 <hr />
-<h2>📡 What are SIGNALS?</h2>
+<h2>ðŸ“¡ What are SIGNALS?</h2>
 <p>Imagine a worker and a boss. The boss might stop him from working, or say to continue his work. <strong>SIGNAL</strong> is the message, while the <strong>processes</strong> are the workers.</p>
 <p>View all signals with:</p>
 <pre><code>kill -l
 </code></pre>
-<h3>🔑 Important Signals</h3>
+<h3>ðŸ”‘ Important Signals</h3>
 <h4>1. SIGINT (2): <code>Ctrl + C</code></h4>
 <ul>
 <li><strong>Interrupt Signal.</strong></li>
@@ -250,7 +250,7 @@
 <li>Usage: Resumes a paused/suspended job.</li>
 </ul>
 <hr />
-<h2>📝 Quick Summary of SIGNALS</h2>
+<h2>ðŸ“ Quick Summary of SIGNALS</h2>
 <table>
 <thead>
 <tr>
@@ -310,7 +310,7 @@
 <p><strong>Catchable meaning:</strong> The program can intercept the signal (e.g., "Do you want to save your work?") before closing.</p>
 </blockquote>
 <hr />
-<h2>🛠️ How to use SIGNALS</h2>
+<h2>ðŸ› ï¸ How to use SIGNALS</h2>
 <p>Format:</p>
 <pre><code>kill -SignalNumber PID
 # OR
@@ -343,7 +343,7 @@ If you start <code>sleep 500</code>, suspend it, and interpret it via <code>SIGC
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
       Email
     </a>
-    <a href="https://www.reddit.com/user/usmansaid/" target="_blank" class="social-link">
+    <a href="https://www.reddit.com/user/usmansaid54/" target="_blank" class="social-link">
       <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.688-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg>
       Reddit
     </a>
