@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -87,23 +87,23 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 01 Kali Basics</span>
   </div>
   <div class="container">
-    <h1>ðŸ‘¤ Day 4: File Ownership &amp; Groups</h1>
+    <h1>👤 Day 4: File Ownership &amp; Groups</h1>
 <p><img alt="Ownership" src="https://img.shields.io/badge/Ownership-Master-critical?style=for-the-badge" /><br />
 <img alt="Linux" src="https://img.shields.io/badge/Linux-Admin-success?style=for-the-badge" /></p>
 <blockquote>
-<p><em>Permissions are the rules. Ownership is the right to <strong>change</strong> the rules.</em> ðŸ‘‘</p>
+<p><em>Permissions are the rules. Ownership is the right to <strong>change</strong> the rules.</em> 👑</p>
 </blockquote>
 <hr />
-<h2>ðŸ¦ The Great Analogy: Who Holds the Keys?</h2>
+<h2>🏦 The Great Analogy: Who Holds the Keys?</h2>
 <p>Understand ownership through the "Locker" concept:</p>
-<h3>ðŸ  Scenario 1: My Locker (I am the Owner)</h3>
+<h3>🏠 Scenario 1: My Locker (I am the Owner)</h3>
 <ul>
 <li><strong>The Locker:</strong> A file or directory.</li>
 <li><strong>The Key:</strong> <code>chmod</code> (Permissions).</li>
 <li><strong>The Owner:</strong> <strong>Me</strong>.</li>
 <li><strong>Power:</strong> Since I own it, I can decide who else gets a key. I can share it with everyone or lock everyone out.</li>
 </ul>
-<h3>ðŸ¦ Scenario 2: Bank Locker (The Bank is the Owner)</h3>
+<h3>🏦 Scenario 2: Bank Locker (The Bank is the Owner)</h3>
 <ul>
 <li><strong>The Locker:</strong> A file or directory.</li>
 <li><strong>The Key:</strong> Use key (Permissions).</li>
@@ -114,7 +114,7 @@
 <p><strong>Key Takeaway:</strong> You can only change permissions (<code>chmod</code>) if you are the <strong>Owner</strong> of the file.</p>
 </blockquote>
 <hr />
-<h2>ðŸ” Identifying the Owner</h2>
+<h2>🔍 Identifying the Owner</h2>
 <p>Use <code>ls -l</code> to see who's in charge.</p>
 <pre><code>ls -l filename
 # Output:
@@ -142,9 +142,9 @@
 </tbody>
 </table>
 <hr />
-<h2>ðŸ› ï¸ Changing Ownership: <code>chown</code> &amp; <code>chgrp</code></h2>
+<h2>🛠️ Changing Ownership: <code>chown</code> &amp; <code>chgrp</code></h2>
 <blockquote>
-<p>âš ï¸ <strong>Warning:</strong> Changing ownership is a powerful action. You almost always need <code>sudo</code> (Root privileges) to do this.</p>
+<p>⚠️ <strong>Warning:</strong> Changing ownership is a powerful action. You almost always need <code>sudo</code> (Root privileges) to do this.</p>
 </blockquote>
 <h3>1. Change the Owner (<code>chown</code>)</h3>
 <pre><code>sudo chown newuser filename
@@ -161,15 +161,15 @@
 sudo chown kali:root server.log
 </code></pre>
 <hr />
-<h2>â“ Frequently Asked Questions (FAQ)</h2>
+<h2>❓ Frequently Asked Questions (FAQ)</h2>
 <h3>Q: Does keeping the group as <code>root</code> make the file super powerful?</h3>
 <p><strong>A:</strong> No!<br />
 The <code>root</code> group is just a name. It does not grant magical powers to the file itself. It simply means that users <em>in</em> the <code>root</code> group have the group permissions (e.g., read/write) for that file.</p>
 <h3>Q: Can the <code>root</code> group do anything it wants?</h3>
 <p><strong>A:</strong> No.<br />
-Members of the <code>root</code> group can only do what the <strong>Owner</strong> has permitted for the Group. If the owner sets group permissions to "read-only" (<code>r--</code>), even the <code>root</code> group can only read (unless you are the actual <code>root</code> user, who bypasses everything ðŸ˜‰).</p>
+Members of the <code>root</code> group can only do what the <strong>Owner</strong> has permitted for the Group. If the owner sets group permissions to "read-only" (<code>r--</code>), even the <code>root</code> group can only read (unless you are the actual <code>root</code> user, who bypasses everything 😉).</p>
 <hr />
-<h2>ðŸ‘¥ Checking Your Groups</h2>
+<h2>👥 Checking Your Groups</h2>
 <p>Want to know which clubs you belong to?</p>
 <pre><code>groups
 # Output example:

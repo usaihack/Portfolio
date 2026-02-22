@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -87,21 +87,21 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 01 Kali Basics</span>
   </div>
   <div class="container">
-    <h1>ðŸ› ï¸ Day 8: Linux Services</h1>
+    <h1>🛠️ Day 8: Linux Services</h1>
 <p><img alt="Linux" src="https://img.shields.io/badge/Linux-Services-blue?style=for-the-badge" /><br />
 <img alt="Systemd" src="https://img.shields.io/badge/Manager-Systemd-orange?style=for-the-badge" /></p>
 <blockquote>
-<p><em>Services are the silent workers of your operating system.</em> ðŸ‘·â€â™‚ï¸</p>
+<p><em>Services are the silent workers of your operating system.</em> 👷‍♂️</p>
 </blockquote>
 <hr />
-<h2>ðŸ†š Service vs. Process</h2>
+<h2>🆚 Service vs. Process</h2>
 <p>A <strong>Service</strong> is essentially a process that runs in the background, often starting automatically at boot.</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: left;">Feature</th>
-<th style="text-align: left;">Service ðŸ› ï¸</th>
-<th style="text-align: left;">Process ðŸƒ</th>
+<th style="text-align: left;">Service 🛠️</th>
+<th style="text-align: left;">Process 🏃</th>
 </tr>
 </thead>
 <tbody>
@@ -131,7 +131,7 @@
 <p><strong>Note:</strong> In Kali, <strong><code>systemd</code></strong> is the manager that controls these services.</p>
 </blockquote>
 <hr />
-<h2>ðŸ•¹ï¸ Essential Service Commands</h2>
+<h2>🕹️ Essential Service Commands</h2>
 <p>Manage your services using <code>systemctl</code>.</p>
 <h3>1. Check Status</h3>
 <pre><code>systemctl status ssh
@@ -161,12 +161,12 @@
 <pre><code>systemctl --type=service --state=running
 </code></pre>
 <hr />
-<h2>âš ï¸ Why Services Matter?</h2>
+<h2>⚠️ Why Services Matter?</h2>
 <p>Understanding services is critical for security:</p>
 <ul>
 <li><strong>Target:</strong> Hackers often target services rather than simple processes.</li>
 <li><strong>Persistence:</strong> Malware often installs itself as a service to run continuously in the background using misleading names to hide.</li>
-<li><strong>Privilege:</strong> If a vulnerable service runs as <code>root</code>, compromising it gives the attacker <strong>full</strong> control. ðŸ‘»</li>
+<li><strong>Privilege:</strong> If a vulnerable service runs as <code>root</code>, compromising it gives the attacker <strong>full</strong> control. 👻</li>
 </ul>
 <hr />
     <div class="page-nav">

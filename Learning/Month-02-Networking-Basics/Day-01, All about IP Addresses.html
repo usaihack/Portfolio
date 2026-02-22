@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -87,21 +87,21 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <h1>ðŸŒ Day 1: All About IP Addresses</h1>
+    <h1>🌐 Day 1: All About IP Addresses</h1>
 <p><img alt="Networking" src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" /><br />
 <img alt="IP" src="https://img.shields.io/badge/IP-Address-success?style=for-the-badge" /></p>
 <blockquote>
-<p><em>Imagine a courier is delivering you a parcel. He may ask for your street no and house number. To ensure the order reaches exactly at your doorstep, you must give your street and house number.</em> ðŸ“¦</p>
+<p><em>Imagine a courier is delivering you a parcel. He may ask for your street no and house number. To ensure the order reaches exactly at your doorstep, you must give your street and house number.</em> 📦</p>
 </blockquote>
 <hr />
-<h2>ðŸ  What is an IP Address?</h2>
+<h2>🏠 What is an IP Address?</h2>
 <p>In terms of networking, this street or house number is called the <strong>Internet Protocol (IP)</strong>.<br />
 By this, the courier identifies you to deliver your parcel. Similarly, the server will find your device by its IP address to find you on the internet.</p>
 <blockquote>
-<p><em>But wait, I sugar-coated it. It is not as simple as that!</em> ðŸ˜ðŸ˜</p>
+<p><em>But wait, I sugar-coated it. It is not as simple as that!</em> 😁😁</p>
 </blockquote>
 <hr />
-<h2>ðŸ”¢ IPv4 Structure</h2>
+<h2>🔢 IPv4 Structure</h2>
 <p>An IP has two types, <strong>IPv4</strong> and <strong>IPv6</strong>. Here, we will talk about <strong>IPv4</strong> for now.</p>
 <p>An IPv4 address looks like this:</p>
 <pre><code>192.16.10.9
@@ -113,7 +113,7 @@ By this, the courier identifies you to deliver your parcel. Similarly, the serve
 <li>Every decimal ranges from <strong>0-255</strong>.</li>
 </ol>
 <hr />
-<h2>ðŸ“Š IP Classes</h2>
+<h2>📊 IP Classes</h2>
 <p>IPv4 has three general classes for common usage. Their ranges are given below:</p>
 <table>
 <thead>
@@ -141,10 +141,10 @@ By this, the courier identifies you to deliver your parcel. Similarly, the serve
 <p><strong>Note:</strong> Class D and Class E exist, but they are not exposed to the internet. They are for special use cases.</p>
 </blockquote>
 <hr />
-<h2>ðŸŒ Public vs Private IPs</h2>
+<h2>🌍 Public vs Private IPs</h2>
 <p>There exist a total of roughly <strong>4.3 billion</strong> IPv4 addresses, but the humans on Earth are about <strong>8 billion</strong>, and every human has more than one device.<br />
 To assign every device a unique IP, we face a huge shortage. To avoid this, engineers made two types for IP assigning: <strong>Private</strong> and <strong>Public</strong> IPs.</p>
-<h3>ðŸ”’ Private IP</h3>
+<h3>🔒 Private IP</h3>
 <p>The IP assigned to a device <strong>within the LAN</strong> is a Private IP.</p>
 <ul>
 <li><strong>Example:</strong> Devices connected to your home Wi-Fi router will have a Private IP which only the router knows.</li>
@@ -181,7 +181,7 @@ To assign every device a unique IP, we face a huge shortage. To avoid this, engi
 </tr>
 </tbody>
 </table>
-<h3>ðŸŒ Public IP</h3>
+<h3>🌐 Public IP</h3>
 <p>The IP assigned to the router <strong>over the internet</strong> is a Public IP.</p>
 <ul>
 <li><strong>Example:</strong> Your ISP will assign an IP to your router on lease to communicate over the internet. This leased IP is Public IP.</li>
@@ -193,9 +193,9 @@ To assign every device a unique IP, we face a huge shortage. To avoid this, engi
 Some public IPs may be permanent but for an extra cost (Static IP).</p>
 </blockquote>
 <hr />
-<h2>ðŸ”„ DHCP &amp; NAT</h2>
+<h2>🔄 DHCP &amp; NAT</h2>
 <p>Now, you might also be thinking, how do our devices get a Private IP? The answer is <strong>DHCP</strong>.</p>
-<h3>ðŸ¤– DHCP (Dynamic Host Configuration Protocol)</h3>
+<h3>🤖 DHCP (Dynamic Host Configuration Protocol)</h3>
 <p>DHCP is a service that gives a device a <strong>Private IP</strong>.</p>
 <ol>
 <li>When you connect to a network, your device sends a <strong>DHCP Discovery</strong> message for available IPs.</li>
@@ -206,7 +206,7 @@ Some public IPs may be permanent but for an extra cost (Static IP).</p>
 <blockquote>
 <p><strong>Remember:</strong> In LANs, the router acts as a DHCP server, while in WANs, there is a dedicated DHCP server.</p>
 </blockquote>
-<h3>ðŸŽ­ NAT (Network Address Translation)</h3>
+<h3>🎭 NAT (Network Address Translation)</h3>
 <p>NAT is a method for transforming <strong>Private IPs</strong> to <strong>Public ones</strong>.</p>
 <p><strong>Example:</strong></p>
 <ul>
@@ -216,7 +216,7 @@ Some public IPs may be permanent but for an extra cost (Static IP).</p>
 </ul>
 <p>Now, the router's NAT service translates these Private IP addresses to <code>23.45.33.1</code> when you make a request on the internet.</p>
 <hr />
-<h2>ðŸ“ PAT (Port Address Translation)</h2>
+<h2>📍 PAT (Port Address Translation)</h2>
 <p>You might ask: <em>If every private IP address is translated to the same public IP in the same LAN through NAT, then how does the incoming data know which device made the request?</em></p>
 <p><strong>Answer:</strong><br />
 When you make a search, the router doesn't simply do NAT (translate Private IP to Public). Instead, it creates a table using <strong>PAT</strong>.<br />

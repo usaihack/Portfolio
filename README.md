@@ -1,8 +1,8 @@
-﻿<div align="center">
+<div align="center">
 
-# ðŸ›¡ï¸ Interactive Cyber Portfolio
+# 🛡️ Interactive Cyber Portfolio
 
-[![Live Demo](https://img.shields.io/badge/ðŸŒ_Live_Demo-usaihack.github.io-00ff9f?style=for-the-badge&labelColor=0a0e17)](https://usaihack.github.io/Portfolio/)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-usaihack.github.io-00ff9f?style=for-the-badge&labelColor=0a0e17)](https://usaihack.github.io/Portfolio/)
 [![GitHub](https://img.shields.io/badge/GitHub-usaihack-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/usaihack)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Usman_Said-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/usman701441070)
 
@@ -14,81 +14,81 @@
 
 <br><br>
 
-> _A dark-themed, hacker-aesthetic portfolio featuring a boot sequence, interactive terminal, 3D background, AI chatbot, and a full learning hub â€” all built with vanilla HTML, CSS, and JavaScript._
+> _A dark-themed, hacker-aesthetic portfolio featuring a boot sequence, interactive terminal, 3D background, AI chatbot, and a full learning hub — all built with vanilla HTML, CSS, and JavaScript._
 
 </div>
 
 ---
 
-## âœ¨ Features
+## ✨ Features
 
 | Feature                     | Description                                                                                     |
 | :-------------------------- | :---------------------------------------------------------------------------------------------- |
-| ðŸ–¥ï¸ **Boot Sequence**        | Simulated system initialization with progress bar and log output                                |
-| ðŸ’» **Interactive Terminal** | Functional CLI with custom commands (`help`, `about`, `skills`, `projects`, `contact`, `clear`) |
-| ðŸŒŒ **3D Background**        | Three.js animated particle field (desktop only for performance)                                 |
-| ðŸ¤– **AI Chatbot**           | Built-in assistant that answers questions about the portfolio                                   |
-| ðŸ“š **Learning Hub**         | Documented cybersecurity journey with lesson pages and progress tracking                        |
-| âœ¨ **Scroll Animations**    | IntersectionObserver-powered reveal effects                                                     |
-| ðŸ“± **Fully Responsive**     | Optimized for mobile with simplified animations                                                 |
-| â™¿ **Accessible**           | `prefers-reduced-motion` support, keyboard navigation, focus-visible outlines                   |
+| 🖥️ **Boot Sequence**        | Simulated system initialization with progress bar and log output                                |
+| 💻 **Interactive Terminal** | Functional CLI with custom commands (`help`, `about`, `skills`, `projects`, `contact`, `clear`) |
+| 🌌 **3D Background**        | Three.js animated particle field (desktop only for performance)                                 |
+| 🤖 **AI Chatbot**           | Built-in assistant that answers questions about the portfolio                                   |
+| 📚 **Learning Hub**         | Documented cybersecurity journey with lesson pages and progress tracking                        |
+| ✨ **Scroll Animations**    | IntersectionObserver-powered reveal effects                                                     |
+| 📱 **Fully Responsive**     | Optimized for mobile with simplified animations                                                 |
+| ♿ **Accessible**           | `prefers-reduced-motion` support, keyboard navigation, focus-visible outlines                   |
 
 ---
 
-## ðŸ—‚ï¸ Project Structure
+## 🗂️ Project Structure
 
 ```
 Portfolio/
-â”œâ”€â”€ index.html            # Main portfolio page
-â”œâ”€â”€ style.css             # Core styles (~2500 lines)
-â”œâ”€â”€ script.js             # Interactive features & animations
-â”œâ”€â”€ chatbot.css           # Chatbot component styles
-â”œâ”€â”€ chatbot.js            # AI chatbot logic
-â”œâ”€â”€ images/               # Favicon & assets
-â”œâ”€â”€ Learning/             # ðŸ“š Learning Hub
-â”‚   â”œâ”€â”€ intro.html        # Course selection landing page
-â”‚   â”œâ”€â”€ kali.html         # Month 1 â€” Kali Basics (Completed)
-â”‚   â”œâ”€â”€ networking.html   # Month 2 â€” Networking (In Progress)
-â”‚   â”œâ”€â”€ images/           # Favicons & media
-â”‚   â”œâ”€â”€ Month-01-Kali-Basics/
-â”‚   â”‚   â”œâ”€â”€ Day-1, Directories.html
-â”‚   â”‚   â”œâ”€â”€ Day-2 Shortcuts and Basic Commands.html
-â”‚   â”‚   â”œâ”€â”€ Day-3, Permissions.html
-â”‚   â”‚   â”œâ”€â”€ Day-4, Ownerships.html
-â”‚   â”‚   â”œâ”€â”€ Day-5, Processes.html
-â”‚   â”‚   â”œâ”€â”€ Day-6, Continue Processes, New Topic Signals.html
-â”‚   â”‚   â”œâ”€â”€ Day-07, STATES of Processes.html
-â”‚   â”‚   â”œâ”€â”€ Day-08, SERVICES.html
-â”‚   â”‚   â””â”€â”€ QUOTE for month-1.html
-â”‚   â””â”€â”€ Month-02-Networking-Basics/
-â”‚       â”œâ”€â”€ Day-01, All about IP Addresses.html
-â”‚       â”œâ”€â”€ Day-02, Ports, IP, TCP, UDP.html
-â”‚       â””â”€â”€ QUOTES for Month-02.html
-â””â”€â”€ README.md
+├── index.html            # Main portfolio page
+├── style.css             # Core styles (~2500 lines)
+├── script.js             # Interactive features & animations
+├── chatbot.css           # Chatbot component styles
+├── chatbot.js            # AI chatbot logic
+├── images/               # Favicon & assets
+├── Learning/             # 📚 Learning Hub
+│   ├── intro.html        # Course selection landing page
+│   ├── kali.html         # Month 1 — Kali Basics (Completed)
+│   ├── networking.html   # Month 2 — Networking (In Progress)
+│   ├── images/           # Favicons & media
+│   ├── Month-01-Kali-Basics/
+│   │   ├── Day-1, Directories.html
+│   │   ├── Day-2 Shortcuts and Basic Commands.html
+│   │   ├── Day-3, Permissions.html
+│   │   ├── Day-4, Ownerships.html
+│   │   ├── Day-5, Processes.html
+│   │   ├── Day-6, Continue Processes, New Topic Signals.html
+│   │   ├── Day-07, STATES of Processes.html
+│   │   ├── Day-08, SERVICES.html
+│   │   └── QUOTE for month-1.html
+│   └── Month-02-Networking-Basics/
+│       ├── Day-01, All about IP Addresses.html
+│       ├── Day-02, Ports, IP, TCP, UDP.html
+│       └── QUOTES for Month-02.html
+└── README.md
 ```
 
 ---
 
-## ðŸ“š Learning Hub
+## 📚 Learning Hub
 
 A structured 18-month cybersecurity learning path, documented lesson by lesson.
 
 | Month | Topic                                                                          |     Status     | Lessons |
 | :---- | :----------------------------------------------------------------------------- | :------------: | :-----: |
-| 1     | **Feel Kali Like Home** â€” Linux fundamentals, commands, permissions, processes |  âœ… Completed  |    8    |
-| 2     | **Networking Basics** â€” IP, TCP/UDP, ports, DHCP, NAT                          | ðŸ”µ In Progress | 2 / 30  |
-| 3â€“18  | More paths coming soon                                                         |  â³ Upcoming   |    â€”    |
+| 1     | **Feel Kali Like Home** — Linux fundamentals, commands, permissions, processes |  ✅ Completed  |    8    |
+| 2     | **Networking Basics** — IP, TCP/UDP, ports, DHCP, NAT                          | 🔵 In Progress | 2 / 30  |
+| 3–18  | More paths coming soon                                                         |  ⏳ Upcoming   |    —    |
 
 Each lesson page features:
 
-- ðŸŽ¨ Dark-themed styling consistent with the portfolio
-- â¬…ï¸ âž¡ï¸ Prev/Next navigation between lessons
-- ðŸ”— Footer with social links
-- ðŸ–¼ï¸ Unique circular favicon per lesson
+- 🎨 Dark-themed styling consistent with the portfolio
+- ⬅️ ➡️ Prev/Next navigation between lessons
+- 🔗 Footer with social links
+- 🖼️ Unique circular favicon per lesson
 
 ---
 
-## ðŸ› ï¸ Tech Stack
+## 🛠️ Tech Stack
 
 <div align="center">
 
@@ -99,15 +99,15 @@ Each lesson page features:
 
 </div>
 
-- **No frameworks** â€” Pure vanilla HTML, CSS, and JavaScript
-- **Three.js** â€” 3D animated particle background (desktop only)
-- **IntersectionObserver API** â€” Scroll-triggered reveal animations
-- **CSS Custom Properties** â€” Consistent dark theme design system
-- **GitHub Pages** â€” Hosted and deployed
+- **No frameworks** — Pure vanilla HTML, CSS, and JavaScript
+- **Three.js** — 3D animated particle background (desktop only)
+- **IntersectionObserver API** — Scroll-triggered reveal animations
+- **CSS Custom Properties** — Consistent dark theme design system
+- **GitHub Pages** — Hosted and deployed
 
 ---
 
-## ðŸš€ Quick Start
+## 🚀 Quick Start
 
 ```bash
 # Clone the repo
@@ -118,20 +118,20 @@ cd Portfolio
 start index.html
 ```
 
-Or visit the **[Live Demo â†’](https://usaihack.github.io/Portfolio/)**
+Or visit the **[Live Demo →](https://usaihack.github.io/Portfolio/)**
 
 ---
 
-## ðŸŽ¨ Design Philosophy
+## 🎨 Design Philosophy
 
-- **Dark hacker aesthetic** â€” Deep navy background (`#0a0e17`) with neon green (`#00ff9f`) and electric blue (`#0080ff`) accents
-- **Performance first** â€” Heavy animations disabled on mobile, `will-change` optimizations, lazy rendering
-- **Immersive experience** â€” Boot sequence, terminal CLI, 3D particles, and scroll reveals create an engaging narrative
-- **Accessibility** â€” Respects `prefers-reduced-motion`, provides keyboard navigation, and uses semantic HTML
+- **Dark hacker aesthetic** — Deep navy background (`#0a0e17`) with neon green (`#00ff9f`) and electric blue (`#0080ff`) accents
+- **Performance first** — Heavy animations disabled on mobile, `will-change` optimizations, lazy rendering
+- **Immersive experience** — Boot sequence, terminal CLI, 3D particles, and scroll reveals create an engaging narrative
+- **Accessibility** — Respects `prefers-reduced-motion`, provides keyboard navigation, and uses semantic HTML
 
 ---
 
-## ðŸ“¬ Connect
+## 📬 Connect
 
 <div align="center">
 
@@ -145,11 +145,11 @@ Or visit the **[Live Demo â†’](https://usaihack.github.io/Portfolio/)**
 
 <div align="center">
 
-**Built with ðŸ’š by [Muhammad Usman Said](https://usaihack.github.io/Portfolio/)**
+**Built with 💚 by [Muhammad Usman Said](https://usaihack.github.io/Portfolio/)**
 
 <br>
 
-> _"Security is not about breaking systems â€” it's about understanding them."_
+> _"Security is not about breaking systems — it's about understanding them."_
 
 <img src="https://img.shields.io/badge/Made_with-Passion-00ff9f?style=flat-square&labelColor=0a0e17" alt="Made with Passion">
 

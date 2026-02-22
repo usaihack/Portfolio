@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -86,19 +86,19 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <h1>ðŸ•¸ï¸ Day 4: Subnetting and CIDR Notation</h1>
+    <h1>🕸️ Day 4: Subnetting and CIDR Notation</h1>
     <p>
       <img src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" alt="Networking">
       <img src="https://img.shields.io/badge/Subnetting-CIDR-success?style=for-the-badge" alt="Subnetting">
     </p>
 
     <blockquote>
-      <p><em>Subnetting is like dividing a large pizza into slices so everyone gets their share without fighting. It's the art of efficient network management.</em> ðŸ•</p>
+      <p><em>Subnetting is like dividing a large pizza into slices so everyone gets their share without fighting. It's the art of efficient network management.</em> 🍕</p>
     </blockquote>
 
     <hr>
     
-    <h2>ðŸ›£ï¸ Network vs Router</h2>
+    <h2>🛣️ Network vs Router</h2>
     <p>Prior to moving towards <strong>subnetting</strong> and <strong>CIDR notation</strong>, here are some terms you must know.</p>
     <p>A <strong>network</strong> is allocated to you by your ISP (think of it like a street). The <strong>router</strong> is just the gatekeeper of this street.</p>
     <ul>
@@ -114,17 +114,17 @@
 
     <hr>
 
-    <h2>ðŸ  Network Address</h2>
+    <h2>🏠 Network Address</h2>
     <p>Every network has a <strong>network address</strong>, like the <strong>name of the street</strong>.</p>
     <ul>
-        <li>Your ISPâ€™s public IP belongs to a network.</li>
+        <li>Your ISP's public IP belongs to a network.</li>
         <li><strong>Example:</strong> <code>192.168.10.0/24</code> -> <code>.0</code> is the <strong>Network Address</strong>.</li>
         <li>This is <strong>not assigned to a device</strong>, it simply identifies the network.</li>
     </ul>
 
     <hr>
 
-    <h2>ðŸ“¢ Broadcast Address</h2>
+    <h2>📢 Broadcast Address</h2>
     <p>Imagine you want to send a wedding invitation to all houses on your street.</p>
     <ul>
         <li>Instead of knocking on every door, you take a <strong>megaphone</strong> and announce it to everyone at once.</li>
@@ -134,10 +134,10 @@
 
     <hr>
 
-    <h2>ðŸ”ª Subnetting</h2>
+    <h2>🔪 Subnetting</h2>
     <p>Subnetting is like dividing your network into smaller, private blocks.</p>
     <ul>
-        <li><strong>Analogy:</strong> You have 2 cars (seats for 4 each). Your neighbours want to join, but you donâ€™t want everyone crammed into your car.</li>
+        <li><strong>Analogy:</strong> You have 2 cars (seats for 4 each). Your neighbours want to join, but you don't want everyone crammed into your car.</li>
         <li>You give them their own car. Both cars reach the same destination, but traffic is separated.</li>
         <li>Similarly, subnetting splits a network so devices are grouped separately, traffic is isolated, and management becomes easier.</li>
     </ul>
@@ -147,11 +147,11 @@
     
     <hr>
 
-    <h2>ðŸ“ CIDR Notation</h2>
+    <h2>📏 CIDR Notation</h2>
     <p><strong>Classless Inter-Domain Routing (CIDR)</strong> is a system where we use <strong>IP + Suffix</strong> to describe the size of a network.</p>
     <p>For example, your ISP may assign you a Public IP + suffix combination, like <code>192.168.10.0/24</code> (<code>/24</code> is common in home networks). By this <code>/24</code>, we can readily find the <strong>network size</strong>, the <strong>Network Address</strong>, and <strong>Broadcast Address</strong>.</p>
     
-    <h3>ðŸ§® How to Calculate?</h3>
+    <h3>🧮 How to Calculate?</h3>
     <p><strong>Example 1:</strong> <code>192.168.10.0/24</code></p>
     <ol>
         <li><strong>Calculate Host Bits:</strong> Total bits in an IP = 32. Subtract the CIDR: <code>32 - 24 = 8</code>.</li>
@@ -167,7 +167,7 @@
     
     <hr>
 
-    <h3>ðŸ§  Tricky Example</h3>
+    <h3>🧠 Tricky Example</h3>
     <p><strong>Example 2:</strong> <code>192.168.50.70/26</code></p>
     <ol>
         <li><strong>Calculate Host Bits:</strong> <code>32 - 26 = 6</code>.</li>
@@ -190,7 +190,7 @@
         </li>
     </ol>
      <blockquote>
-        <p><em>The step of finding the correct block is crucial!</em> âš ï¸</p>
+        <p><em>The step of finding the correct block is crucial!</em> ⚠️</p>
     </blockquote>
 
     <hr>

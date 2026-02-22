@@ -1,4 +1,4 @@
-﻿:root {
+:root {
   --bg: #0a0e17;
   --text: #e0e0e0;
   --accent: #00ff9f;
@@ -530,6 +530,38 @@ body.preload * {
   justify-content: center;
   padding: 6rem 2rem;
   z-index: 1;
+}
+
+.thm-embed-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem 2rem 2rem;
+  z-index: 2;
+  position: relative;
+}
+
+.thm-panel {
+  padding: 0 !important;
+  width: 95%;
+  height: auto;
+  border-radius: 12px;
+  margin: 0 auto;
+  line-height: 0; /* Prevents tiny whitespace gap beneath SVG */
+  box-shadow: 0 0 15px rgba(0, 255, 159, 0.4);
+}
+
+.thm-svg-wrapper {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.thm-iframe {
+  width: 327px; /* Strict fixed intrinsic width */
+  height: 84px; /* Strict fixed intrinsic height */
+  border: none;
+  overflow: hidden;
 }
 
 .content-panel {
@@ -1573,6 +1605,25 @@ h2 {
     padding-bottom: 70px;
   }
 
+  .thm-panel {
+    min-height: auto;
+    padding: 0 !important;
+    width: 95%; /* Adjusts to fit smaller mobile margins natively */
+    height: auto;
+    border-radius: 12px;
+    margin: 0 auto;
+  }
+
+  .thm-iframe {
+    width: 327px;
+    height: 84px;
+    border: none;
+    overflow: hidden;
+    transform: scale(1);
+    transform-origin: top left;
+    filter: none;
+  }
+
   .content-panel {
     width: 95%;
     margin: 0 auto;
@@ -2050,13 +2101,20 @@ h2 {
     line-height: 1.6;
   }
 
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 0.8rem;
+  .thm-embed-container {
+    padding: 1rem 0;
   }
 
-  .skill-card {
-    padding: 1.2rem 0.8rem;
+  .thm-panel {
+    padding: 0 !important; 
+    width: 95%;
+    border-radius: 12px;
+  }
+
+  .thm-iframe {
+    width: 327px;
+    height: 84px;
+    transform: none;
   }
 
   .skill-card h3 {

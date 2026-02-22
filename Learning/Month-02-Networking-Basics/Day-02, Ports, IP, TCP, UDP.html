@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -87,16 +87,16 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <h1>ðŸ”Œ Day 2: Ports, IP, TCP, UDP</h1>
+    <h1>🔌 Day 2: Ports, IP, TCP, UDP</h1>
 <p><img alt="Networking" src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" /><br />
 <img alt="Ports" src="https://img.shields.io/badge/Ports-TCP%2FUDP-success?style=for-the-badge" /></p>
 <blockquote>
-<p><em>A Port is just a door through which different services and your device communicates. Earlier, we talked about NAT and PAT which translates the IPs and Ports.</em> ðŸšª</p>
+<p><em>A Port is just a door through which different services and your device communicates. Earlier, we talked about NAT and PAT which translates the IPs and Ports.</em> 🚪</p>
 </blockquote>
 <hr />
-<h2>ðŸšª Ports</h2>
+<h2>🚪 Ports</h2>
 <p>Every Port is of <strong>16 bits</strong>, ranges from <code>0</code> to <code>65535</code>, so there are a total of <strong>65536</strong> Ports.</p>
-<h3>ðŸ“Š Port Ranges</h3>
+<h3>📊 Port Ranges</h3>
 <table>
 <thead>
 <tr>
@@ -124,7 +124,7 @@
 </tbody>
 </table>
 <blockquote>
-<p><em>But what's the real explanation? How is it done?</em> ðŸ¤”</p>
+<p><em>But what's the real explanation? How is it done?</em> 🤔</p>
 </blockquote>
 <p>Here's how:</p>
 <ol>
@@ -135,7 +135,7 @@
 <p><strong>Example:</strong><br />
 You have 3 tabs open in a browser. Every tab will be assigned a unique random Port from Dynamic Ports by your OS. When you make a search, for instance, "Hello", the browser itself binds Port like <code>443</code> to the packet. Then it goes through PAT, and the server serves it on Port <code>443</code> (HTTPS).</p>
 <hr />
-<h2>ðŸ“‹ Common Ports</h2>
+<h2>📋 Common Ports</h2>
 <p>Of course, you don't have to remember all these ports, but here is the list of some Ports you must be familiar with:</p>
 <table>
 <thead>
@@ -204,16 +204,16 @@ You have 3 tabs open in a browser. Every tab will be assigned a unique random Po
 </tbody>
 </table>
 <hr />
-<h2>ðŸ“œ Protocols</h2>
+<h2>📜 Protocols</h2>
 <blockquote>
-<p><em>We have rules for the English language, like grammar. Imagine if we spoke English without caring about grammarâ€”would anyone understand us?</em> ðŸ—£ï¸</p>
-<p><em>Similarly, in the realm of the internet, there are rules, like grammar, which are called <strong>Protocols</strong>.</em> ðŸ“œ</p>
+<p><em>We have rules for the English language, like grammar. Imagine if we spoke English without caring about grammar—would anyone understand us?</em> 🗣️</p>
+<p><em>Similarly, in the realm of the internet, there are rules, like grammar, which are called <strong>Protocols</strong>.</em> 📜</p>
 </blockquote>
 <p><strong>Examples:</strong> <code>HTTPS</code>, <code>SMTP</code>, <code>FTP</code>, etc.</p>
 <hr />
-<h2>ðŸ“¦ Internet Protocol (IP)</h2>
+<h2>📦 Internet Protocol (IP)</h2>
 <blockquote>
-<p><em>From a hacker's perspective, this is important.</em> ðŸ•µï¸</p>
+<p><em>From a hacker's perspective, this is important.</em> 🕵️</p>
 </blockquote>
 <p><strong>Internet Protocol (IP)</strong> only cares about the <strong>source</strong> and <strong>destination</strong> IPs.<br />
 As we know, data flows over the internet in chunks, and these chunks are called <strong>packets</strong>.<br />
@@ -222,7 +222,7 @@ Every packet usually has two main parts (with a third optional one):</p>
 <li><strong>Packet Header</strong></li>
 <li><strong>Payload</strong></li>
 </ol>
-<h3>ðŸ·ï¸ Packet Header (IP Header)</h3>
+<h3>🏷️ Packet Header (IP Header)</h3>
 <p>Also called the <em>IP Header</em>. Imagine a letter in an envelope. The envelope has sender and receiver addresses. Here, the envelope represents the IP Header.</p>
 <p><strong>Important Fields:</strong></p>
 <ol>
@@ -231,7 +231,7 @@ Every packet usually has two main parts (with a third optional one):</p>
 <li><strong>Fragment Offset:</strong> Shows the position of the fragmented part. Like a page number in a book (page 10 comes after page 9).</li>
 <li>
 <p><strong>TTL (Time To Live):</strong> Tells us whether the packet successfully reached its destination.<br />
-<strong>Full Explanation of TTL:</strong> Despite its name, TTL does not measure real time, it counts <strong>"hops"</strong> or cycles instead. Hereâ€™s what happens:</p>
+<strong>Full Explanation of TTL:</strong> Despite its name, TTL does not measure real time, it counts <strong>"hops"</strong> or cycles instead. Here's what happens:</p>
 <ul>
 <li>Every packet is assigned a TTL, usually <strong>64</strong> on Linux/macOS and <strong>128</strong> on Windows.</li>
 <li>The packet leaves your router and travels through multiple routers to reach its destination (it does not go through every router on the internet).</li>
@@ -247,14 +247,14 @@ Every packet usually has two main parts (with a third optional one):</p>
 <li><strong>Source and Destination:</strong> The IP addresses of sender and receiver.</li>
 </ol>
 <hr />
-<h2>ðŸ¤ TCP (Transmission Control Protocol)</h2>
+<h2>🤝 TCP (Transmission Control Protocol)</h2>
 <p>There are many protocols, but <strong>TCP</strong> is the most reliable.<br />
 Before any data is sent, TCP says: <em>"Let's establish a connection."</em></p>
-<h3>ðŸ§  TCP Header</h3>
+<h3>🧠 TCP Header</h3>
 <p>Just like the <em>IP Header</em>, the TCP Header ensures data reaches the correct service.</p>
 <ul>
-<li><strong>IP Header</strong> = Building Address ðŸ¢</li>
-<li><strong>TCP Header</strong> = Apartment Number ðŸšª</li>
+<li><strong>IP Header</strong> = Building Address 🏢</li>
+<li><strong>TCP Header</strong> = Apartment Number 🚪</li>
 </ul>
 <p><strong>Important Fields:</strong></p>
 <ol>
@@ -271,7 +271,7 @@ Before any data is sent, TCP says: <em>"Let's establish a connection."</em></p>
 <li><strong>Window Size:</strong> Flow control. Receiver says <em>"I can only handle this much data."</em></li>
 <li><strong>Checksum:</strong> Ensures data integrity.</li>
 </ol>
-<h3>ðŸ‘‹ 3-Way Handshake</h3>
+<h3>👋 3-Way Handshake</h3>
 <ol>
 <li><strong>SYN:</strong> "Hello, can you hear me?" (Sender)</li>
 <li><strong>SYN-ACK:</strong> "I can hear you. Can we talk?" (Server)</li>
@@ -284,24 +284,24 @@ Before any data is sent, TCP says: <em>"Let's establish a connection."</em></p>
 <li><strong>Filtered:</strong> No response (Firewall dropped it).</li>
 </ul>
 <blockquote>
-<p><strong>What's the difference between IP Header's ID and TCP Header's Sequence number?</strong> ðŸ¤”</p>
+<p><strong>What's the difference between IP Header's ID and TCP Header's Sequence number?</strong> 🤔</p>
 <p>The <strong>IP Header</strong> gives the <em>packet</em> a unique ID. <strong>TCP</strong> segments the <em>data</em> and gives it a Sequence Number.</p>
 </blockquote>
 <hr />
-<h2>ðŸš€ UDP (User Datagram Protocol)</h2>
+<h2>🚀 UDP (User Datagram Protocol)</h2>
 <p><strong>UDP</strong> is used where <strong>speed/optimization</strong> matters more than reliability.</p>
 <blockquote>
-<p><em>Imagine youâ€™re standing on a mountain and shout "HELLOOOOO!"</em> ðŸ”ï¸</p>
+<p><em>Imagine you're standing on a mountain and shout "HELLOOOOO!"</em> 🏔️</p>
 </blockquote>
-<p>You donâ€™t:</p>
+<p>You don't:</p>
 <ul>
 <li>Check if someone is listening.</li>
 <li>Wait for confirmation.</li>
 <li>Ask "Did you hear me?".</li>
 <li>Care if the wind distorts your voice.</li>
 </ul>
-<p><strong>You just shout. Thatâ€™s UDP.</strong></p>
-<h3>âš ï¸ Why is UDP tricky?</h3>
+<p><strong>You just shout. That's UDP.</strong></p>
+<h3>⚠️ Why is UDP tricky?</h3>
 <p>UDP is <strong>silent</strong>.</p>
 <ul>
 <li><strong>Open Port:</strong> Service receives packet, might not respond.</li>
