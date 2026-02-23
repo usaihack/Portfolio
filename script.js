@@ -141,6 +141,7 @@ function initializeApp() {
   }
   
   setupNav();
+  setupMenu();
   populateSkills();
   populateTimeline();
   populateProjects();
@@ -419,7 +420,7 @@ function populateSkills() {
 
   const skills = [
     { name: 'Python for Hacking', level: 60 },
-    { name: 'Networking', level: 10 },
+    { name: 'Networking', level: 50 },
     { name: 'Web Security', level: 50 },
     { name: 'Java', level: 80 },
     { name: 'Malware Analysis', level: 45 },
@@ -431,6 +432,16 @@ function populateSkills() {
     const card = document.createElement('div');
     card.className = 'skill-card';
     card.innerHTML = `
+      <svg class="mobile-skill-ring" viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="gradient-${idx}" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="var(--secondary)" />
+            <stop offset="100%" stop-color="var(--accent)" />
+          </linearGradient>
+        </defs>
+        <circle class="mobile-ring-bg" cx="50" cy="50" r="46"></circle>
+        <circle class="mobile-ring-progress" cx="50" cy="50" r="46" stroke="url(#gradient-${idx})" stroke-dasharray="289.026" stroke-dashoffset="289.026"></circle>
+      </svg>
       <h3>${skill.name}</h3>
       <div class="skill-level-bar">
         <div class="skill-level-fill" data-level="${skill.level}" style="width: 0%;"></div>
@@ -440,44 +451,71 @@ function populateSkills() {
     skillsGrid.appendChild(card);
   });
 
-  const skillsSection = document.getElementById('skills');
-  if (skillsSection) {
+  const skillCards = document.querySelectorAll('.skill-card');
+  if (skillCards.length > 0) {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
+        const card = entry.target;
+        const fill = card.querySelector('.skill-level-fill');
+        const valueSpan = card.querySelector('.skill-value');
+        const ring = card.querySelector('.mobile-ring-progress');
+        if (!fill) return;
+
         if (entry.isIntersecting) {
-          const fills = document.querySelectorAll('.skill-level-fill');
+          // Prevent re-animating while already active and in view
+          if (card.dataset.animated === 'true') return;
+          card.dataset.animated = 'true';
+
+          fill.style.transition = 'none';
+          fill.style.width = '0%';
+          if (ring) {
+            ring.style.transition = 'none';
+            ring.style.strokeDashoffset = '289.026';
+          }
+          if (valueSpan) valueSpan.textContent = '0';
           
-          fills.forEach((fill, idx) => {
-            fill.style.transition = 'none';
-            fill.style.width = '0%';
-            const valueSpan = fill.parentElement.nextElementSibling.querySelector('.skill-value');
-            valueSpan.textContent = '0';
+          setTimeout(() => {
+            const targetLevel = parseInt(fill.getAttribute('data-level'));
             
-            setTimeout(() => {
-              const targetLevel = parseInt(fill.getAttribute('data-level'));
-              
-              fill.offsetHeight;
-              
-              fill.style.transition = 'width 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
-              fill.style.width = targetLevel + '%';
-              
-              let current = 0;
-              const step = Math.max(1, Math.ceil(targetLevel / 30));
-              const interval = setInterval(() => {
-                current += step;
-                if (current >= targetLevel) {
-                  current = targetLevel;
-                  clearInterval(interval);
-                }
-                valueSpan.textContent = current;
-              }, 50);
-            }, idx * 120);
-          });
-          
+            fill.offsetHeight; // trigger reflow
+            
+            fill.style.transition = 'width 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+            fill.style.width = targetLevel + '%';
+            
+            if (ring) {
+              ring.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.34, 1.56, 0.64, 1)';
+              ring.style.strokeDashoffset = 289.026 - (289.026 * targetLevel / 100);
+            }
+            
+            let current = 0;
+            const step = Math.max(1, Math.ceil(targetLevel / 30));
+            card.dataset.intervalId = setInterval(() => {
+              current += step;
+              if (current >= targetLevel) {
+                current = targetLevel;
+                clearInterval(parseInt(card.dataset.intervalId));
+              }
+              if (valueSpan) valueSpan.textContent = current;
+            }, 50);
+          }, 100);
+        } else {
+          // Reset card when it leaves the screen so it replays next time
+          card.dataset.animated = 'false';
+          if (card.dataset.intervalId) {
+            clearInterval(parseInt(card.dataset.intervalId));
+          }
+          fill.style.transition = 'none';
+          fill.style.width = '0%';
+          if (ring) {
+            ring.style.transition = 'none';
+            ring.style.strokeDashoffset = '289.026';
+          }
+          if (valueSpan) valueSpan.textContent = '0';
         }
       });
-    }, { threshold: 0.2 });
-    observer.observe(skillsSection);
+    }, { threshold: 0.45 });
+    
+    skillCards.forEach(card => observer.observe(card));
   }
 }
 
@@ -990,3 +1028,23 @@ function setupProjectSlideIn() {
 
   tryInit();
 })();
+
+function setupMenu() {
+  const hamburger = document.getElementById('hamburger-menu');
+  const sidebar = document.getElementById('sidebar-menu');
+  const overlay = document.getElementById('menu-overlay');
+
+  if(hamburger && sidebar && overlay) {
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      sidebar.classList.toggle('active');
+      overlay.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      sidebar.classList.remove('active');
+      overlay.classList.remove('active');
+    });
+  }
+}

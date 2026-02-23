@@ -3,7 +3,6 @@ const openChat   = document.getElementById("open-chat");
 const closeChat  = document.getElementById("chat-toggle");
 const chatBody   = document.getElementById("chat-body");
 const chatInput  = document.getElementById("chat-input");
-const chatHint   = document.getElementById("chat-hint");
 
 // ─── Contact flow state ────────────────────────────────────────────────────
 const contactFlow = {
@@ -296,38 +295,15 @@ function handleUserInput(input) {
 // ──────────────────────────────────────────────────────────────────────────
 
 
-// ─── Chat hint ─────────────────────────────────────────────────────────────
-let chatInteracted = false;
-let hintInterval;
-
-function scheduleChatHint() {
-  const isMobile = window.matchMedia('(max-width: 750px)').matches;
-  if (chatInteracted || isMobile) return;
-  hintInterval = setInterval(() => {
-    if (!chatBot.classList.contains("show") && !chatInteracted) {
-      chatHint.classList.add("show");
-    }
-  }, 20000);
-}
-
-function initChatHint() { scheduleChatHint(); }
+// ─── Chat hint (removed) ───────────────────────────────────────────────────
+function initChatHint() { /* No op since we use global red dot now */ }
 window.initChatHint = initChatHint;
-
-if (chatHint) {
-  chatHint.querySelector(".hint-close").onclick = (e) => {
-    e.stopPropagation();
-    chatHint.classList.remove("show");
-  };
-  chatHint.onclick = () => openChat.click();
-}
 // ──────────────────────────────────────────────────────────────────────────
 
 
 // ─── Open / Close ──────────────────────────────────────────────────────────
 openChat.onclick = () => {
-  chatInteracted = true;
   openChat.classList.add('chatted');
-  if (hintInterval) { clearInterval(hintInterval); hintInterval = null; }
 
   chatBody.innerHTML = "";
   chatInput.value = "";
@@ -335,7 +311,6 @@ openChat.onclick = () => {
 
   chatBot.classList.add("show");
   openChat.style.display = "none";
-  chatHint.classList.remove("show");
 
   botReply(formatText(responses.default));
 };
