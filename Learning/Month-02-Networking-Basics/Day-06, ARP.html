@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="./../Images/M2Q.svg">
-  <title>Quotes for Month 2 | Learning</title>
+  <link rel="icon" type="image/svg+xml" href="./../Images/M2D6.svg">
+  <title>Day-06, ARP | Learning</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap');
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -27,33 +27,56 @@
   a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.2s}
   a:hover{border-bottom-color:var(--accent)}
   img{max-width:100%;height:auto;border-radius:6px}
+  p>img{display:inline-block;vertical-align:middle}
 
+  blockquote{border-left:3px solid var(--accent);background:rgba(0,255,159,0.05);padding:1rem 1.2rem;margin:1rem 0;border-radius:0 8px 8px 0;font-style:italic;color:rgba(212,224,237,0.85)}
+  blockquote p{margin-bottom:0.4rem}
+  blockquote p:last-child{margin-bottom:0}
+
+  code{font-family:'Fira Code',monospace;font-size:0.88em;background:var(--code-bg);padding:0.15em 0.45em;border-radius:4px;color:var(--accent)}
+  pre{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:1.2rem;margin:1rem 0;overflow-x:auto}
+  pre code{background:none;padding:0;color:var(--text);font-size:0.9rem}
+
+  table{width:100%;border-collapse:collapse;margin:1rem 0;background:rgba(15,25,35,0.6);border-radius:8px;overflow:hidden}
+  th{background:rgba(0,255,159,0.1);color:var(--accent);font-weight:600;text-align:left;padding:0.8rem 1rem;border-bottom:2px solid var(--border)}
+  td{padding:0.7rem 1rem;border-bottom:1px solid var(--border)}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:rgba(0,255,159,0.03)}
+
+  ul,ol{padding-left:1.5rem;margin-bottom:1rem}
+  li{margin-bottom:0.4rem}
   hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
+  .mermaid{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin:1rem 0;text-align:center}
   strong{color:#fff;font-weight:600}
   em{color:rgba(212,224,237,0.9)}
 
+  /* Navigation between pages */
   .page-nav{display:flex;justify-content:space-between;align-items:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--border);gap:1rem}
   .page-nav a{display:inline-flex;align-items:center;gap:0.5rem;padding:0.6rem 1.2rem;border-radius:8px;border:1px solid var(--accent);color:var(--accent);font-weight:600;font-size:0.9rem;transition:all 0.3s;text-decoration:none;white-space:nowrap}
   .page-nav a:hover{background:var(--accent);color:var(--bg);border-bottom-color:transparent}
   .page-nav .spacer{flex:1}
 
+  /* Footer */
   .page-footer{margin-top:2rem;padding:1.5rem;border-top:1px solid var(--border);text-align:center}
   .footer-links{display:flex;justify-content:center;gap:1.5rem;flex-wrap:wrap;margin-bottom:1rem}
   .social-link{display:inline-flex;align-items:center;gap:0.4rem;color:var(--text);font-size:0.85rem;text-decoration:none;padding:0.4rem 0.8rem;border-radius:6px;border:1px solid var(--border);transition:all 0.3s}
-  .social-link:hover{border-color:var(--accent);color:var(--accent)}
+  .social-link:hover{border-color:var(--accent);color:var(--accent);border-bottom-color:var(--accent)}
   .social-link svg{width:16px;height:16px;flex-shrink:0}
   .footer-copy{color:rgba(212,224,237,0.4);font-size:0.8rem;margin-top:0.5rem}
 
   @media(max-width:600px){
     .container{padding:1rem 0.8rem 2rem}
     h1{font-size:1.5rem}
+    h2{font-size:1.25rem}
+    table{font-size:0.85rem}
+    th,td{padding:0.5rem 0.6rem}
     .page-nav{flex-direction:column;gap:0.6rem}
     .page-nav a{width:100%;justify-content:center}
     .page-nav .spacer{display:none}
     .footer-links{gap:0.8rem}
     .topbar{padding:0.6rem 0.8rem;gap:0.5rem;font-size:0.85rem}
   }
-</style>
+  </style>
 </head>
 <body>
   <div class="topbar">
@@ -63,31 +86,132 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <div style="text-align:center;padding:2rem 0;">
+    <h1>🔍 Day 6: Address Resolution Protocol (ARP)</h1>
+    <p>
+      <img src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" alt="Networking">
+      <img src="https://img.shields.io/badge/ARP-Protocol-success?style=for-the-badge" alt="ARP">
+    </p>
 
-      <h1 style="font-size:2.2rem;border:none;padding:0;margin-bottom:1.5rem;">&#127760; &ldquo;Packets are no longer invisible to me.&rdquo;</h1>
+    <blockquote>
+      <p><em>Think of ARP like a phone book. You know the person's name (IP address), but you need their phone number (MAC address) to actually call them.</em> 📖</p>
+    </blockquote>
 
-      <hr style="border-top:1px solid var(--border);margin:1.5rem auto;max-width:200px;">
+    <hr>
 
-      <h3 style="color:var(--secondary);font-weight:400;margin-bottom:1.5rem;"><em>Hackers don&rsquo;t guess. They observe.</em></h3>
+    <p><strong>Address Resolution Protocol (ARP)</strong> is used to connect Layer 3 (IP address) to Layer 2 (MAC address) in the OSI model. It works only inside the same local network (LAN) or broadcast domain.</p>
 
-      <p>
-        <img src="https://img.shields.io/badge/Mindset-Networking-blue?style=for-the-badge&amp;logo=wireshark" alt="Networking Badge">
-      </p>
+    <p>When a device wants to send a packet, it only knows the destination IP address. To actually deliver the frame on the local network, it needs the MAC address of that IP.</p>
 
-      <br>
+    <h3>⚙️ The Process</h3>
 
-      <p>
-        <a href="Day-01, All about IP Addresses.html" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.7rem 1.5rem;border-radius:10px;background:var(--secondary);color:#fff;font-weight:700;font-size:0.95rem;text-decoration:none;border:none;transition:all 0.3s;">
-          &#128640; Start the Journey: Day 1
-        </a>
-      </p>
+    <p>The process works like this:</p>
 
-    </div>
+    <ol>
+      <li>The device checks its ARP table (stored in memory).</li>
+      <li>If the MAC address for that IP is already stored, it uses it directly.</li>
+      <li>If not, it broadcasts an ARP request:
+        <blockquote><p>"Who has this IP address? Tell me your MAC."</p></blockquote>
+      </li>
+      <li>The device that owns that IP replies with its MAC address.</li>
+      <li>The sender stores this mapping (IP → MAC) in its ARP table.</li>
+      <li>The data is then delivered using that MAC address.</li>
+    </ol>
+
+    <p>You can view your ARP table using:</p>
+
+    <pre><code>arp -a</code></pre>
+
+    <p>This works on both Windows and Kali Linux.</p>
+
+    <hr>
+
+    <h2>🛠️ Mini Practical 1</h2>
+
+    <ol>
+      <li>In your Kali VM, type:
+        <pre><code>arp -a</code></pre>
+        <em>You may see only one IP mapped to a MAC address, usually your router.</em>
+      </li>
+      <li>If your VM is using <strong>NAT mode</strong>, switch it to <strong>Bridged mode</strong>.<br>
+        <em>Bridged mode allows your VM to become a real device on your LAN and communicate directly with other devices.</em>
+      </li>
+      <li>Find the IP address of another device connected to your LAN (for example, your phone).</li>
+      <li>Ping that device:
+        <pre><code>ping &lt;device_ip&gt;</code></pre>
+      </li>
+      <li>Now run:
+        <pre><code>arp -a</code></pre>
+        <em>You will see that the pinged device has been added to your ARP table.</em>
+      </li>
+    </ol>
+
+    <p><strong>Conclusion:</strong> This shows how ARP dynamically learns and stores mappings.</p>
+
+    <hr>
+
+    <h2>⚠️ Design Flaw in ARP</h2>
+
+    <p><strong>ARP has no authentication mechanism.</strong></p>
+
+    <p>When a device receives an ARP reply, it blindly trusts the information and updates its ARP table. It does not verify whether the sender is legitimate.</p>
+
+    <h3>🎭 Example Scenario:</h3>
+
+    <ul>
+      <li><strong>Phone IP:</strong> <code>192.168.20.2</code></li>
+      <li><strong>Router IP:</strong> <code>192.168.20.1</code></li>
+      <li><strong>Router MAC:</strong> <code>AA:AA:AA:AA:AA:AA</code></li>
+    </ul>
+
+    <p>The phone’s ARP table contains:<br>
+    <code>192.168.20.1</code> → <code>AA:AA:AA:AA:AA:AA</code></p>
+
+    <p>If an attacker sends a <strong>forged ARP reply</strong> claiming:<br>
+    <code>192.168.20.1</code> → <strong>Attacker's MAC</strong></p>
+
+    <p>The phone will update its ARP table and start sending traffic to the attacker instead of the real router.</p>
+
+    <p>This is the foundation of:</p>
+
+    <ul>
+      <li><strong>Man-in-the-Middle (MITM) attacks</strong></li>
+      <li><strong>Traffic interception</strong></li>
+      <li><strong>ARP spoofing</strong></li>
+    </ul>
+
+    <hr>
+
+    <h2>🛠️ Mini Practical 2</h2>
+
+    <ol>
+      <li>Clear the ARP table (Linux):
+        <pre><code>sudo ip neigh flush all</code></pre>
+      </li>
+      <li>Open <strong>Wireshark</strong>.</li>
+      <li>In the display filter, type: <code>arp</code></li>
+      <li>After flushing the ARP table, check it again:
+        <pre><code>arp -a</code></pre>
+      </li>
+    </ol>
+
+    <p>You will notice that the router entry may appear again even without manual pinging.</p>
+
+    <p><strong>Why does this happen?</strong></p>
+
+    <ul>
+      <li>The system communicates with the router automatically (default gateway).</li>
+      <li>Background services trigger ARP requests.</li>
+      <li>Routers sometimes send ARP-related traffic.</li>
+      <li>Devices may send gratuitous ARP packets.</li>
+    </ul>
+
+    <p>5. Connect a new phone to the Wi-Fi network.</p>
+
+    <p><em>You will capture its ARP request in Wireshark as it tries to resolve the gateway.</em></p>
 
     <div class="page-nav">
-      <a href="Day-07, ARP States.html">&#8592; Day-07, ARP States & MAC Spoofing</a>
-      <span class="spacer"></span>
+      <a href="Day-05, Multi Subnetting and Subnet Masks.html">&#8592; Day-05, Multi Subnetting and Subnet Masks</a>
+      <a href="Day-07, ARP States.html">Day-07, ARP States &#8594;</a>
     </div>
 
     <footer class="page-footer">
