@@ -361,10 +361,10 @@ function setupEventListeners() {
             
             // Remove active class from all
             navItems.forEach(nav => nav.classList.remove('active'));
-            // Add to currect
-            e.target.classList.add('active');
+            // Add to current
+            e.currentTarget.classList.add('active');
 
-            const category = e.target.dataset.category || e.target.closest('.nav-item').dataset.category;
+            const category = e.currentTarget.dataset.category;
             filterProducts(category);
 
             // Close mobile menu if open
@@ -376,9 +376,18 @@ function setupEventListeners() {
     });
 
     // Hamburger Menu Toggle
-    hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         hamburgerBtn.classList.toggle('active');
         navLinksContainer.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking outside (main store area)
+    document.addEventListener('click', (e) => {
+        if (navLinksContainer.classList.contains('active') && !e.target.closest('.nav-links') && !e.target.closest('#hamburger-menu')) {
+            navLinksContainer.classList.remove('active');
+            hamburgerBtn.classList.remove('active');
+        }
     });
 
     // Cart Sidebar Toggles

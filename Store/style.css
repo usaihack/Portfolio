@@ -21,6 +21,16 @@
     0 0 10px rgba(0, 255, 136, 0.3), 0 0 20px rgba(0, 255, 136, 0.1);
 }
 
+::selection {
+  background-color: #03fc9e; 
+  color: #000000;
+}
+
+::-moz-selection {
+  background-color: #03fc9e;
+  color: #000000;
+}
+
 /* Custom Webkit Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
@@ -54,6 +64,9 @@ body {
   font-family: var(--font-mono);
   line-height: 1.6;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 /* Typography Customization */
@@ -314,6 +327,8 @@ button {
   padding: 3rem 5%;
   max-width: 1400px;
   margin: 0 auto;
+  flex: 1;
+  width: 100%;
 }
 
 .store-header {
@@ -454,7 +469,8 @@ button {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* fallback */
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(5px);
   display: flex;
@@ -577,7 +593,8 @@ button {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100vh; /* fallback */
+  height: 100dvh;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1000;
   opacity: 0;
@@ -596,7 +613,8 @@ button {
   right: -400px;
   width: 100%;
   max-width: 400px;
-  height: 100%;
+  height: 100vh; /* fallback */
+  height: 100dvh;
   background-color: var(--bg-color);
   border-left: 1px solid var(--neon-green);
   box-shadow: -10px 0 30px rgba(0, 255, 136, 0.1);
@@ -706,6 +724,7 @@ button {
 
 .cart-footer {
   padding: 1.5rem;
+  padding-bottom: calc(1.5rem + env(safe-area-inset-bottom, 0px));
   border-top: 1px solid var(--border-color);
   background-color: var(--surface-color);
 }
@@ -871,7 +890,7 @@ button {
    Footer
    ========================================================================== */
 .store-footer {
-  margin-top: 4rem;
+  margin-top: auto;
   padding: 3rem 5%;
   background: var(--surface-color);
   border-top: 1px solid var(--border-color);
@@ -936,7 +955,8 @@ button {
     top: var(--nav-height);
     left: -100%;
     width: 280px;
-    height: calc(100vh - var(--nav-height));
+    height: calc(100vh - var(--nav-height)); /* fallback */
+    height: calc(100dvh - var(--nav-height));
     background-color: var(--bg-color);
     border-right: 1px solid var(--neon-green);
     flex-direction: column;
@@ -1004,6 +1024,10 @@ button {
   .add-cart-btn {
     padding: 0.5rem;
     font-size: 0.8rem;
+  }
+  
+  .cart-footer {
+    padding-bottom: 3rem; /* extra padding for mobile navigation overlap */
   }
 
   .store-container {

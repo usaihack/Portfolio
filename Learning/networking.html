@@ -26,6 +26,15 @@
       pointer-events:none;
     }
 
+        ::selection {
+      background-color: #03fc9e; 
+      color: #000000;
+    }
+
+    ::-moz-selection {
+      background-color: #03fc9e;
+      color: #000000;
+    }
     .topbar{position:sticky;top:0;z-index:100;background:var(--panel);border-bottom:1px solid var(--border);padding:0.8rem 1.5rem;display:flex;align-items:center;gap:0.8rem;backdrop-filter:blur(12px)}
     .topbar a{color:var(--accent);text-decoration:none;font-weight:600;font-size:0.9rem;transition:opacity 0.2s}
     .topbar a:hover{opacity:0.8}

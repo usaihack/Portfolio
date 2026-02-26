@@ -11,7 +11,15 @@
   :root{--bg:#0a0e17;--bg2:#0f1923;--text:#d4e0ed;--accent:#00ff9f;--secondary:#0080ff;--panel:rgba(15,25,35,0.95);--border:rgba(0,255,159,0.15);--code-bg:#141e2b}
   html{scroll-behavior:smooth;background:var(--bg)}
   body{font-family:'Inter',sans-serif;color:var(--text);background:var(--bg);line-height:1.8;padding:0;margin:0}
+    ::selection {
+      background-color: #03fc9e; 
+      color: #000000;
+    }
 
+    ::-moz-selection {
+      background-color: #03fc9e;
+      color: #000000;
+    }
   .topbar{position:sticky;top:0;z-index:100;background:var(--panel);border-bottom:1px solid var(--border);padding:0.8rem 1.5rem;display:flex;align-items:center;gap:0.8rem;backdrop-filter:blur(12px)}
   .topbar a{color:var(--accent);text-decoration:none;font-weight:600;font-size:0.9rem;display:flex;align-items:center;gap:0.4rem;transition:opacity 0.2s}
   .topbar a:hover{opacity:0.8}
