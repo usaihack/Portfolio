@@ -8,15 +8,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  const isSubdir = rootPath === "../";
-  const portfolioLink = isSubdir ? "../../index.html" : "../index.html";
-
-  // Inject Topbar with Tab Close Logic
-  const topbarTemplate = `
-        <a href="javascript:void(0);" onclick="if(window.opener) { window.close(); } else { window.location.href = '${portfolioLink}' }; return false;">
-            &#8592; Portfolio
-        </a>
-    `;
 
   // Inject Footer with SVGs instead of Lordicon
   const footerTemplate = `
@@ -45,9 +36,213 @@ document.addEventListener("DOMContentLoaded", () => {
       <p class="footer-copy">&copy; 2026 Muhammad Usman Said</p>
     `;
 
+  const isHubPage = !!document.querySelector(".tree-folder");
+  const isLessonPage = !isHubPage && !!document.querySelector(".page-nav");
+  const isIntroPage = window.location.pathname.endsWith("intro.html");
+
   const topbars = document.querySelectorAll(".topbar");
-  topbars.forEach((tb) => (tb.innerHTML = topbarTemplate));
+  
+  if (isLessonPage) {
+    let courseHub = "../intro.html";
+    if (window.location.pathname.includes("Month-01-Kali-Basics")) {
+      courseHub = "../kali.html";
+    } else if (window.location.pathname.includes("Month-02-Networking-Basics")) {
+      courseHub = "../networking.html";
+    }
+    
+    topbars.forEach((tb) => {
+      tb.innerHTML = `<a href="${courseHub}">&#8592; Back to Course</a>`;
+    });
+  } else if (isIntroPage) {
+    topbars.forEach((tb) => {
+      tb.innerHTML = "";
+      tb.style.display = "none";
+    });
+  } else if (isHubPage) {
+    topbars.forEach((tb) => {
+      tb.innerHTML = `<a href="intro.html">&#8592; Learning Hub</a>`;
+      tb.style.display = "flex";
+    });
+  }
 
   const footers = document.querySelectorAll(".page-footer");
   footers.forEach((ft) => (ft.innerHTML = footerTemplate));
+
+  // --- PROGRESS TRACKING LOGIC ---
+
+  // Inject CSS for Progress Tracking
+  const style = document.createElement("style");
+  style.innerHTML = `
+    .track-status-badge { font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; margin-left: auto; font-weight: 600; white-space: nowrap; }
+    .track-not-started { background: rgba(255,255,255,0.05); color: rgba(212,224,237,0.5); }
+    .track-in-progress { background: rgba(0, 128, 255, 0.15); color: var(--secondary, #0080ff); }
+    .track-completed { background: rgba(0, 255, 159, 0.15); color: var(--accent, #00ff9f); }
+    
+    .course-progress-container { margin: 1.5rem auto 0; max-width: 400px; background: var(--bg2, #0f1923); padding: 1rem; border-radius: 12px; border: 1px solid var(--border, rgba(0,255,159,0.15)); }
+    .course-progress-header { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.6rem; color: var(--text); font-weight: 500;}
+    .course-progress-bar { height: 8px; background: rgba(255,255,255,0.05); border-radius: 4px; overflow: hidden; }
+    .course-progress-fill { height: 100%; background: var(--accent, #00ff9f); width: 0%; transition: width 0.5s ease-out; }
+    
+    .mark-complete-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; max-width: 300px; margin: 2rem auto; padding: 0.8rem; background: transparent; border: 1px solid var(--accent, #00ff9f); color: var(--accent, #00ff9f); border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s; font-family: inherit; }
+    .mark-complete-btn:hover { background: rgba(0,255,159,0.1); }
+    .mark-complete-btn.is-completed { background: var(--accent, #00ff9f); color: var(--bg, #0a0e17); pointer-events: none; }
+  `;
+  document.head.appendChild(style);
+
+  // Initialize progress data
+  let progressData = JSON.parse(localStorage.getItem("learningProgress")) || {};
+
+  if (isHubPage) {
+    const courseFiles = document.querySelectorAll(".tree-file");
+    let completedCount = 0;
+    let trackableFilesCount = 0;
+
+    courseFiles.forEach((fileLink) => {
+      const href = fileLink.getAttribute("href");
+      
+      // Skip external links or non-html files
+      if (!href || href.startsWith("http")) return;
+      
+      const isQuoteFile = href.toLowerCase().includes("quote");
+
+      // Only count towards course progress if it's NOT a quote
+      if (!isQuoteFile) {
+        trackableFilesCount++;
+      }
+
+      const fileKey = decodeURIComponent(href);
+      let status = progressData[fileKey] || "not-started";
+
+      let statusText = isQuoteFile ? "Not viewed" : "Not started";
+      let statusClass = "track-not-started";
+
+      if (!isQuoteFile && status === "in-progress") {
+        statusText = "In progress";
+        statusClass = "track-in-progress";
+      } else if (status === "completed") {
+        // If it's a quote, visually display "Viewed" instead of "Completed"
+        if (isQuoteFile) {
+          statusText = "Viewed";
+          statusClass = "track-completed"; // Keep green color
+        } else {
+          statusText = "Completed";
+          statusClass = "track-completed";
+          completedCount++; // Only increment progress for actual lessons
+        }
+      }
+
+      const badge = document.createElement("span");
+      badge.className = `track-status-badge ${statusClass}`;
+      badge.textContent = statusText;
+      fileLink.appendChild(badge);
+    });
+
+    // Remove existing hardcoded badges/progress to avoid duplicates
+    const oldBadges = document.querySelectorAll(
+      ".completed-badge, .active-badge, .progress-wrap",
+    );
+    oldBadges.forEach((el) => el.remove());
+
+    // Inject New Progress Bar
+    if (trackableFilesCount > 0) {
+      const pct = Math.round((completedCount / trackableFilesCount) * 100);
+      const pageHeader = document.querySelector(".page-header");
+      if (pageHeader) {
+        const progContainer = document.createElement("div");
+        progContainer.className = "course-progress-container";
+        progContainer.innerHTML = `
+          <div class="course-progress-header">
+            <span>Course Progress</span>
+            <span>${completedCount} / ${trackableFilesCount} (${pct}%)</span>
+          </div>
+          <div class="course-progress-bar">
+            <div class="course-progress-fill" style="width: ${pct}%"></div>
+          </div>
+        `;
+        pageHeader.appendChild(progContainer);
+      }
+    }
+  }
+
+  if (isLessonPage) {
+    // Construct the file key based on the URL so it matches the hub page href
+    const pathParts = window.location.pathname.split("/");
+    const filename = decodeURIComponent(pathParts.pop());
+    const foldername = decodeURIComponent(pathParts.pop());
+    const fileKey = foldername + "/" + filename;
+
+    // Mark as in-progress if not already completed
+    if (progressData[fileKey] !== "completed") {
+      progressData[fileKey] = "in-progress";
+      localStorage.setItem("learningProgress", JSON.stringify(progressData));
+    }
+
+    // Inject Mark Complete Button
+    const pageNav = document.querySelector(".page-nav");
+    if (pageNav) {
+      const btnContainer = document.createElement("div");
+      const markBtn = document.createElement("button");
+      markBtn.className = "mark-complete-btn";
+      
+      const isQuoteFile = window.location.pathname.toLowerCase().includes("quote");
+      const completedText = isQuoteFile ? "&#10004; Viewed" : "&#10004; Completed";
+      const actionText = isQuoteFile ? "Mark as Viewed" : "Mark as Complete";
+
+      if (progressData[fileKey] === "completed") {
+        markBtn.classList.add("is-completed");
+        markBtn.innerHTML = completedText;
+      } else {
+        markBtn.innerHTML = actionText;
+        markBtn.addEventListener("click", () => {
+          progressData[fileKey] = "completed";
+          localStorage.setItem(
+            "learningProgress",
+            JSON.stringify(progressData),
+          );
+          markBtn.classList.add("is-completed");
+          markBtn.innerHTML = completedText;
+        });
+      }
+
+      btnContainer.appendChild(markBtn);
+      pageNav.parentNode.insertBefore(btnContainer, pageNav);
+    }
+  }
+
+  if (isIntroPage) {
+    const updateIntroProgress = (url, countId, totalId, pctId, barId) => {
+      fetch(url)
+        .then(r => r.text())
+        .then(html => {
+          const doc = new DOMParser().parseFromString(html, "text/html");
+          const links = doc.querySelectorAll(".tree-file");
+          let total = 0;
+          let completed = 0;
+          links.forEach(link => {
+            const href = link.getAttribute("href");
+            if (!href || href.startsWith("http") || href.toLowerCase().includes("quote")) return;
+            total++;
+            const fileKey = decodeURIComponent(href);
+            if (progressData[fileKey] === "completed") {
+              completed++;
+            }
+          });
+          const pct = total === 0 ? 0 : Math.round((completed / total) * 100);
+          
+          const countEl = document.getElementById(countId);
+          const totalEl = document.getElementById(totalId);
+          const pctEl = document.getElementById(pctId);
+          const barEl = document.getElementById(barId);
+          
+          if (countEl) countEl.textContent = completed;
+          if (totalEl) totalEl.textContent = total;
+          if (pctEl) pctEl.textContent = pct + "%";
+          if (barEl) setTimeout(() => barEl.style.width = pct + "%", 300);
+        })
+        .catch(err => console.error("Failed to fetch course data", err));
+    };
+
+    updateIntroProgress("kali.html", "m1-count", "m1-total", "m1-pct", "m1-bar");
+    updateIntroProgress("networking.html", "m2-count", "m2-total", "m2-pct", "m2-bar");
+  }
 });

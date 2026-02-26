@@ -144,21 +144,16 @@
           <div>
             <h2>Feel Kali Like Home</h2>
             <div class="course-meta">
-              <span class="badge badge-completed">&#10003; Completed</span>
               <span class="badge badge-month">Month 1</span>
             </div>
           </div>
         </div>
         <div class="course-body">
           <p>Linux directory structure, essential commands, file permissions, ownerships, process management, signals, and system services &mdash; all learned and documented in just 8 days.</p>
-          <div class="completed-tag">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>
-            Completed in 8 days
-          </div>
           <div class="course-stats">
             <div class="course-stat">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-              <span id="m1-count">8</span> Lessons
+              <span id="m1-count">0</span> / <span id="m1-total">0</span> Lessons
             </div>
             <div class="course-stat">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -168,10 +163,10 @@
           <div class="progress-wrap">
             <div class="progress-label">
               <span>Progress</span>
-              <span class="pct">100%</span>
+              <span class="pct" id="m1-pct">0%</span>
             </div>
             <div class="progress-bar">
-              <div class="progress-fill green" style="width:100%"></div>
+              <div class="progress-fill green" id="m1-bar" style="width:0%"></div>
             </div>
           </div>
           <a href="kali.html" class="course-btn btn-primary">
@@ -202,7 +197,7 @@
               </div>
               <div class="course-stat">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><line x1="9" y1="9" x2="15" y2="9"/><line x1="9" y1="13" x2="15" y2="13"/><line x1="9" y1="17" x2="15" y2="17"/></svg>
-                <span id="m2-chapters">0</span> Chapters
+                <span id="m2-chapters">3</span> Chapters
               </div>
               <div class="course-stat">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -259,67 +254,7 @@
     </footer>
   </div>
 
-  <script>
-    // Auto-update progress by fetching learn.html and counting file links
-    // Month 2 target: ~30 days of lessons (1 month)
-    const M2_TARGET = 30;
 
-    fetch('intro.html') // We are already on intro.html, but we fetch to parse doc normally
-      .then(() => {
-        // Count Month-01 lessons from kali.html content (needs to fetch kali.html)
-        return fetch('kali.html');
-      })
-      .then(r => r.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        // Count Month-01 lessons (Day 1, Day 2, etc.)
-        const m1Links = doc.querySelectorAll('a[href*="Month-01-Kali-Basics/"]');
-        const m1Count = Array.from(m1Links).filter(el => el.textContent.includes('Day ')).length;
-        const m1El = document.getElementById('m1-count');
-        if (m1El) m1El.textContent = m1Count;
-        
-        // Now fetch networking.html for m2
-        return fetch('networking.html');
-      })
-      .then(r => r.text())
-      .then(html => {
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(html, 'text/html');
-
-        // Count Month-02 lessons (Day 1, Day 2, etc.)
-        const m2Links = doc.querySelectorAll('a[href*="Month-02-Networking-Basics/Day-"]');
-        const m2Count = m2Links.length;
-        
-        // Count chapters (excluding Resources)
-        const m2Chapters = Array.from(doc.querySelectorAll('.chapter-label')).filter(el => el.textContent.includes('Chapter')).length;
-        
-        const pct = Math.min(Math.round((m2Count / M2_TARGET) * 100), 100);
-
-        const m2CountEl = document.getElementById('m2-count');
-        const m2TotalEl = document.getElementById('m2-total');
-        const m2ChaptersEl = document.getElementById('m2-chapters');
-        const m2PctEl = document.getElementById('m2-pct');
-        const m2Bar = document.getElementById('m2-bar');
-
-        if (m2CountEl) m2CountEl.textContent = m2Count;
-        if (m2TotalEl) m2TotalEl.textContent = M2_TARGET;
-        if (m2ChaptersEl) m2ChaptersEl.textContent = m2Chapters;
-        if (m2PctEl) m2PctEl.textContent = pct + '%';
-        if (m2Bar) {
-          // Animate after a short delay
-          setTimeout(() => { m2Bar.style.width = pct + '%'; }, 300);
-        }
-      })
-      .catch(() => {
-        // Fallback: just show what we know
-        document.getElementById('m2-count').textContent = '5';
-        document.getElementById('m2-chapters').textContent = '2';
-        document.getElementById('m2-pct').textContent = '17%';
-        document.getElementById('m2-bar').style.width = '17%';
-      });
-  </script>
   <script src="./components.js" data-root="./"></script>
 </body>
 </html>
