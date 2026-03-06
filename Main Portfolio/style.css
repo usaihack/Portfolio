@@ -1011,7 +1011,7 @@ h2 {
 }
 
 .terminal-hint {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   opacity: 0.6;
   font-weight: normal;
 }
@@ -2501,24 +2501,21 @@ h2 {
 
   .terminal {
     padding: 0.8rem;
-    max-height: 200px;
+    height: 350px;
+    max-height: 60vh;
   }
 }
 
 @media (max-width: 540px) {
   .terminal-hint {
-    display: none;
+    font-size: 0.65rem;
   }
 
   .terminal-info {
-    display: none;
+    font-size: 0.8rem;
   }
 
-  .terminal-output .terminal-line:first-child {
-    font-size: 0;
-  }
-
-  .terminal-output .terminal-line:first-child .terminal-prompt {
+  .terminal-output .terminal-line {
     font-size: 0.85rem;
   }
 }
@@ -2664,10 +2661,11 @@ h2 {
     display: none !important;
   }
 
-  /* === Remove backdrop-filter for GPU savings === */
+  /* === Remove backdrop-filter for GPU savings — reverted to enable glassmorphism === */
   .navbar {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(10, 14, 23, 0.7); /* Slightly more transparent to show blur */
   }
 
   .content-panel {

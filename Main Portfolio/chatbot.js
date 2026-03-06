@@ -1,24 +1,24 @@
-const chatBot    = document.getElementById("chatbot");
-const openChat   = document.getElementById("open-chat");
-const closeChat  = document.getElementById("chat-toggle");
-const chatBody   = document.getElementById("chat-body");
-const chatInput  = document.getElementById("chat-input");
+const chatBot = document.getElementById("chatbot");
+const openChat = document.getElementById("open-chat");
+const closeChat = document.getElementById("chat-toggle");
+const chatBody = document.getElementById("chat-body");
+const chatInput = document.getElementById("chat-input");
 
 // ─── Contact flow state ────────────────────────────────────────────────────
 const contactFlow = {
-  active:  false,
-  step:    null,   // 'name' | 'email' | 'message' | 'sending'
-  name:    '',
-  email:   '',
-  message: ''
+  active: false,
+  step: null, // 'name' | 'email' | 'message' | 'sending'
+  name: "",
+  email: "",
+  message: "",
 };
 
 function resetContactFlow() {
-  contactFlow.active  = false;
-  contactFlow.step    = null;
-  contactFlow.name    = '';
-  contactFlow.email   = '';
-  contactFlow.message = '';
+  contactFlow.active = false;
+  contactFlow.step = null;
+  contactFlow.name = "";
+  contactFlow.email = "";
+  contactFlow.message = "";
 }
 // ──────────────────────────────────────────────────────────────────────────
 
@@ -61,7 +61,6 @@ const responses = {
     "🚩 Advanced Security — pentesting & exploits",
   ],
 
-
   default: [
     "🤖 I'm Sentinel.",
     "",
@@ -86,9 +85,10 @@ let quotes = [
   " 'Starting is the real battle.'",
 ];
 
-
 // ─── Core UI helpers ───────────────────────────────────────────────────────
-function formatText(lines) { return lines.join("\n"); }
+function formatText(lines) {
+  return lines.join("\n");
+}
 
 function addMessage(text, type) {
   const div = document.createElement("div");
@@ -103,11 +103,20 @@ function clearOldButtons() {
   if (old) old.remove();
 }
 
-function addButtons(commands = ["about","skills","projects","learning path","contact","quote"]) {
+function addButtons(
+  commands = [
+    "about",
+    "skills",
+    "projects",
+    "learning path",
+    "contact",
+    "quote",
+  ],
+) {
   clearOldButtons();
   const container = document.createElement("div");
   container.className = "chat-buttons";
-  commands.forEach(cmd => {
+  commands.forEach((cmd) => {
     const btn = document.createElement("button");
     btn.className = "chat-btn";
     btn.textContent = cmd;
@@ -155,48 +164,63 @@ function typeText(text, showButtons = true) {
 }
 // ──────────────────────────────────────────────────────────────────────────
 
-
 // ─── Contact flow ──────────────────────────────────────────────────────────
 function startContactFlow() {
   resetContactFlow();
   contactFlow.active = true;
-  contactFlow.step   = 'name';
+  contactFlow.step = "name";
   clearOldButtons();
-  botReply("📝 Let's send Usman a message!\n\nFirst — what's your name?", false);
+  botReply(
+    "📝 Let's send Usman a message!\n\nFirst — what's your name?",
+    false,
+  );
 }
 
 function handleContactStep(input) {
   const val = input.trim();
   if (!val) return;
 
-  if (contactFlow.step === 'name') {
+  if (contactFlow.step === "name") {
     addMessage(val, "user");
     if (val.length < 2) {
-      botReply("That name seems too short. Please enter your full name.", false);
+      botReply(
+        "That name seems too short. Please enter your full name.",
+        false,
+      );
       return;
     }
     contactFlow.name = val;
-    contactFlow.step = 'email';
-    botReply(`Nice to meet you, ${val}! 👋\n\nWhat's your email address so Usman can reply?`, false);
-
-  } else if (contactFlow.step === 'email') {
+    contactFlow.step = "email";
+    botReply(
+      `Nice to meet you, ${val}! 👋\n\nWhat's your email address so Usman can reply?`,
+      false,
+    );
+  } else if (contactFlow.step === "email") {
     addMessage(val, "user");
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
-      botReply("That doesn't look like a valid email. Please try again.", false);
+      botReply(
+        "That doesn't look like a valid email. Please try again.",
+        false,
+      );
       return;
     }
     contactFlow.email = val;
-    contactFlow.step  = 'message';
-    botReply("Perfect! ✅\n\nNow type your message — what would you like to tell Usman?", false);
-
-  } else if (contactFlow.step === 'message') {
+    contactFlow.step = "message";
+    botReply(
+      "Perfect! ✅\n\nNow type your message — what would you like to tell Usman?",
+      false,
+    );
+  } else if (contactFlow.step === "message") {
     addMessage(val, "user");
     if (val.length < 5) {
-      botReply("Message seems too short. Please write at least a sentence.", false);
+      botReply(
+        "Message seems too short. Please write at least a sentence.",
+        false,
+      );
       return;
     }
     contactFlow.message = val;
-    contactFlow.step    = 'sending';
+    contactFlow.step = "sending";
     sendContactMessage();
   }
 }
@@ -216,9 +240,13 @@ function sendContactMessage() {
   }, 400);
 
   const { name, email, message } = contactFlow;
-  const time = new Date().toLocaleString('en-US', {
-    weekday:'short', year:'numeric', month:'short',
-    day:'numeric', hour:'2-digit', minute:'2-digit'
+  const time = new Date().toLocaleString("en-US", {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   });
 
   function finish(success) {
@@ -229,47 +257,68 @@ function sendContactMessage() {
     if (success) {
       typeText(
         `✅ Message sent!\n\nUsman received your message, ${name}. ` +
-        "He personally reads and replies to every message — usually within 24–48 hours. 🚀\n\n" +
-        "Check your inbox for a confirmation email!",
-        true
+          "He personally reads and replies to every message — usually within 24–48 hours. 🚀\n\n" +
+          "Check your inbox for a confirmation email!",
+        true,
       );
     } else {
       typeText(
         "❌ Message failed to send — possibly a network issue.\n\n" +
-        "You can reach Usman directly:\n" +
-        "✉️  70-1-4-4-10-70@proton.me\n" +
-        "📱  WhatsApp: +92 336 1004639",
-        true
+          "You can reach Usman directly:\n" +
+          "✉️  70-1-4-4-10-70@proton.me\n" +
+          "📱  WhatsApp: +92 336 1004639",
+        true,
       );
     }
   }
 
   function trySend() {
-    if (typeof emailjs === 'undefined') { setTimeout(trySend, 200); return; }
+    if (typeof emailjs === "undefined") {
+      setTimeout(trySend, 200);
+      return;
+    }
 
-    Promise.all([
-      emailjs.send('service_ou9wrhm', 'template_klpi1oq', {
-        from_name: name, from_email: email, message, time
-      }),
-      emailjs.send('service_ou9wrhm', 'template_926gfza', {
-        to_name:   name,  name,
-        from_email: email, to_email: email, email,
-        message, time
+    // Send the main notification to Usman first
+    emailjs
+      .send("service_ou9wrhm", "template_klpi1oq", {
+        from_name: name,
+        from_email: email,
+        message,
+        time,
       })
-    ])
-    .then(() => finish(true))
-    .catch(() => finish(false));
+      .then(() => {
+        // Main email succeeded, notify user of success immediately
+        finish(true);
+
+        // Try sending auto-reply silently in background
+        emailjs
+          .send("service_ou9wrhm", "template_emj3218", {
+            to_name: name,
+            name,
+            from_email: email,
+            to_email: email,
+            email,
+            message,
+            time,
+          })
+          .catch((err) =>
+            console.warn("Auto-reply failed, but main message sent:", err),
+          );
+      })
+      .catch((err) => {
+        console.error("Main contact email failed:", err);
+        finish(false);
+      });
   }
 
   trySend();
 }
 // ──────────────────────────────────────────────────────────────────────────
 
-
 // ─── Input router ──────────────────────────────────────────────────────────
 function handleUserInput(input) {
   // Route to contact flow if active
-  if (contactFlow.active && contactFlow.step !== 'sending') {
+  if (contactFlow.active && contactFlow.step !== "sending") {
     handleContactStep(input);
     chatInput.value = "";
     return;
@@ -278,32 +327,33 @@ function handleUserInput(input) {
   addMessage(input, "user");
   const msg = input.toLowerCase().trim();
 
-  if (msg === "about" || msg === "bio")               botReply(formatText(responses.about));
-  else if (msg === "skills")                          botReply(formatText(responses.skills));
-  else if (msg === "projects")                        botReply(formatText(responses.projects));
-  else if (msg.includes("learning"))                  botReply(formatText(responses.learning));
-  else if (msg === "contact")                         { clearOldButtons(); startContactFlow(); }
-  else if (msg.includes("quote")) {
+  if (msg === "about" || msg === "bio") botReply(formatText(responses.about));
+  else if (msg === "skills") botReply(formatText(responses.skills));
+  else if (msg === "projects") botReply(formatText(responses.projects));
+  else if (msg.includes("learning")) botReply(formatText(responses.learning));
+  else if (msg === "contact") {
+    clearOldButtons();
+    startContactFlow();
+  } else if (msg.includes("quote")) {
     if (quotes.length === 0) botReply("⚠️ No more quotes until refresh.");
     else {
       const i = Math.floor(Math.random() * quotes.length);
       botReply("💬 " + quotes.splice(i, 1)[0]);
     }
-  }
-  else botReply(formatText(responses.default));
+  } else botReply(formatText(responses.default));
 }
 // ──────────────────────────────────────────────────────────────────────────
 
-
 // ─── Chat hint (removed) ───────────────────────────────────────────────────
-function initChatHint() { /* No op since we use global red dot now */ }
+function initChatHint() {
+  /* No op since we use global red dot now */
+}
 window.initChatHint = initChatHint;
 // ──────────────────────────────────────────────────────────────────────────
 
-
 // ─── Open / Close ──────────────────────────────────────────────────────────
 openChat.onclick = () => {
-  openChat.classList.add('chatted');
+  openChat.classList.add("chatted");
 
   chatBody.innerHTML = "";
   chatInput.value = "";
@@ -318,7 +368,9 @@ openChat.onclick = () => {
 closeChat.onclick = () => {
   chatBot.classList.remove("show");
   resetContactFlow();
-  setTimeout(() => { openChat.style.display = "flex"; }, 400);
+  setTimeout(() => {
+    openChat.style.display = "flex";
+  }, 400);
 };
 
 chatInput.addEventListener("keydown", (e) => {

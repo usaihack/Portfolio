@@ -102,7 +102,7 @@ let currentModalProduct = null;
  * Initializes the store by rendering all products
  */
 function initStore() {
-  renderProducts(products);
+  renderProducts(products, "all");
   setupEventListeners();
   updateCartDisplay();
 }
@@ -111,7 +111,7 @@ function initStore() {
  * Renders an array of product objects to the grid
  * @param {Array} items - Array of product objects
  */
-function renderProducts(items) {
+function renderProducts(items, currentCategory = "all") {
   productGrid.innerHTML = ""; // Clear grid
 
   if (items.length === 0) {
@@ -126,9 +126,17 @@ function renderProducts(items) {
     card.className = "product-card";
     card.dataset.id = product.id;
 
+    // Determine if PDF badge should be shown
+    const showPdfBadge =
+      currentCategory !== "pdf-books" && product.category === "pdf-books";
+    const badgeHtml = showPdfBadge
+      ? `<span class="pdf-badge-tag"><i class="fas fa-file-pdf"></i> PDF Book</span>`
+      : "";
+
     // Card Inner HTML
     card.innerHTML = `
             <img src="${product.image}" alt="${product.name}" class="card-image" loading="lazy">
+            ${badgeHtml}
             <div class="card-content">
                 <h3 class="card-title">${product.name}</h3>
                 <p class="card-price">Rs ${product.price.toLocaleString()}</p>
@@ -162,7 +170,7 @@ function renderProducts(items) {
 function filterProducts(category) {
   if (category === "all") {
     categoryTitle.textContent = "All Products";
-    renderProducts(products);
+    renderProducts(products, category);
   } else {
     const filtered = products.filter((p) => p.category === category);
 
@@ -170,7 +178,7 @@ function filterProducts(category) {
     const titleText = category.replace("-", " ");
     categoryTitle.textContent = titleText;
 
-    renderProducts(filtered);
+    renderProducts(filtered, category);
   }
 }
 
@@ -229,12 +237,17 @@ function updateCartDisplay() {
     const itemTotal = item.price * item.quantity;
     totalCost += itemTotal;
 
+    const showPdfBadge = item.category === "pdf-books";
+    const badgeHtml = showPdfBadge
+      ? ` <span class="pdf-badge-inline"><i class="fas fa-file-pdf"></i> PDF</span>`
+      : "";
+
     const cartElement = document.createElement("div");
     cartElement.className = "cart-item";
     cartElement.innerHTML = `
             <img src="${item.image}" alt="${item.name}" class="cart-item-img">
             <div class="cart-item-details">
-                <h4 class="cart-item-title">${item.name} ${item.quantity > 1 ? `(x${item.quantity})` : ""}</h4>
+                <h4 class="cart-item-title">${item.name} ${item.quantity > 1 ? `(x${item.quantity})` : ""}${badgeHtml}</h4>
                 <p class="cart-item-price">Rs ${itemTotal.toLocaleString()}</p>
                 <button class="cart-item-remove" data-id="${item.id}" aria-label="Remove item">
                     <i class="fas fa-trash-alt"></i>
@@ -261,7 +274,15 @@ function openProductModal(product) {
   currentModalProduct = product;
 
   // Populate Data
-  modalTitle.textContent = product.name;
+  const activeTab = document.querySelector(".nav-item.active");
+  const activeCategory = activeTab ? activeTab.dataset.category : "all";
+  const showPdfBadge =
+    product.category === "pdf-books" && activeCategory !== "pdf-books";
+  const badgeHtml = showPdfBadge
+    ? ` <span class="pdf-badge-inline"><i class="fas fa-file-pdf"></i> PDF</span>`
+    : "";
+
+  modalTitle.innerHTML = product.name + badgeHtml;
   modalPrice.textContent = `Rs ${product.price.toLocaleString()}`;
   // Replace newline characters with <br> tags for the modal description to preserve spacing
   modalDesc.innerHTML = product.desc.replace(/\n/g, "<br>");
@@ -334,13 +355,18 @@ function renderCheckoutSummary() {
     const itemTotal = itemRealPrice * item.quantity;
     totalCost += itemTotal;
 
+    const showPdfBadge = item.category === "pdf-books";
+    const badgeHtml = showPdfBadge
+      ? ` <span class="pdf-badge-inline"><i class="fas fa-file-pdf"></i> PDF</span>`
+      : "";
+
     const summaryEl = document.createElement("div");
     summaryEl.className = "checkout-summary-item";
     summaryEl.innerHTML = `
             <img src="${item.image}" alt="${item.name}">
             <div class="summary-details">
                 <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;">
-                    <h4>${item.name} <span style="opacity: 0.6">(x${item.quantity})</span></h4>
+                    <h4>${item.name} <span style="opacity: 0.6">(x${item.quantity})</span>${badgeHtml}</h4>
                     <button class="checkout-item-remove" aria-label="Remove item" style="color: var(--text-secondary); background: none; border: none; cursor: pointer; transition: color 0.3s; font-size: 1.1rem; padding: 0;">
                         <i class="fas fa-trash-alt"></i>
                     </button>
@@ -352,15 +378,17 @@ function renderCheckoutSummary() {
             </div>
         `;
 
-    summaryEl.querySelector(".checkout-item-remove").addEventListener("click", () => {
-      removeFromCart(item.id);
-      if (cart.length === 0) {
-        closeCheckoutModal();
-        showSubtleNotification("Memory is empty.");
-      } else {
-        renderCheckoutSummary();
-      }
-    });
+    summaryEl
+      .querySelector(".checkout-item-remove")
+      .addEventListener("click", () => {
+        removeFromCart(item.id);
+        if (cart.length === 0) {
+          closeCheckoutModal();
+          showSubtleNotification("Memory is empty.");
+        } else {
+          renderCheckoutSummary();
+        }
+      });
 
     checkoutSummaryItems.appendChild(summaryEl);
   });
@@ -549,7 +577,8 @@ function setupEventListeners() {
         units: item.quantity,
         price: itemTotal.toLocaleString(),
         // Use absolute un-relativized image paths so they render in emails properly
-        image_url: "https://usaihack.github.io/Portfolio/Store/" + encodeURI(item.image)
+        image_url:
+          "https://usaihack.github.io/Portfolio/Store/" + encodeURI(item.image),
       };
     });
 

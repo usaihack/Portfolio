@@ -371,6 +371,42 @@ button {
   transition: var(--transition);
 }
 
+.pdf-badge-tag {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: var(--bg-color);
+  border: 1px solid var(--neon-green);
+  color: var(--neon-green);
+  font-size: 0.75rem;
+  font-family: var(--font-sans);
+  font-weight: bold;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+  z-index: 2;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.pdf-badge-inline {
+  background-color: rgba(0, 255, 136, 0.1);
+  border: 1px solid var(--neon-green);
+  color: var(--neon-green);
+  font-size: 0.7rem;
+  font-family: var(--font-sans);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  margin-left: 0.5rem;
+  vertical-align: middle;
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
 .card-content {
   padding: 1.5rem;
   flex-grow: 1;
