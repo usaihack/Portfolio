@@ -22,6 +22,16 @@ Important: Only Version 1 (v1) has the AR9271 chipset. Later versions (v2/v3) do
     paymentLink: "", // TODO (Backend Port): Add Gumroad product URL here
   },
   {
+    id: "hw-02",
+    name: "SAMSUNG DARK-MATTER 8GB DUAL-CHANNEL RAM | 3200MHz HIGH-STABILITY",
+    category: "hardware",
+    price: 5590,
+    image: "images/RAM1.jpeg",
+    images: ["images/RAM1.jpeg", "images/RAM2.jpeg"],
+    desc: `Built for practical cybersecurity and virtualization workloads. This 8GB (2x4GB) dual-channel DDR4 3200MHz memory kit provides stable performance for running multiple tools and light virtual lab environments. Capable of handling up to 2–3 lightweight virtual machines depending on workload. The 3200MHz frequency helps maintain smooth system responsiveness during tasks such as packet analysis, password cracking labs, and malware testing in isolated environments. Powered by reliable Samsung memory architecture known for stability and long-term durability. A solid upgrade for laptop users building a compact cybersecurity lab.`,
+    paymentLink: "",
+  },
+  {
     id: "pdf-01",
     name: "Black Hat Python 2.0 | Advanced Hacker's Guide",
     category: "pdf-books",

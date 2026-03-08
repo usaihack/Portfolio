@@ -8,32 +8,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-
   // Inject Footer with SVGs instead of Lordicon
   const footerTemplate = `
       <div class="footer-links">
 
-      <a href="${rootPath}../index.html" class="social-link">
+      <a href="${rootPath}../index.html" class="social-link" title="Portfolio">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
-          Portfolio
+          <span class="social-text">Portfolio</span>
         </a>
-        <a href="${rootPath}../Store/index.html" class="social-link">
+        <a href="${rootPath}../Store/index.html" class="social-link" title="Shop">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-          Shop
+          <span class="social-text">Shop</span>
         </a>
         
-        <a href="https://github.com/usaihack" target="_blank" class="social-link">
+        <a href="https://github.com/usaihack" target="_blank" class="social-link" title="GitHub">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          GitHub
+          <span class="social-text">GitHub</span>
         </a>
-        <a href="https://www.linkedin.com/in/usman701441070" target="_blank" class="social-link">
+        <a href="https://www.linkedin.com/in/usman701441070" target="_blank" class="social-link" title="LinkedIn">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0h.003z"/></svg>
-          LinkedIn
+          <span class="social-text">LinkedIn</span>
         </a>
 
-        <a href="mailto:70-1-4-4-10-70@proton.me" target="_blank" rel="noopener" class="social-link">
+        <a href="mailto:70-1-4-4-10-70@proton.me" target="_blank" rel="noopener" class="social-link" title="Email">
           <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          Email
+          <span class="social-text">Email</span>
+        </a>
+        <a href="https://instagram.com/7014.us.41070" target="_blank" rel="noopener" class="social-link" title="Instagram">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          <span class="social-text">Instagram</span>
         </a>
       </div>
       <p class="footer-copy">&copy; 2026 Muhammad Usman Said</p>
@@ -44,15 +47,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const isIntroPage = window.location.pathname.endsWith("intro.html");
 
   const topbars = document.querySelectorAll(".topbar");
-  
+
   if (isLessonPage) {
     let courseHub = "../intro.html";
     if (window.location.pathname.includes("Month-01-Kali-Basics")) {
       courseHub = "../kali.html";
-    } else if (window.location.pathname.includes("Month-02-Networking-Basics")) {
+    } else if (
+      window.location.pathname.includes("Month-02-Networking-Basics")
+    ) {
       courseHub = "../networking.html";
     }
-    
+
     topbars.forEach((tb) => {
       tb.innerHTML = `<a href="${courseHub}">&#8592; Back to Course</a>`;
     });
@@ -89,6 +94,38 @@ document.addEventListener("DOMContentLoaded", () => {
     .mark-complete-btn { display: flex; align-items: center; justify-content: center; gap: 0.5rem; width: 100%; max-width: 300px; margin: 2rem auto; padding: 0.8rem; background: transparent; border: 1px solid var(--accent, #00ff9f); color: var(--accent, #00ff9f); border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 1rem; transition: all 0.3s; font-family: inherit; }
     .mark-complete-btn:hover { background: rgba(0,255,159,0.1); }
     .mark-complete-btn.is-completed { background: var(--accent, #00ff9f); color: var(--bg, #0a0e17); pointer-events: none; }
+    
+    /* Responsive Footer Link Updates */
+    .footer-links {
+      display: grid !important;
+      grid-auto-flow: column !important;
+      justify-content: center !important;
+      gap: 1.5rem !important;
+    }
+    .social-link {
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      gap: 0.4rem !important;
+    }
+    @media (max-width: 600px) {
+      .footer-links {
+        gap: 0.8rem !important;
+        grid-auto-flow: column !important;
+      }
+      .social-link {
+        width: 44px !important;
+        height: 44px !important;
+        padding: 0 !important;
+        border-radius: 50% !important;
+      }
+      .social-text {
+        display: none !important;
+      }
+      .social-link svg {
+        margin: 0 !important;
+      }
+    }
   `;
   document.head.appendChild(style);
 
@@ -102,10 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     courseFiles.forEach((fileLink) => {
       const href = fileLink.getAttribute("href");
-      
+
       // Skip external links or non-html files
       if (!href || href.startsWith("http")) return;
-      
+
       const isQuoteFile = href.toLowerCase().includes("quote");
 
       // Only count towards course progress if it's NOT a quote
@@ -186,9 +223,13 @@ document.addEventListener("DOMContentLoaded", () => {
       const btnContainer = document.createElement("div");
       const markBtn = document.createElement("button");
       markBtn.className = "mark-complete-btn";
-      
-      const isQuoteFile = window.location.pathname.toLowerCase().includes("quote");
-      const completedText = isQuoteFile ? "&#10004; Viewed" : "&#10004; Completed";
+
+      const isQuoteFile = window.location.pathname
+        .toLowerCase()
+        .includes("quote");
+      const completedText = isQuoteFile
+        ? "&#10004; Viewed"
+        : "&#10004; Completed";
       const actionText = isQuoteFile ? "Mark as Viewed" : "Mark as Complete";
 
       if (progressData[fileKey] === "completed") {
@@ -215,15 +256,20 @@ document.addEventListener("DOMContentLoaded", () => {
   if (isIntroPage) {
     const updateIntroProgress = (url, countId, totalId, pctId, barId) => {
       fetch(url)
-        .then(r => r.text())
-        .then(html => {
+        .then((r) => r.text())
+        .then((html) => {
           const doc = new DOMParser().parseFromString(html, "text/html");
           const links = doc.querySelectorAll(".tree-file");
           let total = 0;
           let completed = 0;
-          links.forEach(link => {
+          links.forEach((link) => {
             const href = link.getAttribute("href");
-            if (!href || href.startsWith("http") || href.toLowerCase().includes("quote")) return;
+            if (
+              !href ||
+              href.startsWith("http") ||
+              href.toLowerCase().includes("quote")
+            )
+              return;
             total++;
             const fileKey = decodeURIComponent(href);
             if (progressData[fileKey] === "completed") {
@@ -231,21 +277,33 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           });
           const pct = total === 0 ? 0 : Math.round((completed / total) * 100);
-          
+
           const countEl = document.getElementById(countId);
           const totalEl = document.getElementById(totalId);
           const pctEl = document.getElementById(pctId);
           const barEl = document.getElementById(barId);
-          
+
           if (countEl) countEl.textContent = completed;
           if (totalEl) totalEl.textContent = total;
           if (pctEl) pctEl.textContent = pct + "%";
-          if (barEl) setTimeout(() => barEl.style.width = pct + "%", 300);
+          if (barEl) setTimeout(() => (barEl.style.width = pct + "%"), 300);
         })
-        .catch(err => console.error("Failed to fetch course data", err));
+        .catch((err) => console.error("Failed to fetch course data", err));
     };
 
-    updateIntroProgress("kali.html", "m1-count", "m1-total", "m1-pct", "m1-bar");
-    updateIntroProgress("networking.html", "m2-count", "m2-total", "m2-pct", "m2-bar");
+    updateIntroProgress(
+      "kali.html",
+      "m1-count",
+      "m1-total",
+      "m1-pct",
+      "m1-bar",
+    );
+    updateIntroProgress(
+      "networking.html",
+      "m2-count",
+      "m2-total",
+      "m2-pct",
+      "m2-bar",
+    );
   }
 });
