@@ -88,7 +88,7 @@ A structured 18-month cybersecurity learning path, documented lesson by lesson.
 | Month | Topic                                                                          |     Status     | Lessons |
 | :---- | :----------------------------------------------------------------------------- | :------------: | :-----: |
 | 1     | **Feel Kali Like Home** — Linux fundamentals, commands, permissions, processes |  ✅ Completed  |    8    |
-| 2     | **Networking Basics** — IP, TCP/UDP, ports, DHCP, NAT                          | 🔵 In Progress | 13 / 30 |
+| 2     | **Networking Basics** — IP, TCP/UDP, ports, DHCP, NAT                          | 🔵 In Progress | 15 / 30 |
 | 3–18  | More paths coming soon                                                         |  ⏳ Upcoming   |    —    |
 
 Each lesson page features:
@@ -149,6 +149,7 @@ Or visit the **[Live Demo →](https://usaihack.github.io/Portfolio/)**
 
 [![GitHub](https://img.shields.io/badge/GitHub-usaihack-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/usaihack)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Usman_Said-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/usman701441070)
+[![Instagram](https://img.shields.io/badge/Instagram-Usman_Said-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/7014.us.41070)
 [![Email](https://img.shields.io/badge/Email-ProtonMail-6D4AFF?style=for-the-badge&logo=protonmail&logoColor=white)](mailto:70-1-4-4-10-70@proton.me)
 
 </div>
