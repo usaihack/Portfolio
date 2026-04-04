@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" type="image/svg+xml" href="./../Images/M2D15.svg">
-  <title>Day-15, HTTP Headers | Learning</title>
+  <link rel="icon" type="image/svg+xml" href="./../Images/M2D18.svg">
+  <title>Day-18, HTTP Authentication and Advance HTTP Concepts | Learning</title>
   <style>
   @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap');
   *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -31,6 +31,7 @@
   h1{font-size:2rem;color:var(--accent);margin-bottom:1.2rem;border-bottom:2px solid var(--border);padding-bottom:0.8rem}
   h2{font-size:1.5rem;color:var(--accent);margin:2rem 0 0.8rem}
   h3{font-size:1.2rem;color:var(--secondary);margin:1.5rem 0 0.6rem}
+  h4{font-size:1.05rem;color:var(--secondary);margin:1.2rem 0 0.5rem}
   p{margin-bottom:1rem}
   a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color 0.2s}
   a:hover{border-bottom-color:var(--accent)}
@@ -54,7 +55,6 @@
   ul,ol{padding-left:1.5rem;margin-bottom:1rem}
   li{margin-bottom:0.4rem}
   hr{border:none;border-top:1px solid var(--border);margin:2rem 0}
-  .mermaid{background:var(--code-bg);border:1px solid var(--border);border-radius:8px;padding:1.5rem;margin:1rem 0;text-align:center}
   strong{color:#fff;font-weight:600}
   em{color:rgba(212,224,237,0.9)}
 
@@ -153,136 +153,105 @@
     <span class="sep">&rsaquo;</span><span class="current">Month 02 Networking Basics</span>
   </div>
   <div class="container">
-    <h1>🌐 Day 15: HTTP Headers</h1>
+    <h1>🔐 Day 18: HTTP Authentication and Advance HTTP Concepts</h1>
     <p>
       <img src="https://img.shields.io/badge/Networking-Basics-blue?style=for-the-badge" alt="Networking">
-      <img src="https://img.shields.io/badge/Web-informational?style=for-the-badge" alt="Web">
-      <img src="https://img.shields.io/badge/HTTP_Headers-critical?style=for-the-badge" alt="HTTP">
+      <img src="https://img.shields.io/badge/Security-Critical-red?style=for-the-badge" alt="Security">
+      <img src="https://img.shields.io/badge/Auth-Methods-orange?style=for-the-badge" alt="Authentication">
     </p>
 
-    <h2>1. Host Header: The GPS Coordinator</h2>
-    <p>A single domain (IP address) may host multiple websites on the same physical server. Some are public-facing, while others are "hidden" private admin panels. The <strong>Host</strong> header tells the server exactly which "apartment" in the building you want to visit.</p>
-
-    <h3><strong>The Attack: Host Header Injection</strong></h3>
-    <p>Imagine a "Forgot Password" flow. When you request a reset, the server generates a link like:</p>
-    <p><code>https://mybank.com/reset?token=abc123</code></p>
-    <p><strong>The Logic Flaw:</strong> How does the server know to write <code>mybank.com</code> in that URL? Often, it just reads the <strong>Host header</strong> you sent and trusts it blindly.</p>
-
-    <p><strong>The "Dirty Hands" Move:</strong> If you intercept the "forgot password" request and change the Host header to your own evil server, the request looks like this:</p>
-
-    <pre><code>POST /forgot-password HTTP/1.1
-Host: evil-hacker.com          &lt;-- You manually changed this!
-Content-Type: application/x-www-form-urlencoded
-
-email=victim@gmail.com</code></pre>
-
-    <p><strong>The Result:</strong> The real bank server generates a real token, but it builds the link using <em>your</em> host. The victim receives an official email saying:</p>
-
     <blockquote>
-      <p><em>Click here to reset: https://evil-hacker.com/reset?token=abc123</em></p>
+      <p><em>Authentication is how the server knows you are who you claim to be. It is the "Digital Handshake" that unlocks the door.</em> 🔐</p>
     </blockquote>
 
-    <p>The victim clicks it, the secret token is sent to <strong>YOUR</strong> server logs, and you use that token on the real site to take over their account.</p>
-
     <hr>
 
-    <h2>2. Cookie Header: The Identity Card</h2>
-    <p>When you login, the server gives you a unique string (the Cookie) stored in the browser's "cookie bucket." Because servers have "amnesia" and forget who you are the moment a request ends, the browser automatically sends this cookie with <strong>every</strong> future request to prove it's you.</p>
+    <h2>🔑 Part 1: HTTP Authentication Methods</h2>
 
-    <h3><strong>The Attack: CSRF (Cross-Site Request Forgery)</strong></h3>
-    <p>Attackers take advantage of the fact that the browser <strong>automatically</strong> sends cookies. This happens because of developer laziness. For a cookie to be safe, these three "Bodyguards" must be added in the server's response:</p>
-
+    <h3>🟢 1. Basic Authentication</h3>
     <ul>
-      <li><strong>No <code>HttpOnly</code>:</strong> JavaScript can read the cookie. This means an <strong>XSS</strong> attack can steal it.</li>
-      <li><strong>No <code>Secure</code>:</strong> The cookie travels over plain HTTP (unencrypted). Anyone on your Wi-Fi (like at a café) can "sniff" it using <strong>Wireshark</strong>.</li>
-      <li><strong>No <code>SameSite=Strict</code>:</strong> This allows <strong>CSRF</strong> attacks. A hacker can trick you into clicking a link that makes your browser send a "Transfer Money" request to your bank, and the browser will automatically attach your login cookie!</li>
+      <li><strong>Mechanism:</strong> Encodes your <code>username:password</code> into a <strong>Base64</strong> string and sends it in the <code>Authorization</code> header.</li>
+      <li><strong>Security Note:</strong> Base64 is <strong>not encryption</strong>; it is a formatting method. Anyone who intercepts this string can decode it instantly.</li>
+      <li><strong>Example Header:</strong> <code>Authorization: Basic dXNlcjpwYXNzd29yZA==</code></li>
     </ul>
 
-    <h3><strong>Cookie vs. Token (The Difference)</strong></h3>
+    <h3>🟡 2. Bearer Token (JWT)</h3>
+    <p>A <strong>JSON Web Token (JWT)</strong> is a compact, self-contained way of securely transmitting information between parties. It consists of three parts:</p>
     <ul>
-      <li><strong>Cookie:</strong> A string stored in a dedicated browser bucket. It is given by the server upon login and is <strong>automatically</strong> added to requests by the browser.</li>
-      <li><strong>Token:</strong> Behaves similarly but is usually stored in <strong>Session Storage</strong> or <strong>Local Storage</strong>. It is NOT sent automatically; JavaScript must add it. This makes tokens safer from CSRF but very easy to steal via <strong>XSS</strong> if security is poor.</li>
+      <li><strong>Header:</strong> Specifies the algorithm used to secure the token.</li>
+      <li><strong>Payload:</strong> Contains the actual data (Claims), such as the username, user role, and expiration time.</li>
+      <li><strong>Signature:</strong> The "Security Seal." It is created by hashing the header and payload with a secret key. If a hacker changes the payload, the signature will no longer match, and the server will reject the token.</li>
     </ul>
 
-    <hr>
-
-    <h2>3. Authorization Header: The App/API Key</h2>
-    <p>This header is the standard for mobile apps and APIs. It has two main formats:</p>
-
+    <h3>🟠 3. API Keys</h3>
     <ul>
-      <li><strong>Basic Auth:</strong> It simply encodes your <code>username:password</code> in <strong>Base64</strong>.
+      <li><strong>Purpose:</strong> Primarily used for <strong>machine-to-machine</strong> communication.</li>
+      <li><strong>Use Case:</strong> If you build a weather app, you don't own satellites. You "buy" access to data from a provider (like Google or OpenWeather) and use an API Key to identify your app to their server.</li>
+      <li><strong>Hacker Note:</strong> If a developer "hardcodes" an API key into a public repository (like GitHub), attackers can steal it to access premium services or private data for free.</li>
+    </ul>
+
+    <h3>👤 4. Session Management</h3>
+    <ul>
+      <li><strong>Mechanism:</strong> After login, the server provides a "pass" so you don't have to re-enter credentials for every click. Your browser stores this and attaches it to every subsequent request.</li>
+      <li><strong>Clarification:</strong> The difference between a <strong>Session Token</strong> and a <strong>Session ID</strong>:
         <ul>
-          <li><em>Hacker Note:</em> Base64 is NOT encryption. Anyone can decode it in a second.</li>
-          <li><code>Authorization: Basic dXNlcjpwYXNzd29yZA==</code></li>
+          <li><strong>The Session ID</strong> is the specific unique string (the "ID Number").</li>
+          <li><strong>The Session Token</strong> is the "Container" (the "ID Card") that carries that number.</li>
         </ul>
       </li>
-      <li><strong>Bearer Token (JWT):</strong> A JSON Web Token with three parts: <code>Header.Payload.Signature</code>.
-        <ul>
-          <li><strong>Header:</strong> Tells the server how to verify the user.</li>
-          <li><strong>Payload:</strong> Contains the real data (User name, role: user, etc).</li>
-          <li><strong>Signature:</strong> This is the "Security Seal." (If the header/payload is changed, the signature becomes invalid).</li>
-        </ul>
-      </li>
+      <li><strong>Lifespan:</strong> These usually expire upon logout or after a period of inactivity (Session Timeout).</li>
     </ul>
 
-    <h3><strong>The Vulnerability: JWT Manipulation</strong></h3>
-    <p>What if I change the header to <code>{"alg": "none"}</code>? A "dumb" server might be tricked into not using any authentication method at all.</p>
-
-    <ol>
-      <li>Change the role in the payload to <code>role: admin</code>.</li>
-      <li>Change the header to <code>alg: none</code>.</li>
-      <li>Delete the signature entirely.</li>
-      <li>The final Token becomes <code>Header.Payload.</code> (with only two dots and no signature). Boom—you are now an Admin.</li>
-    </ol>
-
-    <p>If the "none" trick is blocked, hackers use a tool called <strong>Hashcat</strong> to brute-force the Signature if it was generated with a weak secret password.</p>
-
     <hr>
 
-    <h2>4. Content-Type: The Label on the Box</h2>
-    <p>This tells the server what kind of data is in the "body" (HTML, JS, JSON, etc.).</p>
+    <h2>🚀 Part 2: Advanced HTTP Concepts</h2>
 
-    <h3><strong>The Attack: Content-Type Mismatch</strong></h3>
-    <p>If a server only trusts the "Label" (the header) and doesn't look at the "Contents" (the body), it creates chaos.</p>
-
-    <p><strong>1. CSRF Bypass:</strong> I change the header to <code>application/json</code> to trick the server into thinking it's a safe API call, but I send a malicious command in the body:</p>
-
-    <pre><code>Content-type: application/json
-
-amount=100000&amp;to=hacker_account</code></pre>
-
-    <p>The server sees the "JSON" label, trusts it blindly, and sends the body straight to the database to be processed.</p>
-
-    <p><strong>2. File Upload Shell:</strong> I try to upload a <strong>PHP Shell Script</strong> (a virus that gives me total control). The server says "No PHP allowed!" <strong>The Move:</strong> I capture the request in <strong>Burp Suite</strong>, change the header to <code>Content-type: image/jpeg</code>, and hit send. The server thinks it's a photo, allows it, and now I have "Shell Access" to the entire server.</p>
-
-    <p><strong>Rule:</strong> Never trust the user's label!</p>
-
-    <hr>
-
-    <h2>5. Content-Length: The Ruler</h2>
-    <p>This determines exactly how long the data is.</p>
-
-    <pre><code>POST / HTTP/1.1 
-Content-Length: 12
-
-Hello World!</code></pre>
-
-    <p>The server counts exactly 12 characters. When it hits the "!", it closes the connection.</p>
-
+    <h3>📂 1. Caching</h3>
     <ul>
-      <li><strong>The Glitch:</strong> If I say the length is 12 but only send "Hello" (5 characters), the server will sit and <strong>hang</strong>, keeping the connection open forever waiting for the rest.</li>
+      <li><strong>Purpose:</strong> Storing assets on your local <strong>Hard Drive</strong> to save bandwidth and increase loading speed.</li>
+      <li><strong>Technical Note:</strong> Files like <code>.js</code> or <code>.css</code> are stored as their original file types, not converted to <code>.txt</code>. Python files (<code>.py</code>) are rarely cached by browsers as they run on the server side.</li>
+      <li><strong>Security Risk:</strong> If a system is compromised, a hacker can inspect the browser's "Disk Cache." If private data was incorrectly cached, they can steal it.</li>
     </ul>
 
-    <hr>
+    <h3>🤝 2. Content Negotiation</h3>
+    <ul>
+      <li><strong>Mechanism:</strong> The browser sends headers like <code>User-Agent</code> (device info), <code>Accept-Encoding</code> (compression preference), and <code>Accept-Language</code>. The server uses these to decide which version of the site to send.</li>
+      <li><strong>Hacker Note:</strong> This allows for <strong>Fingerprinting</strong>, where an attacker uses these unique combinations of headers to identify and track a specific user's device.</li>
+    </ul>
 
-    <h2>6. Transfer-Encoding: The Conveyor Belt</h2>
-    <p>This header is used when the user isn't sure how long the data will be (like a live stream or a big file). It sends data in "chunks."</p>
+    <h3>🤐 3. Compression</h3>
+    <ul>
+      <li><strong>Mechanism:</strong> To save time, the server "zips" data using tools like <strong>Gzip</strong> or <strong>Brotli</strong>.</li>
+      <li><strong>Process:</strong> The browser sends <code>Accept-Encoding: gzip</code>. The server sends the compressed data. The browser then "unpacks" it into <strong>RAM (Memory)</strong> for the user to see.</li>
+    </ul>
 
-    <p><strong>The Rule:</strong> Unlike Content-Length, which stops at a specific count, Transfer-Encoding only closes the connection when it sees a <strong>lonely <code>0</code></strong> in the body.</p>
+    <h3>📞 4. Persistent Connections (Keep-Alive)</h3>
+    <ul>
+      <li><strong>Evolution:</strong> In HTTP/1.0, connections were closed after every single request. Modern HTTP uses <strong>Persistent Connections</strong> via <strong>TCP</strong>.</li>
+      <li><strong>Analogy:</strong> It is like staying on a phone call while searching for a lost ring, rather than hanging up and redialing for every single sentence.</li>
+    </ul>
+
+    <h3>🧱 5. Chunked Transfer Encoding</h3>
+    <ul>
+      <li><strong>Mechanism:</strong> Used when the final size of the data is unknown (e.g., live streaming or dynamic database results). The server sends data in "chunks" as they become ready. Recall <code>Transfer-Encoding: chunked</code></li>
+      <li><strong>Hacker Note:</strong> This is the primary mechanism exploited in <strong>HTTP Request Smuggling</strong> attacks, where attackers hide a second request inside the chunks of the first.</li>
+    </ul>
+
+    <h3>🚇 6. HTTP Pipelining</h3>
+    <ul>
+      <li><strong>Concept:</strong> Similar to <strong>Parallelism</strong>. It allows a browser to send multiple requests at once without waiting for the response of the first one.</li>
+      <li><strong>Goal:</strong> To achieve faster loading by utilizing the connection more efficiently. Note: This has largely been improved upon by <strong>HTTP/2 Multiplexing</strong>.</li>
+    </ul>
+
+    <h3>🛑 7. Rate Limiting</h3>
+    <ul>
+      <li><strong>Purpose:</strong> Acts as a "speed limit" for requests to a server.</li>
+      <li><strong>Security:</strong> It is the primary defense against <strong>Brute Force</strong> (guessing passwords) and <strong>DoS (Denial of Service)</strong> attacks by limiting how many times an IP address can talk to the server per minute.</li>
+    </ul>
 
     <div class="page-nav">
-      <a href="Day-14, HTTP Methods and Status Codes.html">&#8592; Day-14, HTTP Methods and Status Codes</a>
-      <a href="Day-16, HTTP Headers - Part2.html">Day-16, HTTP Headers - Part2 &#8594;</a>
+      <a href="Day-17, HTTP Cookies and Sessions.html">&#8592; Day-17, HTTP Cookies and Sessions</a>
+      <a href="Day-19, HTTP2 and HTTP3 Advance Concepts.html">Day-19, HTTP2 and HTTP3 &#8594;</a>
     </div>
 
     <footer class="page-footer">

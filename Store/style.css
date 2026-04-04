@@ -391,6 +391,26 @@ button {
   gap: 0.3rem;
 }
 
+.delivery-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: var(--neon-green);
+  color: var(--bg-color);
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-weight: bold;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.3);
+  z-index: 2;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+
 .pdf-badge-inline {
   background-color: rgba(0, 255, 136, 0.1);
   border: 1px solid var(--neon-green);
@@ -429,13 +449,28 @@ button {
   border-radius: 2px;
 }
 
-.card-price {
-  font-size: 1.2rem;
-  color: var(--neon-green);
+.card-price-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin-bottom: 1.5rem;
+}
+
+.card-price {
+  font-size: 1.25rem;
+  color: var(--neon-green);
   font-family: var(--font-sans);
   font-weight: bold;
 }
+
+.card-original-price {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  font-family: var(--font-sans);
+  opacity: 0.8;
+}
+
 
 .add-cart-btn {
   margin-top: auto; /* push to bottom */

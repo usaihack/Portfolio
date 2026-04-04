@@ -1,34 +1,74 @@
-// --- 1. Product Database ---
 const products = [
   {
     id: "hw-01",
     name: "Wi-Fi Adapter | TP-Link TL-WN722N (v1)",
     category: "hardware",
-    price: 5500,
+    price: 15000,
+    originalPrice: 22500,
     image: "images/adapter_1.png",
     images: [
       "images/adapter_1.png",
       "images/adapter_2.png",
       "images/adapter_3.png",
     ],
-    desc: `Wi-Fi Adapter with Monitor Mode & Packet Injection support. The TP-Link TL-WN722N v1 runs on the reliable Atheros AR9271 chipset, trusted for stable performance in security labs.
+    desc: `**ATTENTION: Secure the ultimate tool for wireless dominance.** 📡
 
-Supports 150 Mbps Wireless N, external high-gain antenna, and works smoothly with Linux like Kali Linux, Parrot OS, and Ubuntu.
+**INTEREST:** The TP-Link TL-WN722N v1 is the gold standard for wireless security auditing. Unlike newer versions, this legendary v1 features the Atheros AR9271 chipset, enabling Monitor Mode and Packet Injection out of the box.
 
-Perfect for ethical hacking practice, packet analysis, and penetration testing setups. ⚡
+**DESIRE:** Imagine effortlessly capturing handshakes, deauthenticating unauthorized devices, and running flawless penetration tests on Kali Linux or Parrot OS. This is the hardware that professionals trust when failure is not an option.
 
-Important: Only Version 1 (v1) has the AR9271 chipset. Later versions (v2/v3) do not support monitor mode natively.
-`,
-    paymentLink: "", // TODO (Backend Port): Add Gumroad product URL here
+**ACTION:** Upgrade your lab with this rare v1 adapter today. High demand, low stock. Included: FREE DELIVERY + Premium support! ⚡`,
+    paymentLink: "",
   },
   {
-    id: "hw-02",
-    name: "SAMSUNG DARK-MATTER 8GB DUAL-CHANNEL RAM | 3200MHz HIGH-STABILITY",
-    category: "hardware",
-    price: 5590,
-    image: "images/RAM1.jpeg",
-    images: ["images/RAM1.jpeg", "images/RAM2.jpeg"],
-    desc: `Built for practical cybersecurity and virtualization workloads. This 8GB (2x4GB) dual-channel DDR4 3200MHz memory kit provides stable performance for running multiple tools and light virtual lab environments. Capable of handling up to 2–3 lightweight virtual machines depending on workload. The 3200MHz frequency helps maintain smooth system responsiveness during tasks such as packet analysis, password cracking labs, and malware testing in isolated environments. Powered by reliable Samsung memory architecture known for stability and long-term durability. A solid upgrade for laptop users building a compact cybersecurity lab.`,
+    id: "bk-01",
+    name: "Network Basics for Hackers | Physical Edition",
+    category: "books",
+    price: 1499,
+    originalPrice: 2249,
+    image: "images/Physical Books Images/NBH-1.webp",
+    images: ["images/Physical Books Images/NBH-1.webp", "images/Physical Books Images/NBH-2.webp"],
+    desc: `**ATTENTION: STOP! You can't hack what you don't understand.** 🛡️
+  
+**INTEREST:** Did you know that 90% of security breaches happen due to a lack of network fundamentals? This book breaks down OSI models, TCP/IP, and packet analysis into bite-sized, actionable knowledge.
+
+**DESIRE:** Imagine walking into any network environment and instantly identifying vulnerabilities because you understand the "language" of the wires. This isn't just a book; it's your tactical roadmap to becoming a network ninja.
+
+**ACTION:** Secure your physical copy today and build a foundation that won't crumble. Limited stock available with Free Delivery! 🚀`,
+    paymentLink: "",
+  },
+  {
+    id: "bk-02",
+    name: "Hacking: The Art of Exploitation | 2nd Edition",
+    category: "books",
+    price: 1990,
+    originalPrice: 2985,
+    image: "images/Physical Books Images/HTE-1.jpg",
+    images: ["images/Physical Books Images/HTE-1.jpg"],
+    desc: `**ATTENTION: Crack the code. Master the machine.** 💻
+
+**INTEREST:** Most "hackers" just run scripts. Real hackers understand the assembly, memory, and logic behind the exploit. This legendary guide by Jon Erickson teaches you to think like an architect of destruction and defense.
+
+**DESIRE:** Reach the elite level where you don't just use tools—you build them. From buffer overflows to network redirection, gain the skills that separate the script kiddies from the pros.
+
+**ACTION:** Grab this physical masterpiece now and start your journey into the deep end of exploitation. Free Delivery included! 🎯`,
+    paymentLink: "",
+  },
+  {
+    id: "bk-03",
+    name: "Black Hat Python | Pythonic Offensive Security",
+    category: "books",
+    price: 1199,
+    originalPrice: 1799,
+    image: "images/Physical Books Images/BHP-1.jpg",
+    images: ["images/Physical Books Images/BHP-1.jpg"],
+    desc: `**ATTENTION: Turn Python into your most lethal weapon.** 🐍
+
+**INTEREST:** Why use someone else's tools when you can build your own? Black Hat Python shows you how to create stealthy trojans, sniff network traffic, and manipulate packets with the power of Pythonic code.
+
+**DESIRE:** Feel the thrill of automating your entire pentesting workflow. Whether it's infecting virtual machines or escalating privileges, this book gives you the blueprints for digital dominance.
+
+**ACTION:** Add this to your arsenal today. Your future as a custom tool developer starts here. Free Delivery applied! ⚡`,
     paymentLink: "",
   },
   {
@@ -36,6 +76,7 @@ Important: Only Version 1 (v1) has the AR9271 chipset. Later versions (v2/v3) do
     name: "Black Hat Python 2.0 | Advanced Hacker's Guide",
     category: "pdf-books",
     price: 70,
+    originalPrice: 105,
     image: "images/PDF Books Images/black-hat-python-2nd-edition.jpg",
     images: ["images/PDF Books Images/black-hat-python-2nd-edition.jpg"],
     desc: `Master the art of writing powerful Python tools for network discovery, packet manipulation, and web system exploitation.
@@ -49,6 +90,7 @@ This definitive guide dives deep into offensive security concepts, equipping you
     name: "The Art of Exploitation | Core Hacking Foundations",
     category: "pdf-books",
     price: 70,
+    originalPrice: 105,
     image:
       "images/PDF Books Images/hacking-the-art-of-exploitation-by-jon-erickson-2nd-edition.jpg",
     images: [
@@ -60,6 +102,7 @@ This essential manual bridges the gap between theoretical knowledge and practica
     paymentLink: "",
   },
 ];
+
 
 // --- 2. State & DOM Elements ---
 let cart = JSON.parse(localStorage.getItem("bytevault_cart")) || [];
@@ -144,17 +187,26 @@ function renderProducts(items, currentCategory = "all") {
       : "";
 
     // Card Inner HTML
+    const priceHtml = product.originalPrice 
+      ? `<div class="card-price-container">
+           <span class="card-price">Rs ${product.price.toLocaleString()}</span>
+           <span class="card-original-price">Rs ${product.originalPrice.toLocaleString()}</span>
+         </div>`
+      : `<p class="card-price">Rs ${product.price.toLocaleString()}</p>`;
+
     card.innerHTML = `
             <img src="${product.image}" alt="${product.name}" class="card-image" loading="lazy">
+            <div class="delivery-badge"><i class="fas fa-truck"></i> FREE DELIVERY</div>
             ${badgeHtml}
             <div class="card-content">
                 <h3 class="card-title">${product.name}</h3>
-                <p class="card-price">Rs ${product.price.toLocaleString()}</p>
+                ${priceHtml}
                 <button class="add-cart-btn" data-id="${product.id}" aria-label="Add ${product.name} to cart">
                     <i class="fas fa-plus"></i> ADD_TO_CART
                 </button>
             </div>
         `;
+
 
     // Event listener for opening modal (click on card body, not button)
     card.addEventListener("click", (e) => {
@@ -293,11 +345,18 @@ function openProductModal(product) {
     : "";
 
   modalTitle.innerHTML = product.name + badgeHtml;
-  modalPrice.textContent = `Rs ${product.price.toLocaleString()}`;
+  
+  const priceHtml = product.originalPrice 
+    ? `<span class="modal-price">Rs ${product.price.toLocaleString()}</span>
+       <span class="card-original-price" style="margin-left: 10px; font-size: 1.1rem;">Rs ${product.originalPrice.toLocaleString()}</span>`
+    : `Rs ${product.price.toLocaleString()}`;
+    
+  modalPrice.innerHTML = priceHtml;
   // Replace newline characters with <br> tags for the modal description to preserve spacing
   modalDesc.innerHTML = product.desc.replace(/\n/g, "<br>");
   modalImage.src = product.image;
   modalImage.alt = product.name;
+
 
   // Inject image gallery if multiple images are provided
   const galleryContainer = document.getElementById("modal-gallery-container");
