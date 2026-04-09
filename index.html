@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" class="preload">
 <head>
   <meta charset="UTF-8">
@@ -27,6 +27,26 @@
   <link rel="stylesheet" href="Main Portfolio/style.css">
   <link rel="stylesheet" href="Main Portfolio/chatbot.css">
   <style>html, body { background-color: #0a0e17; }</style>
+
+  <!-- KALI DESKTOP REDIRECT -->
+  <script>
+    // Set your new Kali portfolio deployment URL here
+    const KALI_URL = window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+      ? "http://localhost:3000"
+      : "https://usmansportfolio.vercel.app/"; // ⚠️ CHANGE THIS BEFORE PUSHING TO GITHUB ⚠️
+
+    const checkReturnToKali = () => {
+      if (window.innerWidth >= 900) {
+        window.location.href = KALI_URL;
+      }
+    };
+    
+    // Execute redirect check immediately on script load
+    checkReturnToKali();
+    
+    // Attach listener for dynamic resizing
+    window.addEventListener('resize', checkReturnToKali);
+  </script>
 </head>
   <!-- Aegis Boot Sequence Container -->
   <div id="loader-container" class="loader-container">
